@@ -1,8 +1,9 @@
 import { Shadowable } from '@vue-interface/shadowable';
 import { paramCase } from 'param-case';
+import { defineComponent, DirectiveBinding } from 'vue';
 import config from './config';
 
-function prefix(key, value, delimeter = '-') {
+function prefix(key: string, value: any, delimeter = '-') {
     const string = value.toString().replace(new RegExp(`^${key}${delimeter}?`), '');
 
     return [
@@ -10,7 +11,7 @@ function prefix(key, value, delimeter = '-') {
     ].filter(value => !!value).join(delimeter);
 }
 
-function isObject(subject) {
+function isObject(subject: any) {
     return !Array.isArray(subject) && typeof subject === 'object';
 }
 
@@ -18,7 +19,7 @@ function isObject(subject) {
 //     return value === null;
 // }
 
-function isUndefined(value) {
+function isUndefined(value: any) {
     return value === undefined;
 }
 
@@ -26,12 +27,13 @@ function isUndefined(value) {
 //     return isNull(value) || isUndefined(value);
 // }
 
-export default {
+export default defineComponent({
 
     directives: {
         bindEvents: {
-            beforeMount(el, binding, vnode) {
-                binding.instance.bindEvents(el);
+            beforeMount(el: HTMLElement, binding: DirectiveBinding) {
+                // @ts-ignore
+                binding.instance?.bindEvents?.(el);
             }
         }
     },
@@ -46,9 +48,6 @@ export default {
 
         /**
          * Show type activity indicator.
-         *
-         * @param {Boolean}
-         * @default false
          */
         activity: {
             type: Boolean,
@@ -57,9 +56,6 @@ export default {
 
         /**
          * Animate floating labels inside the input.
-         *
-         * @param {Boolean}
-         * @default false
          */
         animated: {
             type: Boolean,
@@ -67,10 +63,7 @@ export default {
         },
 
         /**
-         * An array of event names that correlate with callback functions
-         *
-         * @param {Array}
-         * @default ['focus', 'blur', 'change', 'click', 'keypress', 'keyup', 'keydown', 'progress', 'paste']
+         * An array of event names that correlate with callback functions.
          */
         nativeEvents: {
             type: Array,
@@ -80,10 +73,7 @@ export default {
         },
 
         /**
-         * The default class name assigned to the control element
-         *
-         * @param {String}
-         * @default 'form-control'
+         * The default class name assigned to the control element.
          */
         defaultControlClass: {
             type: String,
@@ -92,18 +82,16 @@ export default {
 
         /**
          * An inline field validation error.
-         *
-         * @param {Array|String|Boolean}
          */
-        error: [String, Array, Boolean],
+        error: {
+            type: [String, Array, Boolean],
+            default: undefined
+        },
 
         /**
          * An inline field validation errors passed as object with key/value
          * pairs. If errors passed as an object, the form name will be used for
          * the key.
-         *
-         * @param {Array|Object|Boolean}
-         * @default {}
          */
         errors: {
             type: [Array, Object, Boolean],
@@ -115,16 +103,14 @@ export default {
         /**
          * Some feedback to add to the field once the field is successfully
          * valid.
-         *
-         * @param {String|Array}
          */
-        feedback: [String, Array],
+        feedback: {
+            type: [String, Array],
+            default: undefined
+        },
 
         /**
-         * Add form-group wrapper to input
-         *
-         * @param {Boolean}
-         * @default true
+         * Add form-group wrapper to input.
          */
         group: {
             type: Boolean,
@@ -132,16 +118,15 @@ export default {
         },
 
         /**
-         * Some instructions to appear under the field label
-         *
-         * @param {Number|String}
+         * Some instructions to appear under the field label.
          */
-        helpText: [Number, String],
+        helpText: {
+            type: [Number, String],
+            default: undefined
+        },
 
         /**
          * Hide the label for browsers, but leave it for screen readers.
-         *
-         * @param {Boolean}
          */
         hideLabel: Boolean,
 
@@ -157,10 +142,11 @@ export default {
 
         /**
          * The activity indicator size.
-         *
-         * @param {String}
          */
-        indicatorSize: String,
+        indicatorSize: {
+            type: String,
+            default: undefined
+        },
 
         /**
          * Display the form field inline
@@ -178,10 +164,11 @@ export default {
 
         /**
          * The value of label element. If no value, no label will appear.
-         *
-         * @param {Number|String}
          */
-        label: [Number, String],
+        label: {
+            type: [Number, String],
+            default: undefined
+        },
 
         /**
          * The default label class assigned to the label element
@@ -356,22 +343,24 @@ export default {
 
     methods: {
 
-        bindEvents(el, fn) {
+        bindEvents(el: HTMLOptionElement|HTMLSelectElement, fn: Function) {
             // If no function is defined, the use the default onInput callback.
             if(!fn) {
                 fn = this.onInput;
             }
 
             // Get the option from the selected index.
-            const selected = el.querySelectorAll('option')[el.selectedIndex];
+            const selected = el instanceof HTMLSelectElement
+                ? el.querySelectorAll('option')?.[el.selectedIndex]
+                : null;
 
             // Set the element value is the modelValue is not undefined.
             if(!isUndefined(this.modelValue)) {
                 el.value = this.modelValue;
             }
             // If an option is selected, force the default value.
-            else if(!isUndefined(selected)) {
-                el.value = selected.value;
+            else if(selected) {
+                el.value = selected?.value;
             }
             
             // If the el has a value, trigger the model update.
@@ -407,7 +396,7 @@ export default {
             );
 
             // Bubble the native events up to the vue component.
-            this.nativeEvents.forEach(name => {
+            this.nativeEvents.forEach((name: string) => {
                 el.addEventListener(name, event => {
                     this.$emit(name, event);
                 });
@@ -446,10 +435,10 @@ export default {
             return !this.getInputField().readOnly;
         },
 
-        onInput(value) {
+        onInput(value: any) {
             this.$emit('update:modelValue', value);
         }
 
     }
 
-};
+});

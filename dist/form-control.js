@@ -1,20 +1,27 @@
-const l = {};
-function i(...t) {
+import { defineComponent as m } from "vue";
+const n = {};
+function o(...t) {
   if (!t.length)
-    return l;
-  const [e, r] = t;
-  return typeof e == "string" ? typeof l[e] < "u" ? l[e] : r : Array.isArray(e) ? e.reduce((s, a) => Object.assign(s, {
-    [a]: l[a]
-  }), {}) : Object.assign(l, ...t);
+    return n;
+  const [e, i] = t;
+  return typeof e == "string" ? typeof n[e] < "u" ? n[e] : i : Array.isArray(e) ? e.reduce((s, r) => Object.assign(s, {
+    [r]: n[r]
+  }), {}) : Object.assign(n, ...t);
 }
-var b = {
+const S = m({
   props: {
-    dropShadow: [Boolean, String],
+    dropShadow: {
+      type: [Boolean, String],
+      default: void 0
+    },
     dropShadowableClassPrefix: {
       type: String,
       default: "drop-shadow"
     },
-    shadow: [Boolean, String],
+    shadow: {
+      type: [Boolean, String],
+      default: void 0
+    },
     shadowableClassPrefix: {
       type: String,
       default: "shadow"
@@ -29,70 +36,65 @@ var b = {
       };
     }
   }
-}, u = function() {
-  return u = Object.assign || function(e) {
-    for (var r, s = 1, a = arguments.length; s < a; s++) {
-      r = arguments[s];
-      for (var n in r)
-        Object.prototype.hasOwnProperty.call(r, n) && (e[n] = r[n]);
+});
+var d = function() {
+  return d = Object.assign || function(e) {
+    for (var i, s = 1, r = arguments.length; s < r; s++) {
+      i = arguments[s];
+      for (var a in i)
+        Object.prototype.hasOwnProperty.call(i, a) && (e[a] = i[a]);
     }
     return e;
-  }, u.apply(this, arguments);
+  }, d.apply(this, arguments);
 };
-function S(t) {
+function E(t) {
   return t.toLowerCase();
 }
 var w = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g], $ = /[^A-Z0-9]+/gi;
-function E(t, e) {
+function A(t, e) {
   e === void 0 && (e = {});
-  for (var r = e.splitRegexp, s = r === void 0 ? w : r, a = e.stripRegexp, n = a === void 0 ? $ : a, f = e.transform, y = f === void 0 ? S : f, p = e.delimiter, C = p === void 0 ? " " : p, o = g(g(t, s, "$1\0$2"), n, "\0"), h = 0, d = o.length; o.charAt(h) === "\0"; )
+  for (var i = e.splitRegexp, s = i === void 0 ? w : i, r = e.stripRegexp, a = r === void 0 ? $ : r, f = e.transform, b = f === void 0 ? E : f, p = e.delimiter, C = p === void 0 ? " " : p, l = g(g(t, s, "$1\0$2"), a, "\0"), h = 0, u = l.length; l.charAt(h) === "\0"; )
     h++;
-  for (; o.charAt(d - 1) === "\0"; )
-    d--;
-  return o.slice(h, d).split("\0").map(y).join(C);
+  for (; l.charAt(u - 1) === "\0"; )
+    u--;
+  return l.slice(h, u).split("\0").map(b).join(C);
 }
-function g(t, e, r) {
-  return e instanceof RegExp ? t.replace(e, r) : e.reduce(function(s, a) {
-    return s.replace(a, r);
+function g(t, e, i) {
+  return e instanceof RegExp ? t.replace(e, i) : e.reduce(function(s, r) {
+    return s.replace(r, i);
   }, t);
 }
-function A(t, e) {
-  return e === void 0 && (e = {}), E(t, u({
-    delimiter: "."
-  }, e));
+function F(t, e) {
+  return e === void 0 && (e = {}), A(t, d({ delimiter: "." }, e));
 }
-function m(t, e) {
-  return e === void 0 && (e = {}), A(t, u({
-    delimiter: "-"
-  }, e));
+function y(t, e) {
+  return e === void 0 && (e = {}), F(t, d({ delimiter: "-" }, e));
 }
-function c(t, e, r = "-") {
-  const s = e.toString().replace(new RegExp(`^${t}${r}?`), "");
-  return [m(s), t].filter((a) => !!a).join(r);
+function c(t, e, i = "-") {
+  const s = e.toString().replace(new RegExp(`^${t}${i}?`), "");
+  return [
+    y(s),
+    t
+  ].filter((r) => !!r).join(i);
 }
 function v(t) {
   return !Array.isArray(t) && typeof t == "object";
 }
-const F = {
+function x(t) {
+  return t === void 0;
+}
+const z = m({
   directives: {
-    bindEvents: (t, e, r) => {
-      if (t.addEventListener("focus", () => {
-        e.instance.hasFocus = !0;
-      }), t.addEventListener("blur", () => {
-        e.instance.hasFocus = !1;
-      }), t.addEventListener("input", (s) => {
-        e.instance.isEmpty = !t.value, e.instance.currentValue = t.value;
-      }), e.instance.hasChanged = !!t.value, e.instance.bindEvents.forEach((s) => {
-        t.addEventListener(s, (a) => {
-          e.instance.$emit(s, a);
-        });
-      }), t.tagName === "SELECT") {
-        const s = t.querySelector('[value=""]');
-        s && s.value === t.value && (e.instance.defaultEmpty = !0), e.instance.isEmpty = !t.querySelector("[selected]") && !t.value;
+    bindEvents: {
+      beforeMount(t, e) {
+        var i, s;
+        (s = (i = e.instance) == null ? void 0 : i.bindEvents) == null || s.call(i, t);
       }
     }
   },
-  mixins: [b],
+  mixins: [
+    S
+  ],
   inheritAttrs: !1,
   props: {
     activity: {
@@ -101,9 +103,9 @@ const F = {
     },
     animated: {
       type: Boolean,
-      default: () => i("animated", !1)
+      default: () => o("animated", !1)
     },
-    bindEvents: {
+    nativeEvents: {
       type: Array,
       default() {
         return ["focus", "blur", "change", "click", "keypress", "keyup", "keydown", "progress", "paste"];
@@ -111,68 +113,80 @@ const F = {
     },
     defaultControlClass: {
       type: String,
-      default: () => i("defaultControlClass", "form-control")
+      default: () => o("defaultControlClass", "form-control")
     },
-    defaultValue: {
-      default: () => i("defaultValue", null)
+    error: {
+      type: [String, Array, Boolean],
+      default: void 0
     },
-    error: [String, Array, Boolean],
     errors: {
       type: [Array, Object, Boolean],
       default() {
         return {};
       }
     },
-    feedback: [String, Array],
+    feedback: {
+      type: [String, Array],
+      default: void 0
+    },
     group: {
       type: Boolean,
-      default: () => i("group", !0)
+      default: () => o("group", !0)
     },
-    helpText: [Number, String],
+    helpText: {
+      type: [Number, String],
+      default: void 0
+    },
     hideLabel: Boolean,
     indicator: {
       type: String,
-      default: () => i("indicator", "spinner")
+      default: () => o("indicator", "spinner")
     },
-    indicatorSize: String,
+    indicatorSize: {
+      type: String,
+      default: void 0
+    },
     inline: Boolean,
     invalid: Boolean,
-    label: [Number, String],
+    label: {
+      type: [Number, String],
+      default: void 0
+    },
     labelClass: {
       type: [Object, String],
-      default: () => i("labelClass", "form-label")
+      default: () => o("labelClass", "form-label")
+    },
+    modelValue: {
+      default: void 0
     },
     pill: Boolean,
     plaintext: Boolean,
     size: String,
     spacing: String,
-    valid: Boolean,
-    value: {
-      default: null
-    }
+    valid: Boolean
   },
   data() {
     return {
-      currentValue: this.value || this.defaultValue,
       defaultEmpty: !1,
       hasChanged: !1,
       hasFocus: !1,
-      isEmpty: !(this.value || this.defaultValue)
+      isEmpty: !0
     };
   },
   computed: {
     id() {
-      return this.$attrs.id || this.$attrs.name;
+      return this.$attrs.id || this.$attrs.name || (Math.random() + 1).toString(36).substring(7);
     },
     componentName() {
       return this.$options.name;
     },
     controlAttributes() {
-      return Object.keys(this.$attrs).concat([["id", this.id], ["class", this.controlClasses]]).reduce((t, e) => Array.isArray(e) ? Object.assign(t, {
-        [e[0]]: e[1]
-      }) : Object.assign(t, {
-        [e]: this.$attrs[e]
-      }), {});
+      return Object.fromEntries(
+        Object.entries(this.$attrs).concat([
+          ["id", this.id],
+          ["class", this.controlClasses]
+        ])
+      );
     },
     controlClass() {
       return this.defaultControlClass;
@@ -182,7 +196,7 @@ const F = {
     },
     formGroupClasses() {
       return {
-        [m(this.componentName)]: !!this.componentName,
+        [y(this.componentName)]: !!this.componentName,
         [this.size && c(this.size, this.componentName)]: !!this.size,
         animated: this.animated,
         "default-empty": this.defaultEmpty,
@@ -236,20 +250,30 @@ const F = {
     hasFocus() {
       this.shouldChangeOnFocus() && (this.hasChanged = !0);
     },
-    value(t) {
-      this.currentValue = t;
-    },
-    currentValue() {
-      this.hasChanged = !0;
-    },
     defaultEmpty() {
       this.hasChanged = !0;
     }
   },
-  mounted() {
-    this.$emit("update:value", this.value);
-  },
   methods: {
+    bindEvents(t, e) {
+      var s;
+      e || (e = this.onInput);
+      const i = t instanceof HTMLSelectElement ? (s = t.querySelectorAll("option")) == null ? void 0 : s[t.selectedIndex] : null;
+      x(this.modelValue) ? i && (t.value = i == null ? void 0 : i.value) : t.value = this.modelValue, t.value && e(t.value), this.hasChanged = !!t.value, this.isEmpty = !t.value, t.addEventListener("focus", () => {
+        this.hasFocus = !0;
+      }), t.addEventListener("blur", () => {
+        this.hasFocus = !1;
+      }), t.addEventListener("input", (r) => {
+        this.isEmpty = !1, this.hasChanged = !0;
+      }), t.addEventListener(
+        t.tagName === "SELECT" ? "change" : "input",
+        () => e(t.value)
+      ), this.nativeEvents.forEach((r) => {
+        t.addEventListener(r, (a) => {
+          this.$emit(r, a);
+        });
+      });
+    },
     blur() {
       this.getInputField() && this.getInputField().blur();
     },
@@ -257,7 +281,9 @@ const F = {
       this.getInputField() && this.getInputField().focus();
     },
     getInputField() {
-      return this.$el.querySelector(".form-control, input, select, textarea");
+      return this.$el.querySelector(
+        ".form-control, input, select, textarea"
+      );
     },
     getFieldErrors() {
       let t = this.error || this.errors;
@@ -267,11 +293,11 @@ const F = {
       return !this.getInputField().readOnly;
     },
     onInput(t) {
-      this.$emit("input", t.target.value), this.$emit("update:value", t.target.value);
+      this.$emit("update:modelValue", t);
     }
   }
-};
+});
 export {
-  F as FormControl,
-  i as config
+  z as FormControl,
+  o as config
 };
