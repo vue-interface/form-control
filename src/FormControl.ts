@@ -136,7 +136,7 @@ export default defineComponent({
          * @param {String}
          */
         indicator: {
-            type: String,
+            type: [String, Boolean],
             default: () => config('indicator', 'spinner')
         },
 
