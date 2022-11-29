@@ -71,11 +71,9 @@ declare const _default: import("vue").DefineComponent<{
     hideLabel: BooleanConstructor;
     /**
      * The activity indicator type.
-     *
-     * @param {String}
      */
     indicator: {
-        type: StringConstructor;
+        type: (BooleanConstructor | StringConstructor)[];
         default: () => any;
     };
     /**
@@ -86,15 +84,11 @@ declare const _default: import("vue").DefineComponent<{
         default: undefined;
     };
     /**
-     * Display the form field inline
-     *
-     * @param {Boolean}
+     * Display the form field inline.
      */
     inline: BooleanConstructor;
     /**
-     * The invalid property
-     *
-     * @param {Boolean}
+     * The invalid property.
      */
     invalid: BooleanConstructor;
     /**
@@ -105,9 +99,7 @@ declare const _default: import("vue").DefineComponent<{
         default: undefined;
     };
     /**
-     * The default label class assigned to the label element
-     *
-     * @param {String|Object}
+     * The default label class assigned to the label element.
      */
     labelClass: {
         type: (StringConstructor | ObjectConstructor)[];
@@ -115,41 +107,34 @@ declare const _default: import("vue").DefineComponent<{
     };
     /**
      * The field's default value.
-     *
-     * @param {any}
-     * @default null
      */
     modelValue: {
         default: undefined;
     };
     /**
      * Should the control look like a pill.
-     *
-     * @param {Boolean}
      */
     pill: BooleanConstructor;
     /**
      * Should the control look like plaintext.
-     *
-     * @param {Boolean}
      */
     plaintext: BooleanConstructor;
     /**
-     * The size of the form control
-     *
-     * @param {String}
+     * The size of the form control.
      */
-    size: StringConstructor;
+    size: {
+        type: StringConstructor;
+        default: undefined;
+    };
     /**
-     * Additional margin/padding classes for fine control of spacing
-     *
-     * @param {String}
+     * Additional margin/padding classes for fine control of spacing.
      */
-    spacing: StringConstructor;
+    spacing: {
+        type: StringConstructor;
+        default: undefined;
+    };
     /**
-     * The valid property
-     *
-     * @param {string}
+     * The valid property.
      */
     valid: BooleanConstructor;
 }, unknown, {
@@ -217,6 +202,9 @@ declare const _default: import("vue").DefineComponent<{
 }, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     dropShadow: {
         type: (BooleanConstructor | StringConstructor)[];
+        /**
+         * Animate floating labels inside the input.
+         */
         default: undefined;
     };
     dropShadowableClassPrefix: {
@@ -232,7 +220,9 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
 }>>, {
-    shadow: string | boolean;
+    shadow: string | boolean; /**
+     * The default class name assigned to the control element.
+     */
     dropShadow: string | boolean;
     dropShadowableClassPrefix: string;
     shadowableClassPrefix: string;
@@ -309,11 +299,9 @@ declare const _default: import("vue").DefineComponent<{
     hideLabel: BooleanConstructor;
     /**
      * The activity indicator type.
-     *
-     * @param {String}
      */
     indicator: {
-        type: StringConstructor;
+        type: (BooleanConstructor | StringConstructor)[];
         default: () => any;
     };
     /**
@@ -324,15 +312,11 @@ declare const _default: import("vue").DefineComponent<{
         default: undefined;
     };
     /**
-     * Display the form field inline
-     *
-     * @param {Boolean}
+     * Display the form field inline.
      */
     inline: BooleanConstructor;
     /**
-     * The invalid property
-     *
-     * @param {Boolean}
+     * The invalid property.
      */
     invalid: BooleanConstructor;
     /**
@@ -343,9 +327,7 @@ declare const _default: import("vue").DefineComponent<{
         default: undefined;
     };
     /**
-     * The default label class assigned to the label element
-     *
-     * @param {String|Object}
+     * The default label class assigned to the label element.
      */
     labelClass: {
         type: (StringConstructor | ObjectConstructor)[];
@@ -353,41 +335,34 @@ declare const _default: import("vue").DefineComponent<{
     };
     /**
      * The field's default value.
-     *
-     * @param {any}
-     * @default null
      */
     modelValue: {
         default: undefined;
     };
     /**
      * Should the control look like a pill.
-     *
-     * @param {Boolean}
      */
     pill: BooleanConstructor;
     /**
      * Should the control look like plaintext.
-     *
-     * @param {Boolean}
      */
     plaintext: BooleanConstructor;
     /**
-     * The size of the form control
-     *
-     * @param {String}
+     * The size of the form control.
      */
-    size: StringConstructor;
+    size: {
+        type: StringConstructor;
+        default: undefined;
+    };
     /**
-     * Additional margin/padding classes for fine control of spacing
-     *
-     * @param {String}
+     * Additional margin/padding classes for fine control of spacing.
      */
-    spacing: StringConstructor;
+    spacing: {
+        type: StringConstructor;
+        default: undefined;
+    };
     /**
-     * The valid property
-     *
-     * @param {string}
+     * The valid property.
      */
     valid: BooleanConstructor;
 }>>, {
@@ -401,7 +376,7 @@ declare const _default: import("vue").DefineComponent<{
     group: boolean;
     helpText: string | number;
     hideLabel: boolean;
-    indicator: string;
+    indicator: string | boolean;
     indicatorSize: string;
     inline: boolean;
     invalid: boolean;
@@ -410,6 +385,8 @@ declare const _default: import("vue").DefineComponent<{
     modelValue: undefined;
     pill: boolean;
     plaintext: boolean;
+    size: string;
+    spacing: string;
     valid: boolean;
 }>;
 export default _default;

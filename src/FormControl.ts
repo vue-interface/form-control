@@ -1,5 +1,5 @@
 import { Shadowable } from '@vue-interface/shadowable';
-import { paramCase } from 'param-case';
+import { kebabCase } from 'lodash-es';
 import { defineComponent, DirectiveBinding } from 'vue';
 import config from './config';
 
@@ -7,7 +7,7 @@ function prefix(key: string, value: any, delimeter = '-') {
     const string = value.toString().replace(new RegExp(`^${key}${delimeter}?`), '');
 
     return [
-        paramCase(string), key
+        kebabCase(string), key
     ].filter(value => !!value).join(delimeter);
 }
 
@@ -15,17 +15,9 @@ function isObject(subject: any) {
     return !Array.isArray(subject) && typeof subject === 'object';
 }
 
-// function isNull(value) {
-//     return value === null;
-// }
-
 function isUndefined(value: any) {
     return value === undefined;
 }
-
-// function isNullOrUndefined(value) {
-//     return isNull(value) || isUndefined(value);
-// }
 
 export default defineComponent({
 
@@ -132,8 +124,6 @@ export default defineComponent({
 
         /**
          * The activity indicator type.
-         *
-         * @param {String}
          */
         indicator: {
             type: [String, Boolean],
@@ -149,16 +139,12 @@ export default defineComponent({
         },
 
         /**
-         * Display the form field inline
-         *
-         * @param {Boolean}
+         * Display the form field inline.
          */
         inline: Boolean,
 
         /**
-         * The invalid property
-         *
-         * @param {Boolean}
+         * The invalid property.
          */
         invalid: Boolean,
 
@@ -171,9 +157,7 @@ export default defineComponent({
         },
 
         /**
-         * The default label class assigned to the label element
-         *
-         * @param {String|Object}
+         * The default label class assigned to the label element.
          */
         labelClass: {
             type: [Object, String],
@@ -182,9 +166,6 @@ export default defineComponent({
 
         /**
          * The field's default value.
-         *
-         * @param {any}
-         * @default null
          */
         modelValue: {
             default: undefined
@@ -192,36 +173,32 @@ export default defineComponent({
 
         /**
          * Should the control look like a pill.
-         *
-         * @param {Boolean}
          */
         pill: Boolean,
 
         /**
          * Should the control look like plaintext.
-         *
-         * @param {Boolean}
          */
         plaintext: Boolean,
         
         /**
-         * The size of the form control
-         *
-         * @param {String}
+         * The size of the form control.
          */
-        size: String,
+        size: {
+            type: String,
+            default: undefined
+        },
 
         /**
-         * Additional margin/padding classes for fine control of spacing
-         *
-         * @param {String}
+         * Additional margin/padding classes for fine control of spacing.
          */
-        spacing: String,
+        spacing: {
+            type: String,
+            default: undefined
+        },
 
         /**
-         * The valid property
-         *
-         * @param {string}
+         * The valid property.
          */
         valid: Boolean
 
@@ -265,7 +242,7 @@ export default defineComponent({
 
         formGroupClasses() {
             return {
-                [paramCase(this.componentName)]: !!this.componentName,
+                [kebabCase(this.componentName)]: !!this.componentName,
                 [this.size && prefix(this.size, this.componentName)]: !!this.size,
                 'animated': this.animated,
                 'default-empty': this.defaultEmpty,
@@ -385,7 +362,7 @@ export default defineComponent({
             });
 
             // Watch for input changes.
-            el.addEventListener('input', e => {
+            el.addEventListener('input', () => {
                 this.isEmpty = false;
                 this.hasChanged = true;
             });

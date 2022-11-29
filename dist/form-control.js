@@ -1,14 +1,14 @@
-import { defineComponent as m } from "vue";
-const n = {};
-function o(...t) {
-  if (!t.length)
-    return n;
-  const [e, i] = t;
-  return typeof e == "string" ? typeof n[e] < "u" ? n[e] : i : Array.isArray(e) ? e.reduce((s, r) => Object.assign(s, {
-    [r]: n[r]
-  }), {}) : Object.assign(n, ...t);
+import { defineComponent as v } from "vue";
+const a = {};
+function d(...e) {
+  if (!e.length)
+    return a;
+  const [t, r] = e;
+  return typeof t == "string" ? typeof a[t] < "u" ? a[t] : r : Array.isArray(t) ? t.reduce((i, s) => Object.assign(i, {
+    [s]: a[s]
+  }), {}) : Object.assign(a, ...e);
 }
-const S = m({
+const B = v({
   props: {
     dropShadow: {
       type: [Boolean, String],
@@ -29,71 +29,333 @@ const S = m({
   },
   computed: {
     shadowableClass() {
-      const t = this.dropShadow === !0 ? "" : this.dropShadow && `-${this.dropShadow}`, e = this.shadow === !0 ? "" : this.shadow && `-${this.shadow}`;
+      const e = this.dropShadow === !0 ? "" : this.dropShadow && `-${this.dropShadow}`, t = this.shadow === !0 ? "" : this.shadow && `-${this.shadow}`;
       return {
-        [`${this.dropShadowableClassPrefix}${t}`]: !!this.dropShadow,
-        [`${this.shadowableClassPrefix}${e}`]: !!this.shadow
+        [`${this.dropShadowableClassPrefix}${e}`]: !!this.dropShadow,
+        [`${this.shadowableClassPrefix}${t}`]: !!this.shadow
       };
     }
   }
 });
-var d = function() {
-  return d = Object.assign || function(e) {
-    for (var i, s = 1, r = arguments.length; s < r; s++) {
-      i = arguments[s];
-      for (var a in i)
-        Object.prototype.hasOwnProperty.call(i, a) && (e[a] = i[a]);
-    }
+var M = typeof global == "object" && global && global.Object === Object && global;
+const P = M;
+var Z = typeof self == "object" && self && self.Object === Object && self, D = P || Z || Function("return this")();
+const G = D;
+var W = G.Symbol;
+const u = W;
+var C = Object.prototype, H = C.hasOwnProperty, V = C.toString, l = u ? u.toStringTag : void 0;
+function J(e) {
+  var t = H.call(e, l), r = e[l];
+  try {
+    e[l] = void 0;
+    var i = !0;
+  } catch {
+  }
+  var s = V.call(e);
+  return i && (t ? e[l] = r : delete e[l]), s;
+}
+var Y = Object.prototype, q = Y.toString;
+function _(e) {
+  return q.call(e);
+}
+var K = "[object Null]", Q = "[object Undefined]", c = u ? u.toStringTag : void 0;
+function X(e) {
+  return e == null ? e === void 0 ? Q : K : c && c in Object(e) ? J(e) : _(e);
+}
+function ee(e) {
+  return e != null && typeof e == "object";
+}
+var te = "[object Symbol]";
+function re(e) {
+  return typeof e == "symbol" || ee(e) && X(e) == te;
+}
+function se(e, t) {
+  for (var r = -1, i = e == null ? 0 : e.length, s = Array(i); ++r < i; )
+    s[r] = t(e[r], r, e);
+  return s;
+}
+var ie = Array.isArray;
+const ne = ie;
+var ue = 1 / 0, h = u ? u.prototype : void 0, p = h ? h.toString : void 0;
+function S(e) {
+  if (typeof e == "string")
     return e;
-  }, d.apply(this, arguments);
-};
-function E(t) {
-  return t.toLowerCase();
+  if (ne(e))
+    return se(e, S) + "";
+  if (re(e))
+    return p ? p.call(e) : "";
+  var t = e + "";
+  return t == "0" && 1 / e == -ue ? "-0" : t;
 }
-var w = [/([a-z0-9])([A-Z])/g, /([A-Z])([A-Z][a-z])/g], $ = /[^A-Z0-9]+/gi;
-function A(t, e) {
-  e === void 0 && (e = {});
-  for (var i = e.splitRegexp, s = i === void 0 ? w : i, r = e.stripRegexp, a = r === void 0 ? $ : r, f = e.transform, b = f === void 0 ? E : f, p = e.delimiter, C = p === void 0 ? " " : p, l = g(g(t, s, "$1\0$2"), a, "\0"), h = 0, u = l.length; l.charAt(h) === "\0"; )
-    h++;
-  for (; l.charAt(u - 1) === "\0"; )
-    u--;
-  return l.slice(h, u).split("\0").map(b).join(C);
+function A(e) {
+  return e == null ? "" : S(e);
 }
-function g(t, e, i) {
-  return e instanceof RegExp ? t.replace(e, i) : e.reduce(function(s, r) {
-    return s.replace(r, i);
-  }, t);
+function oe(e, t, r, i) {
+  var s = -1, o = e == null ? 0 : e.length;
+  for (i && o && (r = e[++s]); ++s < o; )
+    r = t(r, e[s], s, e);
+  return r;
 }
-function F(t, e) {
-  return e === void 0 && (e = {}), A(t, d({ delimiter: "." }, e));
+function ae(e) {
+  return function(t) {
+    return e == null ? void 0 : e[t];
+  };
 }
-function y(t, e) {
-  return e === void 0 && (e = {}), F(t, d({ delimiter: "-" }, e));
+var de = {
+  \u00C0: "A",
+  \u00C1: "A",
+  \u00C2: "A",
+  \u00C3: "A",
+  \u00C4: "A",
+  \u00C5: "A",
+  \u00E0: "a",
+  \u00E1: "a",
+  \u00E2: "a",
+  \u00E3: "a",
+  \u00E4: "a",
+  \u00E5: "a",
+  \u00C7: "C",
+  \u00E7: "c",
+  \u00D0: "D",
+  \u00F0: "d",
+  \u00C8: "E",
+  \u00C9: "E",
+  \u00CA: "E",
+  \u00CB: "E",
+  \u00E8: "e",
+  \u00E9: "e",
+  \u00EA: "e",
+  \u00EB: "e",
+  \u00CC: "I",
+  \u00CD: "I",
+  \u00CE: "I",
+  \u00CF: "I",
+  \u00EC: "i",
+  \u00ED: "i",
+  \u00EE: "i",
+  \u00EF: "i",
+  \u00D1: "N",
+  \u00F1: "n",
+  \u00D2: "O",
+  \u00D3: "O",
+  \u00D4: "O",
+  \u00D5: "O",
+  \u00D6: "O",
+  \u00D8: "O",
+  \u00F2: "o",
+  \u00F3: "o",
+  \u00F4: "o",
+  \u00F5: "o",
+  \u00F6: "o",
+  \u00F8: "o",
+  \u00D9: "U",
+  \u00DA: "U",
+  \u00DB: "U",
+  \u00DC: "U",
+  \u00F9: "u",
+  \u00FA: "u",
+  \u00FB: "u",
+  \u00FC: "u",
+  \u00DD: "Y",
+  \u00FD: "y",
+  \u00FF: "y",
+  \u00C6: "Ae",
+  \u00E6: "ae",
+  \u00DE: "Th",
+  \u00FE: "th",
+  \u00DF: "ss",
+  \u0100: "A",
+  \u0102: "A",
+  \u0104: "A",
+  \u0101: "a",
+  \u0103: "a",
+  \u0105: "a",
+  \u0106: "C",
+  \u0108: "C",
+  \u010A: "C",
+  \u010C: "C",
+  \u0107: "c",
+  \u0109: "c",
+  \u010B: "c",
+  \u010D: "c",
+  \u010E: "D",
+  \u0110: "D",
+  \u010F: "d",
+  \u0111: "d",
+  \u0112: "E",
+  \u0114: "E",
+  \u0116: "E",
+  \u0118: "E",
+  \u011A: "E",
+  \u0113: "e",
+  \u0115: "e",
+  \u0117: "e",
+  \u0119: "e",
+  \u011B: "e",
+  \u011C: "G",
+  \u011E: "G",
+  \u0120: "G",
+  \u0122: "G",
+  \u011D: "g",
+  \u011F: "g",
+  \u0121: "g",
+  \u0123: "g",
+  \u0124: "H",
+  \u0126: "H",
+  \u0125: "h",
+  \u0127: "h",
+  \u0128: "I",
+  \u012A: "I",
+  \u012C: "I",
+  \u012E: "I",
+  \u0130: "I",
+  \u0129: "i",
+  \u012B: "i",
+  \u012D: "i",
+  \u012F: "i",
+  \u0131: "i",
+  \u0134: "J",
+  \u0135: "j",
+  \u0136: "K",
+  \u0137: "k",
+  \u0138: "k",
+  \u0139: "L",
+  \u013B: "L",
+  \u013D: "L",
+  \u013F: "L",
+  \u0141: "L",
+  \u013A: "l",
+  \u013C: "l",
+  \u013E: "l",
+  \u0140: "l",
+  \u0142: "l",
+  \u0143: "N",
+  \u0145: "N",
+  \u0147: "N",
+  \u014A: "N",
+  \u0144: "n",
+  \u0146: "n",
+  \u0148: "n",
+  \u014B: "n",
+  \u014C: "O",
+  \u014E: "O",
+  \u0150: "O",
+  \u014D: "o",
+  \u014F: "o",
+  \u0151: "o",
+  \u0154: "R",
+  \u0156: "R",
+  \u0158: "R",
+  \u0155: "r",
+  \u0157: "r",
+  \u0159: "r",
+  \u015A: "S",
+  \u015C: "S",
+  \u015E: "S",
+  \u0160: "S",
+  \u015B: "s",
+  \u015D: "s",
+  \u015F: "s",
+  \u0161: "s",
+  \u0162: "T",
+  \u0164: "T",
+  \u0166: "T",
+  \u0163: "t",
+  \u0165: "t",
+  \u0167: "t",
+  \u0168: "U",
+  \u016A: "U",
+  \u016C: "U",
+  \u016E: "U",
+  \u0170: "U",
+  \u0172: "U",
+  \u0169: "u",
+  \u016B: "u",
+  \u016D: "u",
+  \u016F: "u",
+  \u0171: "u",
+  \u0173: "u",
+  \u0174: "W",
+  \u0175: "w",
+  \u0176: "Y",
+  \u0177: "y",
+  \u0178: "Y",
+  \u0179: "Z",
+  \u017B: "Z",
+  \u017D: "Z",
+  \u017A: "z",
+  \u017C: "z",
+  \u017E: "z",
+  \u0132: "IJ",
+  \u0133: "ij",
+  \u0152: "Oe",
+  \u0153: "oe",
+  \u0149: "'n",
+  \u017F: "s"
+}, le = ae(de);
+const fe = le;
+var ce = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, he = "\\u0300-\\u036f", pe = "\\ufe20-\\ufe2f", be = "\\u20d0-\\u20ff", xe = he + pe + be, ge = "[" + xe + "]", ye = RegExp(ge, "g");
+function me(e) {
+  return e = A(e), e && e.replace(ce, fe).replace(ye, "");
 }
-function c(t, e, i = "-") {
-  const s = e.toString().replace(new RegExp(`^${t}${i}?`), "");
+var ve = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+function Ce(e) {
+  return e.match(ve) || [];
+}
+var Se = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+function Ae(e) {
+  return Se.test(e);
+}
+var O = "\\ud800-\\udfff", Oe = "\\u0300-\\u036f", $e = "\\ufe20-\\ufe2f", Ee = "\\u20d0-\\u20ff", je = Oe + $e + Ee, $ = "\\u2700-\\u27bf", E = "a-z\\xdf-\\xf6\\xf8-\\xff", we = "\\xac\\xb1\\xd7\\xf7", Re = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Te = "\\u2000-\\u206f", Le = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", j = "A-Z\\xc0-\\xd6\\xd8-\\xde", ke = "\\ufe0e\\ufe0f", w = we + Re + Te + Le, R = "['\u2019]", b = "[" + w + "]", Fe = "[" + je + "]", T = "\\d+", ze = "[" + $ + "]", L = "[" + E + "]", k = "[^" + O + w + T + $ + E + j + "]", Ie = "\\ud83c[\\udffb-\\udfff]", Ue = "(?:" + Fe + "|" + Ie + ")", Ne = "[^" + O + "]", F = "(?:\\ud83c[\\udde6-\\uddff]){2}", z = "[\\ud800-\\udbff][\\udc00-\\udfff]", n = "[" + j + "]", Be = "\\u200d", x = "(?:" + L + "|" + k + ")", Me = "(?:" + n + "|" + k + ")", g = "(?:" + R + "(?:d|ll|m|re|s|t|ve))?", y = "(?:" + R + "(?:D|LL|M|RE|S|T|VE))?", I = Ue + "?", U = "[" + ke + "]?", Pe = "(?:" + Be + "(?:" + [Ne, F, z].join("|") + ")" + U + I + ")*", Ze = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", De = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Ge = U + I + Pe, We = "(?:" + [ze, F, z].join("|") + ")" + Ge, He = RegExp([
+  n + "?" + L + "+" + g + "(?=" + [b, n, "$"].join("|") + ")",
+  Me + "+" + y + "(?=" + [b, n + x, "$"].join("|") + ")",
+  n + "?" + x + "+" + g,
+  n + "+" + y,
+  De,
+  Ze,
+  T,
+  We
+].join("|"), "g");
+function Ve(e) {
+  return e.match(He) || [];
+}
+function Je(e, t, r) {
+  return e = A(e), t = r ? void 0 : t, t === void 0 ? Ae(e) ? Ve(e) : Ce(e) : e.match(t) || [];
+}
+var Ye = "['\u2019]", qe = RegExp(Ye, "g");
+function _e(e) {
+  return function(t) {
+    return oe(Je(me(t).replace(qe, "")), e, "");
+  };
+}
+var Ke = _e(function(e, t, r) {
+  return e + (r ? "-" : "") + t.toLowerCase();
+});
+const N = Ke;
+function f(e, t, r = "-") {
+  const i = t.toString().replace(new RegExp(`^${e}${r}?`), "");
   return [
-    y(s),
-    t
-  ].filter((r) => !!r).join(i);
+    N(i),
+    e
+  ].filter((s) => !!s).join(r);
 }
-function v(t) {
-  return !Array.isArray(t) && typeof t == "object";
+function m(e) {
+  return !Array.isArray(e) && typeof e == "object";
 }
-function x(t) {
-  return t === void 0;
+function Qe(e) {
+  return e === void 0;
 }
-const z = m({
+const et = v({
   directives: {
     bindEvents: {
-      beforeMount(t, e) {
-        var i, s;
-        (s = (i = e.instance) == null ? void 0 : i.bindEvents) == null || s.call(i, t);
+      beforeMount(e, t) {
+        var r, i;
+        (i = (r = t.instance) == null ? void 0 : r.bindEvents) == null || i.call(r, e);
       }
     }
   },
   mixins: [
-    S
+    B
   ],
   inheritAttrs: !1,
   props: {
@@ -103,7 +365,7 @@ const z = m({
     },
     animated: {
       type: Boolean,
-      default: () => o("animated", !1)
+      default: () => d("animated", !1)
     },
     nativeEvents: {
       type: Array,
@@ -113,7 +375,7 @@ const z = m({
     },
     defaultControlClass: {
       type: String,
-      default: () => o("defaultControlClass", "form-control")
+      default: () => d("defaultControlClass", "form-control")
     },
     error: {
       type: [String, Array, Boolean],
@@ -131,7 +393,7 @@ const z = m({
     },
     group: {
       type: Boolean,
-      default: () => o("group", !0)
+      default: () => d("group", !0)
     },
     helpText: {
       type: [Number, String],
@@ -139,8 +401,8 @@ const z = m({
     },
     hideLabel: Boolean,
     indicator: {
-      type: String,
-      default: () => o("indicator", "spinner")
+      type: [String, Boolean],
+      default: () => d("indicator", "spinner")
     },
     indicatorSize: {
       type: String,
@@ -154,15 +416,21 @@ const z = m({
     },
     labelClass: {
       type: [Object, String],
-      default: () => o("labelClass", "form-label")
+      default: () => d("labelClass", "form-label")
     },
     modelValue: {
       default: void 0
     },
     pill: Boolean,
     plaintext: Boolean,
-    size: String,
-    spacing: String,
+    size: {
+      type: String,
+      default: void 0
+    },
+    spacing: {
+      type: String,
+      default: void 0
+    },
     valid: Boolean
   },
   data() {
@@ -192,16 +460,16 @@ const z = m({
       return this.defaultControlClass;
     },
     controlSizeClass() {
-      return c(this.size, this.controlClass);
+      return f(this.size, this.controlClass);
     },
     formGroupClasses() {
       return {
-        [y(this.componentName)]: !!this.componentName,
-        [this.size && c(this.size, this.componentName)]: !!this.size,
+        [N(this.componentName)]: !!this.componentName,
+        [this.size && f(this.size, this.componentName)]: !!this.size,
         animated: this.animated,
         "default-empty": this.defaultEmpty,
         "form-group": this.group,
-        [this.size && c(this.size, "form-group")]: !!this.size,
+        [this.size && f(this.size, "form-group")]: !!this.size,
         "has-activity": this.activity,
         "has-changed": this.hasChanged,
         "has-focus": this.hasFocus,
@@ -233,8 +501,8 @@ const z = m({
         return null;
       if (this.error)
         return this.error;
-      const t = this.getFieldErrors();
-      return Array.isArray(t) ? t.filter((e) => e && typeof e == "string").join("<br>") : t;
+      const e = this.getFieldErrors();
+      return Array.isArray(e) ? e.filter((t) => t && typeof t == "string").join("<br>") : e;
     },
     pillClasses() {
       return "rounded rounded-pill";
@@ -255,22 +523,22 @@ const z = m({
     }
   },
   methods: {
-    bindEvents(t, e) {
-      var s;
-      e || (e = this.onInput);
-      const i = t instanceof HTMLSelectElement ? (s = t.querySelectorAll("option")) == null ? void 0 : s[t.selectedIndex] : null;
-      x(this.modelValue) ? i && (t.value = i == null ? void 0 : i.value) : t.value = this.modelValue, t.value && e(t.value), this.hasChanged = !!t.value, this.isEmpty = !t.value, t.addEventListener("focus", () => {
+    bindEvents(e, t) {
+      var i;
+      t || (t = this.onInput);
+      const r = e instanceof HTMLSelectElement ? (i = e.querySelectorAll("option")) == null ? void 0 : i[e.selectedIndex] : null;
+      Qe(this.modelValue) ? r && (e.value = r == null ? void 0 : r.value) : e.value = this.modelValue, e.value && t(e.value), this.hasChanged = !!e.value, this.isEmpty = !e.value, e.addEventListener("focus", () => {
         this.hasFocus = !0;
-      }), t.addEventListener("blur", () => {
+      }), e.addEventListener("blur", () => {
         this.hasFocus = !1;
-      }), t.addEventListener("input", (r) => {
+      }), e.addEventListener("input", () => {
         this.isEmpty = !1, this.hasChanged = !0;
-      }), t.addEventListener(
-        t.tagName === "SELECT" ? "change" : "input",
-        () => e(t.value)
-      ), this.nativeEvents.forEach((r) => {
-        t.addEventListener(r, (a) => {
-          this.$emit(r, a);
+      }), e.addEventListener(
+        e.tagName === "SELECT" ? "change" : "input",
+        () => t(e.value)
+      ), this.nativeEvents.forEach((s) => {
+        e.addEventListener(s, (o) => {
+          this.$emit(s, o);
         });
       });
     },
@@ -286,18 +554,19 @@ const z = m({
       );
     },
     getFieldErrors() {
-      let t = this.error || this.errors;
-      return this.errors && v(this.errors) && (t = this.errors[this.$attrs.name || this.$attrs.id]), !t || Array.isArray(t) || v(t) ? t : [t];
+      let e = this.error || this.errors;
+      return this.errors && m(this.errors) && (e = this.errors[this.$attrs.name || this.$attrs.id]), !e || Array.isArray(e) || m(e) ? e : [e];
     },
     shouldChangeOnFocus() {
       return !this.getInputField().readOnly;
     },
-    onInput(t) {
-      this.$emit("update:modelValue", t);
+    onInput(e) {
+      this.$emit("update:modelValue", e);
     }
   }
 });
 export {
-  z as FormControl,
-  o as config
+  et as FormControl,
+  d as config
 };
+//# sourceMappingURL=form-control.js.map
