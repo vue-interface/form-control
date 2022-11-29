@@ -151,7 +151,6 @@ declare const _default: import("vue").DefineComponent<{
     controlClass(): any;
     controlSizeClass(): string;
     formGroupClasses(): {
-        [x: string]: any;
         [x: number]: boolean;
         animated: any;
         'default-empty': any;
@@ -163,7 +162,9 @@ declare const _default: import("vue").DefineComponent<{
         'is-empty': any;
         'is-invalid': boolean;
         'is-valid': boolean;
-    };
+    } & (false | {
+        [x: string]: boolean;
+    });
     controlClasses(): any;
     hasDefaultSlot(): boolean;
     invalidFeedback(): any;

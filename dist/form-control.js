@@ -463,8 +463,7 @@ const et = v({
       return f(this.size, this.controlClass);
     },
     formGroupClasses() {
-      return {
-        [N(this.componentName)]: !!this.componentName,
+      return Object.assign({
         [this.size && f(this.size, this.componentName)]: !!this.size,
         animated: this.animated,
         "default-empty": this.defaultEmpty,
@@ -479,7 +478,9 @@ const et = v({
         "is-valid": !!(this.valid || this.validFeedback),
         [this.$attrs.class]: !!this.$attrs.class,
         [this.$attrs.id]: !!this.$attrs.id
-      };
+      }, !!this.componentName && {
+        [N(this.componentName)]: !0
+      });
     },
     controlClasses() {
       return Object.assign({

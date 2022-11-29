@@ -241,8 +241,7 @@ export default defineComponent({
         },
 
         formGroupClasses() {
-            return {
-                [kebabCase(this.componentName)]: !!this.componentName,
+            return Object.assign({
                 [this.size && prefix(this.size, this.componentName)]: !!this.size,
                 'animated': this.animated,
                 'default-empty': this.defaultEmpty,
@@ -257,7 +256,9 @@ export default defineComponent({
                 'is-valid': !!(this.valid || this.validFeedback),
                 [this.$attrs.class]: !!this.$attrs.class,
                 [this.$attrs.id]: !!this.$attrs.id
-            };
+            }, !!this.componentName && {
+                [kebabCase(this.componentName)]: true
+            });
         },
 
         controlClasses() {
