@@ -4,7 +4,7 @@ import { defineComponent, DirectiveBinding } from 'vue';
 import config from './config';
 
 function prefix(key: string, value: any, delimeter = '-') {
-    const string = value.toString().replace(new RegExp(`^${key}${delimeter}?`), '');
+    const string = String(value).replace(new RegExp(`^${key}${delimeter}?`), '');
 
     return [
         kebabCase(string), key

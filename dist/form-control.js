@@ -1,12 +1,12 @@
 import { defineComponent as v } from "vue";
-const a = {};
+const o = {};
 function d(...e) {
   if (!e.length)
-    return a;
+    return o;
   const [t, r] = e;
-  return typeof t == "string" ? typeof a[t] < "u" ? a[t] : r : Array.isArray(t) ? t.reduce((i, s) => Object.assign(i, {
-    [s]: a[s]
-  }), {}) : Object.assign(a, ...e);
+  return typeof t == "string" ? typeof o[t] < "u" ? o[t] : r : Array.isArray(t) ? t.reduce((i, s) => Object.assign(i, {
+    [s]: o[s]
+  }), {}) : Object.assign(o, ...e);
 }
 const B = v({
   props: {
@@ -90,13 +90,13 @@ function S(e) {
 function A(e) {
   return e == null ? "" : S(e);
 }
-function oe(e, t, r, i) {
-  var s = -1, o = e == null ? 0 : e.length;
-  for (i && o && (r = e[++s]); ++s < o; )
+function ae(e, t, r, i) {
+  var s = -1, a = e == null ? 0 : e.length;
+  for (i && a && (r = e[++s]); ++s < a; )
     r = t(r, e[s], s, e);
   return r;
 }
-function ae(e) {
+function oe(e) {
   return function(t) {
     return e == null ? void 0 : e[t];
   };
@@ -292,7 +292,7 @@ var de = {
   \u0153: "oe",
   \u0149: "'n",
   \u017F: "s"
-}, le = ae(de);
+}, le = oe(de);
 const fe = le;
 var ce = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, he = "\\u0300-\\u036f", pe = "\\ufe20-\\ufe2f", be = "\\u20d0-\\u20ff", xe = he + pe + be, ge = "[" + xe + "]", ye = RegExp(ge, "g");
 function me(e) {
@@ -325,7 +325,7 @@ function Je(e, t, r) {
 var Ye = "['\u2019]", qe = RegExp(Ye, "g");
 function _e(e) {
   return function(t) {
-    return oe(Je(me(t).replace(qe, "")), e, "");
+    return ae(Je(me(t).replace(qe, "")), e, "");
   };
 }
 var Ke = _e(function(e, t, r) {
@@ -333,7 +333,7 @@ var Ke = _e(function(e, t, r) {
 });
 const N = Ke;
 function f(e, t, r = "-") {
-  const i = t.toString().replace(new RegExp(`^${e}${r}?`), "");
+  const i = String(t).replace(new RegExp(`^${e}${r}?`), "");
   return [
     N(i),
     e
@@ -537,8 +537,8 @@ const et = v({
         e.tagName === "SELECT" ? "change" : "input",
         () => t(e.value)
       ), this.nativeEvents.forEach((s) => {
-        e.addEventListener(s, (o) => {
-          this.$emit(s, o);
+        e.addEventListener(s, (a) => {
+          this.$emit(s, a);
         });
       });
     },
