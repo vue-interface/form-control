@@ -10,18 +10,18 @@ module.exports = {
         },
     },
     plugins: [
-        require('./tailwindcss/form-control'),
-        require('./tailwindcss/form-check'),
-        require('./tailwindcss/form-select'),
-        require('./tailwindcss/form-file'),
-        require('./tailwindcss/form-switch'),
-        require('./tailwindcss/form-text'),
-        require('./tailwindcss/form-labels'),
-        require('./tailwindcss/form-group'),
-        require('./tailwindcss/input-group'),
-        require('./tailwindcss/validation')
+        require('./tailwindcss/form-control.cjs'),
+        require('./tailwindcss/form-check.cjs'),
+        require('./tailwindcss/form-select.cjs'),
+        require('./tailwindcss/form-file.cjs'),
+        require('./tailwindcss/form-switch.cjs'),
+        require('./tailwindcss/form-text.cjs'),
+        require('./tailwindcss/form-labels.cjs'),
+        require('./tailwindcss/form-group.cjs'),
+        require('./tailwindcss/input-group.cjs'),
+        require('./tailwindcss/validation.cjs')
     ],
     safelist: [
-        ...require('./tailwindcss/safelist')()
+        ...require('./tailwindcss/safelist.cjs')()
     ]
 };
