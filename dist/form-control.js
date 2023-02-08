@@ -306,14 +306,14 @@ var Se = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
 function Ae(e) {
   return Se.test(e);
 }
-var O = "\\ud800-\\udfff", Oe = "\\u0300-\\u036f", $e = "\\ufe20-\\ufe2f", Ee = "\\u20d0-\\u20ff", je = Oe + $e + Ee, $ = "\\u2700-\\u27bf", E = "a-z\\xdf-\\xf6\\xf8-\\xff", we = "\\xac\\xb1\\xd7\\xf7", Re = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Te = "\\u2000-\\u206f", Le = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", j = "A-Z\\xc0-\\xd6\\xd8-\\xde", ke = "\\ufe0e\\ufe0f", w = we + Re + Te + Le, R = "['\u2019]", b = "[" + w + "]", Fe = "[" + je + "]", T = "\\d+", ze = "[" + $ + "]", L = "[" + E + "]", k = "[^" + O + w + T + $ + E + j + "]", Ie = "\\ud83c[\\udffb-\\udfff]", Ue = "(?:" + Fe + "|" + Ie + ")", Ne = "[^" + O + "]", F = "(?:\\ud83c[\\udde6-\\uddff]){2}", z = "[\\ud800-\\udbff][\\udc00-\\udfff]", n = "[" + j + "]", Be = "\\u200d", x = "(?:" + L + "|" + k + ")", Me = "(?:" + n + "|" + k + ")", g = "(?:" + R + "(?:d|ll|m|re|s|t|ve))?", y = "(?:" + R + "(?:D|LL|M|RE|S|T|VE))?", I = Ue + "?", U = "[" + ke + "]?", Pe = "(?:" + Be + "(?:" + [Ne, F, z].join("|") + ")" + U + I + ")*", Ze = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", De = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Ge = U + I + Pe, We = "(?:" + [ze, F, z].join("|") + ")" + Ge, He = RegExp([
-  n + "?" + L + "+" + g + "(?=" + [b, n, "$"].join("|") + ")",
+var O = "\\ud800-\\udfff", Oe = "\\u0300-\\u036f", $e = "\\ufe20-\\ufe2f", Ee = "\\u20d0-\\u20ff", je = Oe + $e + Ee, $ = "\\u2700-\\u27bf", E = "a-z\\xdf-\\xf6\\xf8-\\xff", we = "\\xac\\xb1\\xd7\\xf7", Re = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", ke = "\\u2000-\\u206f", Te = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", j = "A-Z\\xc0-\\xd6\\xd8-\\xde", Le = "\\ufe0e\\ufe0f", w = we + Re + ke + Te, R = "['\u2019]", b = "[" + w + "]", Fe = "[" + je + "]", k = "\\d+", ze = "[" + $ + "]", T = "[" + E + "]", L = "[^" + O + w + k + $ + E + j + "]", Ie = "\\ud83c[\\udffb-\\udfff]", Ue = "(?:" + Fe + "|" + Ie + ")", Ne = "[^" + O + "]", F = "(?:\\ud83c[\\udde6-\\uddff]){2}", z = "[\\ud800-\\udbff][\\udc00-\\udfff]", n = "[" + j + "]", Be = "\\u200d", x = "(?:" + T + "|" + L + ")", Me = "(?:" + n + "|" + L + ")", g = "(?:" + R + "(?:d|ll|m|re|s|t|ve))?", y = "(?:" + R + "(?:D|LL|M|RE|S|T|VE))?", I = Ue + "?", U = "[" + Le + "]?", Pe = "(?:" + Be + "(?:" + [Ne, F, z].join("|") + ")" + U + I + ")*", Ze = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", De = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Ge = U + I + Pe, We = "(?:" + [ze, F, z].join("|") + ")" + Ge, He = RegExp([
+  n + "?" + T + "+" + g + "(?=" + [b, n, "$"].join("|") + ")",
   Me + "+" + y + "(?=" + [b, n + x, "$"].join("|") + ")",
   n + "?" + x + "+" + g,
   n + "+" + y,
   De,
   Ze,
-  T,
+  k,
   We
 ].join("|"), "g");
 function Ve(e) {
@@ -342,10 +342,7 @@ function f(e, t, r = "-") {
 function m(e) {
   return !Array.isArray(e) && typeof e == "object";
 }
-function Qe(e) {
-  return e === void 0;
-}
-const et = v({
+const Xe = v({
   directives: {
     bindEvents: {
       beforeMount(e, t) {
@@ -359,6 +356,9 @@ const et = v({
   ],
   inheritAttrs: !1,
   props: {
+    modelValue: {
+      default: void 0
+    },
     activity: {
       type: Boolean,
       default: !1
@@ -418,9 +418,6 @@ const et = v({
       type: [Object, String],
       default: () => d("labelClass", "form-label")
     },
-    modelValue: {
-      default: void 0
-    },
     pill: Boolean,
     plaintext: Boolean,
     size: {
@@ -433,6 +430,16 @@ const et = v({
     },
     valid: Boolean
   },
+  emits: [
+    "blur",
+    "change",
+    "click",
+    "focus",
+    "keydown",
+    "keypress",
+    "keyup",
+    "update:modelValue"
+  ],
   data() {
     return {
       defaultEmpty: !1,
@@ -452,7 +459,8 @@ const et = v({
       return Object.fromEntries(
         Object.entries(this.$attrs).concat([
           ["id", this.id],
-          ["class", this.controlClasses]
+          ["class", this.controlClasses],
+          ["value", this.modelValue]
         ])
       );
     },
@@ -528,7 +536,7 @@ const et = v({
       var i;
       t || (t = this.onInput);
       const r = e instanceof HTMLSelectElement ? (i = e.querySelectorAll("option")) == null ? void 0 : i[e.selectedIndex] : null;
-      Qe(this.modelValue) ? r && (e.value = r == null ? void 0 : r.value) : e.value = this.modelValue, e.value && t(e.value), this.hasChanged = !!e.value, this.isEmpty = !e.value, e.addEventListener("focus", () => {
+      r && (e.value = r == null ? void 0 : r.value), e.value && t(e.value), this.hasChanged = !!e.value, this.isEmpty = !e.value, e.addEventListener("focus", () => {
         this.hasFocus = !0;
       }), e.addEventListener("blur", () => {
         this.hasFocus = !1;
@@ -567,7 +575,7 @@ const et = v({
   }
 });
 export {
-  et as FormControl,
+  Xe as FormControl,
   d as config
 };
 //# sourceMappingURL=form-control.js.map

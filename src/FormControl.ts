@@ -15,9 +15,9 @@ function isObject(subject: any) {
     return !Array.isArray(subject) && typeof subject === 'object';
 }
 
-function isUndefined(value: any) {
-    return value === undefined;
-}
+// function isUndefined(value: any) {
+//     return value === undefined;
+// }
 
 export default defineComponent({
 
@@ -37,6 +37,10 @@ export default defineComponent({
     inheritAttrs: false,
 
     props: {
+
+        modelValue: {
+            default: undefined
+        },
 
         /**
          * Show type activity indicator.
@@ -69,7 +73,7 @@ export default defineComponent({
          */
         defaultControlClass: {
             type: String,
-            default: () => config('defaultControlClass', 'form-control')                
+            default: () => config('defaultControlClass', 'form-control')
         },
 
         /**
@@ -165,13 +169,6 @@ export default defineComponent({
         },
 
         /**
-         * The field's default value.
-         */
-        modelValue: {
-            default: undefined
-        },
-
-        /**
          * Should the control look like a pill.
          */
         pill: Boolean,
@@ -180,7 +177,7 @@ export default defineComponent({
          * Should the control look like plaintext.
          */
         plaintext: Boolean,
-        
+
         /**
          * The size of the form control.
          */
@@ -203,6 +200,17 @@ export default defineComponent({
         valid: Boolean
 
     },
+
+    emits: [
+        'blur',
+        'change',
+        'click',
+        'focus',
+        'keydown',
+        'keypress',
+        'keyup',
+        'update:modelValue'
+    ],
 
     data() {
         return {
@@ -227,7 +235,8 @@ export default defineComponent({
             return Object.fromEntries(
                 Object.entries(this.$attrs).concat([
                     ['id', this.id],
-                    ['class', this.controlClasses]
+                    ['class', this.controlClasses],
+                    ['value', this.modelValue]
                 ])
             );
         },
@@ -321,7 +330,7 @@ export default defineComponent({
 
     methods: {
 
-        bindEvents(el: HTMLOptionElement|HTMLSelectElement, fn: Function) {
+        bindEvents(el: HTMLOptionElement | HTMLSelectElement, fn: Function) {
             // If no function is defined, the use the default onInput callback.
             if(!fn) {
                 fn = this.onInput;
@@ -332,15 +341,16 @@ export default defineComponent({
                 ? el.querySelectorAll('option')?.[el.selectedIndex]
                 : null;
 
-            // Set the element value is the modelValue is not undefined.
-            if(!isUndefined(this.modelValue)) {
-                el.value = this.modelValue;
-            }
+            // // Set the element value is the modelValue is not undefined.
+            // if(!isUndefined(this.modelValue)) {
+            //     el.value = this.modelValue;
+            // }
+
             // If an option is selected, force the default value.
-            else if(selected) {
+            if(selected) {
                 el.value = selected?.value;
             }
-            
+
             // If the el has a value, trigger the model update.
             if(el.value) {
                 fn(el.value);

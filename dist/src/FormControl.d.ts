@@ -1,4 +1,7 @@
 declare const _default: import("vue").DefineComponent<{
+    modelValue: {
+        default: undefined;
+    };
     /**
      * Show type activity indicator.
      */
@@ -104,12 +107,6 @@ declare const _default: import("vue").DefineComponent<{
     labelClass: {
         type: (StringConstructor | ObjectConstructor)[];
         default: () => any;
-    };
-    /**
-     * The field's default value.
-     */
-    modelValue: {
-        default: undefined;
     };
     /**
      * Should the control look like a pill.
@@ -202,9 +199,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     dropShadow: {
-        type: (BooleanConstructor | StringConstructor)[]; /**
-         * Animate floating labels inside the input.
-         */
+        type: (BooleanConstructor | StringConstructor)[];
         default: undefined;
     };
     dropShadowableClassPrefix: {
@@ -220,13 +215,16 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
 }>>, {
-    shadow: string | boolean; /**
+    shadow: string | boolean;
+    dropShadow: string | boolean;
+    dropShadowableClassPrefix: string; /**
      * The default class name assigned to the control element.
      */
-    dropShadow: string | boolean;
-    dropShadowableClassPrefix: string;
     shadowableClassPrefix: string;
-}>, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}>, import("vue").ComponentOptionsMixin, ("blur" | "change" | "click" | "focus" | "keydown" | "keypress" | "keyup" | "update:modelValue")[], "blur" | "change" | "click" | "focus" | "keydown" | "keypress" | "keyup" | "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    modelValue: {
+        default: undefined;
+    };
     /**
      * Show type activity indicator.
      */
@@ -334,12 +332,6 @@ declare const _default: import("vue").DefineComponent<{
         default: () => any;
     };
     /**
-     * The field's default value.
-     */
-    modelValue: {
-        default: undefined;
-    };
-    /**
      * Should the control look like a pill.
      */
     pill: BooleanConstructor;
@@ -365,7 +357,17 @@ declare const _default: import("vue").DefineComponent<{
      * The valid property.
      */
     valid: BooleanConstructor;
-}>>, {
+}>> & {
+    onBlur?: ((...args: any[]) => any) | undefined;
+    onChange?: ((...args: any[]) => any) | undefined;
+    onClick?: ((...args: any[]) => any) | undefined;
+    onFocus?: ((...args: any[]) => any) | undefined;
+    onKeydown?: ((...args: any[]) => any) | undefined;
+    onKeypress?: ((...args: any[]) => any) | undefined;
+    onKeyup?: ((...args: any[]) => any) | undefined;
+    "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
+}, {
+    modelValue: undefined;
     activity: boolean;
     animated: boolean;
     nativeEvents: unknown[];
@@ -382,7 +384,6 @@ declare const _default: import("vue").DefineComponent<{
     invalid: boolean;
     label: string | number;
     labelClass: string | Record<string, any>;
-    modelValue: undefined;
     pill: boolean;
     plaintext: boolean;
     size: string;
