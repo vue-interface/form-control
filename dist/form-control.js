@@ -5,6 +5,7 @@ function d(...e) {
     return o;
   const [t, r] = e;
   return typeof t == "string" ? typeof o[t] < "u" ? o[t] : r : Array.isArray(t) ? t.reduce((i, s) => Object.assign(i, {
+    //@ts-ignore
     [s]: o[s]
   }), {}) : Object.assign(o, ...e);
 }
@@ -102,196 +103,198 @@ function oe(e) {
   };
 }
 var de = {
-  \u00C0: "A",
-  \u00C1: "A",
-  \u00C2: "A",
-  \u00C3: "A",
-  \u00C4: "A",
-  \u00C5: "A",
-  \u00E0: "a",
-  \u00E1: "a",
-  \u00E2: "a",
-  \u00E3: "a",
-  \u00E4: "a",
-  \u00E5: "a",
-  \u00C7: "C",
-  \u00E7: "c",
-  \u00D0: "D",
-  \u00F0: "d",
-  \u00C8: "E",
-  \u00C9: "E",
-  \u00CA: "E",
-  \u00CB: "E",
-  \u00E8: "e",
-  \u00E9: "e",
-  \u00EA: "e",
-  \u00EB: "e",
-  \u00CC: "I",
-  \u00CD: "I",
-  \u00CE: "I",
-  \u00CF: "I",
-  \u00EC: "i",
-  \u00ED: "i",
-  \u00EE: "i",
-  \u00EF: "i",
-  \u00D1: "N",
-  \u00F1: "n",
-  \u00D2: "O",
-  \u00D3: "O",
-  \u00D4: "O",
-  \u00D5: "O",
-  \u00D6: "O",
-  \u00D8: "O",
-  \u00F2: "o",
-  \u00F3: "o",
-  \u00F4: "o",
-  \u00F5: "o",
-  \u00F6: "o",
-  \u00F8: "o",
-  \u00D9: "U",
-  \u00DA: "U",
-  \u00DB: "U",
-  \u00DC: "U",
-  \u00F9: "u",
-  \u00FA: "u",
-  \u00FB: "u",
-  \u00FC: "u",
-  \u00DD: "Y",
-  \u00FD: "y",
-  \u00FF: "y",
-  \u00C6: "Ae",
-  \u00E6: "ae",
-  \u00DE: "Th",
-  \u00FE: "th",
-  \u00DF: "ss",
-  \u0100: "A",
-  \u0102: "A",
-  \u0104: "A",
-  \u0101: "a",
-  \u0103: "a",
-  \u0105: "a",
-  \u0106: "C",
-  \u0108: "C",
-  \u010A: "C",
-  \u010C: "C",
-  \u0107: "c",
-  \u0109: "c",
-  \u010B: "c",
-  \u010D: "c",
-  \u010E: "D",
-  \u0110: "D",
-  \u010F: "d",
-  \u0111: "d",
-  \u0112: "E",
-  \u0114: "E",
-  \u0116: "E",
-  \u0118: "E",
-  \u011A: "E",
-  \u0113: "e",
-  \u0115: "e",
-  \u0117: "e",
-  \u0119: "e",
-  \u011B: "e",
-  \u011C: "G",
-  \u011E: "G",
-  \u0120: "G",
-  \u0122: "G",
-  \u011D: "g",
-  \u011F: "g",
-  \u0121: "g",
-  \u0123: "g",
-  \u0124: "H",
-  \u0126: "H",
-  \u0125: "h",
-  \u0127: "h",
-  \u0128: "I",
-  \u012A: "I",
-  \u012C: "I",
-  \u012E: "I",
-  \u0130: "I",
-  \u0129: "i",
-  \u012B: "i",
-  \u012D: "i",
-  \u012F: "i",
-  \u0131: "i",
-  \u0134: "J",
-  \u0135: "j",
-  \u0136: "K",
-  \u0137: "k",
-  \u0138: "k",
-  \u0139: "L",
-  \u013B: "L",
-  \u013D: "L",
-  \u013F: "L",
-  \u0141: "L",
-  \u013A: "l",
-  \u013C: "l",
-  \u013E: "l",
-  \u0140: "l",
-  \u0142: "l",
-  \u0143: "N",
-  \u0145: "N",
-  \u0147: "N",
-  \u014A: "N",
-  \u0144: "n",
-  \u0146: "n",
-  \u0148: "n",
-  \u014B: "n",
-  \u014C: "O",
-  \u014E: "O",
-  \u0150: "O",
-  \u014D: "o",
-  \u014F: "o",
-  \u0151: "o",
-  \u0154: "R",
-  \u0156: "R",
-  \u0158: "R",
-  \u0155: "r",
-  \u0157: "r",
-  \u0159: "r",
-  \u015A: "S",
-  \u015C: "S",
-  \u015E: "S",
-  \u0160: "S",
-  \u015B: "s",
-  \u015D: "s",
-  \u015F: "s",
-  \u0161: "s",
-  \u0162: "T",
-  \u0164: "T",
-  \u0166: "T",
-  \u0163: "t",
-  \u0165: "t",
-  \u0167: "t",
-  \u0168: "U",
-  \u016A: "U",
-  \u016C: "U",
-  \u016E: "U",
-  \u0170: "U",
-  \u0172: "U",
-  \u0169: "u",
-  \u016B: "u",
-  \u016D: "u",
-  \u016F: "u",
-  \u0171: "u",
-  \u0173: "u",
-  \u0174: "W",
-  \u0175: "w",
-  \u0176: "Y",
-  \u0177: "y",
-  \u0178: "Y",
-  \u0179: "Z",
-  \u017B: "Z",
-  \u017D: "Z",
-  \u017A: "z",
-  \u017C: "z",
-  \u017E: "z",
-  \u0132: "IJ",
-  \u0133: "ij",
-  \u0152: "Oe",
-  \u0153: "oe",
-  \u0149: "'n",
-  \u017F: "s"
+  // Latin-1 Supplement block.
+  À: "A",
+  Á: "A",
+  Â: "A",
+  Ã: "A",
+  Ä: "A",
+  Å: "A",
+  à: "a",
+  á: "a",
+  â: "a",
+  ã: "a",
+  ä: "a",
+  å: "a",
+  Ç: "C",
+  ç: "c",
+  Ð: "D",
+  ð: "d",
+  È: "E",
+  É: "E",
+  Ê: "E",
+  Ë: "E",
+  è: "e",
+  é: "e",
+  ê: "e",
+  ë: "e",
+  Ì: "I",
+  Í: "I",
+  Î: "I",
+  Ï: "I",
+  ì: "i",
+  í: "i",
+  î: "i",
+  ï: "i",
+  Ñ: "N",
+  ñ: "n",
+  Ò: "O",
+  Ó: "O",
+  Ô: "O",
+  Õ: "O",
+  Ö: "O",
+  Ø: "O",
+  ò: "o",
+  ó: "o",
+  ô: "o",
+  õ: "o",
+  ö: "o",
+  ø: "o",
+  Ù: "U",
+  Ú: "U",
+  Û: "U",
+  Ü: "U",
+  ù: "u",
+  ú: "u",
+  û: "u",
+  ü: "u",
+  Ý: "Y",
+  ý: "y",
+  ÿ: "y",
+  Æ: "Ae",
+  æ: "ae",
+  Þ: "Th",
+  þ: "th",
+  ß: "ss",
+  // Latin Extended-A block.
+  Ā: "A",
+  Ă: "A",
+  Ą: "A",
+  ā: "a",
+  ă: "a",
+  ą: "a",
+  Ć: "C",
+  Ĉ: "C",
+  Ċ: "C",
+  Č: "C",
+  ć: "c",
+  ĉ: "c",
+  ċ: "c",
+  č: "c",
+  Ď: "D",
+  Đ: "D",
+  ď: "d",
+  đ: "d",
+  Ē: "E",
+  Ĕ: "E",
+  Ė: "E",
+  Ę: "E",
+  Ě: "E",
+  ē: "e",
+  ĕ: "e",
+  ė: "e",
+  ę: "e",
+  ě: "e",
+  Ĝ: "G",
+  Ğ: "G",
+  Ġ: "G",
+  Ģ: "G",
+  ĝ: "g",
+  ğ: "g",
+  ġ: "g",
+  ģ: "g",
+  Ĥ: "H",
+  Ħ: "H",
+  ĥ: "h",
+  ħ: "h",
+  Ĩ: "I",
+  Ī: "I",
+  Ĭ: "I",
+  Į: "I",
+  İ: "I",
+  ĩ: "i",
+  ī: "i",
+  ĭ: "i",
+  į: "i",
+  ı: "i",
+  Ĵ: "J",
+  ĵ: "j",
+  Ķ: "K",
+  ķ: "k",
+  ĸ: "k",
+  Ĺ: "L",
+  Ļ: "L",
+  Ľ: "L",
+  Ŀ: "L",
+  Ł: "L",
+  ĺ: "l",
+  ļ: "l",
+  ľ: "l",
+  ŀ: "l",
+  ł: "l",
+  Ń: "N",
+  Ņ: "N",
+  Ň: "N",
+  Ŋ: "N",
+  ń: "n",
+  ņ: "n",
+  ň: "n",
+  ŋ: "n",
+  Ō: "O",
+  Ŏ: "O",
+  Ő: "O",
+  ō: "o",
+  ŏ: "o",
+  ő: "o",
+  Ŕ: "R",
+  Ŗ: "R",
+  Ř: "R",
+  ŕ: "r",
+  ŗ: "r",
+  ř: "r",
+  Ś: "S",
+  Ŝ: "S",
+  Ş: "S",
+  Š: "S",
+  ś: "s",
+  ŝ: "s",
+  ş: "s",
+  š: "s",
+  Ţ: "T",
+  Ť: "T",
+  Ŧ: "T",
+  ţ: "t",
+  ť: "t",
+  ŧ: "t",
+  Ũ: "U",
+  Ū: "U",
+  Ŭ: "U",
+  Ů: "U",
+  Ű: "U",
+  Ų: "U",
+  ũ: "u",
+  ū: "u",
+  ŭ: "u",
+  ů: "u",
+  ű: "u",
+  ų: "u",
+  Ŵ: "W",
+  ŵ: "w",
+  Ŷ: "Y",
+  ŷ: "y",
+  Ÿ: "Y",
+  Ź: "Z",
+  Ż: "Z",
+  Ž: "Z",
+  ź: "z",
+  ż: "z",
+  ž: "z",
+  Ĳ: "IJ",
+  ĳ: "ij",
+  Œ: "Oe",
+  œ: "oe",
+  ŉ: "'n",
+  ſ: "s"
 }, le = oe(de);
 const fe = le;
 var ce = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, he = "\\u0300-\\u036f", pe = "\\ufe20-\\ufe2f", be = "\\u20d0-\\u20ff", xe = he + pe + be, ge = "[" + xe + "]", ye = RegExp(ge, "g");
@@ -306,7 +309,7 @@ var Se = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
 function Ae(e) {
   return Se.test(e);
 }
-var O = "\\ud800-\\udfff", Oe = "\\u0300-\\u036f", $e = "\\ufe20-\\ufe2f", Ee = "\\u20d0-\\u20ff", je = Oe + $e + Ee, $ = "\\u2700-\\u27bf", E = "a-z\\xdf-\\xf6\\xf8-\\xff", we = "\\xac\\xb1\\xd7\\xf7", Re = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", ke = "\\u2000-\\u206f", Te = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", j = "A-Z\\xc0-\\xd6\\xd8-\\xde", Le = "\\ufe0e\\ufe0f", w = we + Re + ke + Te, R = "['\u2019]", b = "[" + w + "]", Fe = "[" + je + "]", k = "\\d+", ze = "[" + $ + "]", T = "[" + E + "]", L = "[^" + O + w + k + $ + E + j + "]", Ie = "\\ud83c[\\udffb-\\udfff]", Ue = "(?:" + Fe + "|" + Ie + ")", Ne = "[^" + O + "]", F = "(?:\\ud83c[\\udde6-\\uddff]){2}", z = "[\\ud800-\\udbff][\\udc00-\\udfff]", n = "[" + j + "]", Be = "\\u200d", x = "(?:" + T + "|" + L + ")", Me = "(?:" + n + "|" + L + ")", g = "(?:" + R + "(?:d|ll|m|re|s|t|ve))?", y = "(?:" + R + "(?:D|LL|M|RE|S|T|VE))?", I = Ue + "?", U = "[" + Le + "]?", Pe = "(?:" + Be + "(?:" + [Ne, F, z].join("|") + ")" + U + I + ")*", Ze = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", De = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Ge = U + I + Pe, We = "(?:" + [ze, F, z].join("|") + ")" + Ge, He = RegExp([
+var O = "\\ud800-\\udfff", Oe = "\\u0300-\\u036f", $e = "\\ufe20-\\ufe2f", Ee = "\\u20d0-\\u20ff", je = Oe + $e + Ee, $ = "\\u2700-\\u27bf", E = "a-z\\xdf-\\xf6\\xf8-\\xff", we = "\\xac\\xb1\\xd7\\xf7", Re = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", ke = "\\u2000-\\u206f", Te = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", j = "A-Z\\xc0-\\xd6\\xd8-\\xde", Le = "\\ufe0e\\ufe0f", w = we + Re + ke + Te, R = "['’]", b = "[" + w + "]", Fe = "[" + je + "]", k = "\\d+", ze = "[" + $ + "]", T = "[" + E + "]", L = "[^" + O + w + k + $ + E + j + "]", Ie = "\\ud83c[\\udffb-\\udfff]", Ue = "(?:" + Fe + "|" + Ie + ")", Ne = "[^" + O + "]", F = "(?:\\ud83c[\\udde6-\\uddff]){2}", z = "[\\ud800-\\udbff][\\udc00-\\udfff]", n = "[" + j + "]", Be = "\\u200d", x = "(?:" + T + "|" + L + ")", Me = "(?:" + n + "|" + L + ")", g = "(?:" + R + "(?:d|ll|m|re|s|t|ve))?", y = "(?:" + R + "(?:D|LL|M|RE|S|T|VE))?", I = Ue + "?", U = "[" + Le + "]?", Pe = "(?:" + Be + "(?:" + [Ne, F, z].join("|") + ")" + U + I + ")*", Ze = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", De = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Ge = U + I + Pe, We = "(?:" + [ze, F, z].join("|") + ")" + Ge, He = RegExp([
   n + "?" + T + "+" + g + "(?=" + [b, n, "$"].join("|") + ")",
   Me + "+" + y + "(?=" + [b, n + x, "$"].join("|") + ")",
   n + "?" + x + "+" + g,
@@ -322,7 +325,7 @@ function Ve(e) {
 function Je(e, t, r) {
   return e = A(e), t = r ? void 0 : t, t === void 0 ? Ae(e) ? Ve(e) : Ce(e) : e.match(t) || [];
 }
-var Ye = "['\u2019]", qe = RegExp(Ye, "g");
+var Ye = "['’]", qe = RegExp(Ye, "g");
 function _e(e) {
   return function(t) {
     return ae(Je(me(t).replace(qe, "")), e, "");
@@ -359,75 +362,141 @@ const Xe = v({
     modelValue: {
       default: void 0
     },
+    /**
+     * Show type activity indicator.
+     */
     activity: {
       type: Boolean,
       default: !1
     },
+    /**
+     * Animate floating labels inside the input.
+     */
     animated: {
       type: Boolean,
       default: () => d("animated", !1)
     },
+    /**
+     * An array of event names that correlate with callback functions.
+     */
     nativeEvents: {
       type: Array,
       default() {
         return ["focus", "blur", "change", "click", "keypress", "keyup", "keydown", "progress", "paste"];
       }
     },
+    /**
+     * The default class name assigned to the control element.
+     */
     defaultControlClass: {
       type: String,
       default: () => d("defaultControlClass", "form-control")
     },
+    /**
+     * An inline field validation error.
+     */
     error: {
       type: [String, Array, Boolean],
       default: void 0
     },
+    /**
+     * An inline field validation errors passed as object with key/value
+     * pairs. If errors passed as an object, the form name will be used for
+     * the key.
+     */
     errors: {
       type: [Array, Object, Boolean],
       default() {
         return {};
       }
     },
+    /**
+     * Some feedback to add to the field once the field is successfully
+     * valid.
+     */
     feedback: {
       type: [String, Array],
       default: void 0
     },
+    /**
+     * Add form-group wrapper to input.
+     */
     group: {
       type: Boolean,
       default: () => d("group", !0)
     },
+    /**
+     * Some instructions to appear under the field label.
+     */
     helpText: {
       type: [Number, String],
       default: void 0
     },
+    /**
+     * Hide the label for browsers, but leave it for screen readers.
+     */
     hideLabel: Boolean,
+    /**
+     * The activity indicator type.
+     */
     indicator: {
       type: [String, Boolean],
       default: () => d("indicator", "spinner")
     },
+    /**
+     * The activity indicator size.
+     */
     indicatorSize: {
       type: String,
       default: void 0
     },
+    /**
+     * Display the form field inline.
+     */
     inline: Boolean,
+    /**
+     * The invalid property.
+     */
     invalid: Boolean,
+    /**
+     * The value of label element. If no value, no label will appear.
+     */
     label: {
       type: [Number, String],
       default: void 0
     },
+    /**
+     * The default label class assigned to the label element.
+     */
     labelClass: {
       type: [Object, String],
       default: () => d("labelClass", "form-label")
     },
+    /**
+     * Should the control look like a pill.
+     */
     pill: Boolean,
+    /**
+     * Should the control look like plaintext.
+     */
     plaintext: Boolean,
+    /**
+     * The size of the form control.
+     */
     size: {
       type: String,
       default: void 0
     },
+    /**
+     * Additional margin/padding classes for fine control of spacing.
+     */
     spacing: {
       type: String,
       default: void 0
     },
+    /**
+     * The valid property.
+     */
     valid: Boolean
   },
   emits: [
