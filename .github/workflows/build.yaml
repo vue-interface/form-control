@@ -21,8 +21,6 @@ jobs:
     #     github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload coverage reports to Codecov 📝
       uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
     - name: Create Release 🪧
       id: create_release
       uses: actions/create-release@v1
