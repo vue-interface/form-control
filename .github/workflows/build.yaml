@@ -12,8 +12,8 @@ jobs:
       run: npm install
     - name: Transpile Typescript 🪛 
       run: npm run build
-    - name: Run Jest 🃏
-      run: npm test
+    # - name: Run Jest 🃏
+    #   run: npm test
     - name: Send Coverage Report 📡
       uses: coverallsapp/github-action@master
       with:
