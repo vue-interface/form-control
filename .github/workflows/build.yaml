@@ -19,6 +19,8 @@ jobs:
     #   with:
     #     # This token is provided by Actions, you do not need to create your own token
     #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload coverage reports to Codecov 📝
+      uses: codecov/codecov-action@v3
     - name: Create Release 🪧
       id: create_release
       uses: actions/create-release@v1
