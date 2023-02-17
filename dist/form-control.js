@@ -691,7 +691,7 @@ const os = E({
       });
     },
     controlClasses() {
-      return Object.assign({
+      return console.log(this.plaintext), Object.assign({
         [this.controlClass]: !!this.controlClass,
         [this.controlSizeClass]: !!this.controlSizeClass,
         [this.formControlClass]: !!this.formControlClass,

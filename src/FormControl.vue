@@ -223,6 +223,8 @@ export default defineComponent({
             return attrs;
         },
         controlClasses() {
+            console.log(this.plaintext);
+            
             return Object.assign({
                 [this.controlClass]: !!this.controlClass,
                 [this.controlSizeClass]: !!this.controlSizeClass,

@@ -4,6 +4,7 @@ module.exports = () => ([
     'form-check-label',
     'form-check-inline',
     'form-control',
+    'form-control-plaintext',
     'form-control-sm',
     'form-control-lg',
     'form-switch',
