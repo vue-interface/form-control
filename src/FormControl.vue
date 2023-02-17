@@ -179,7 +179,7 @@ export default defineComponent({
     ],
     data() {
         return {
-            currentValue: this.modelValue,
+            // currentValue: this.modelValue,
             hasChanged: false,
             hasFocus: false,
             isDirty: false,
@@ -187,9 +187,18 @@ export default defineComponent({
         };
     },
     computed: {
+        model: {
+            get() {
+                return this.modelValue;
+            },
+            set(value: any) {
+                this.hasChanged = true;
+                this.isEmpty = isEmpty(value);
+                this.$emit('update:modelValue', value);
+            }
+        },
         id(): string|undefined {
             return this.$attrs.id
-                || this.$attrs.name
                 || Math.random().toString(36).slice(2);
         },
         componentName() {
@@ -223,8 +232,6 @@ export default defineComponent({
             return attrs;
         },
         controlClasses() {
-            console.log(this.plaintext);
-            
             return Object.assign({
                 [this.controlClass]: !!this.controlClass,
                 [this.controlSizeClass]: !!this.controlSizeClass,
@@ -260,13 +267,13 @@ export default defineComponent({
             return 'form-control-plaintext';
         },
     },
-    watch: {
-        currentValue(value) {
-            this.hasChanged = true;
-            this.isEmpty = isEmpty(value);
-            this.$emit('update:modelValue', value);
-        }
-    },
+    // watch: {
+    //     currentValue(value) {
+    //         this.hasChanged = true;
+    //         this.isEmpty = isEmpty(value);
+    //         this.$emit('update:modelValue', this.value);
+    //     }
+    // },
     methods: {
         bindEvents(el: HTMLElement) {
             for(const event of this.$options.emits) {

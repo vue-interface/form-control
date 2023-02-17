@@ -121,12 +121,15 @@ declare const _sfc_main: import("vue").DefineComponent<{
      */
     valid: BooleanConstructor;
 }, unknown, {
-    currentValue: string | number | unknown[] | Record<string, any> | undefined;
     hasChanged: boolean;
     hasFocus: boolean;
     isDirty: boolean;
     isEmpty: boolean;
 }, {
+    model: {
+        get(): any;
+        set(value: any): void;
+    };
     id(): string | undefined;
     componentName(): any;
     formGroupClasses(): {

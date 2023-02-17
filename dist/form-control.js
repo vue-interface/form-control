@@ -651,7 +651,7 @@ const os = E({
   ],
   data() {
     return {
-      currentValue: this.modelValue,
+      // currentValue: this.modelValue,
       hasChanged: !1,
       hasFocus: !1,
       isDirty: !1,
@@ -659,8 +659,16 @@ const os = E({
     };
   },
   computed: {
+    model: {
+      get() {
+        return this.modelValue;
+      },
+      set(t) {
+        this.hasChanged = !0, this.isEmpty = J(t), this.$emit("update:modelValue", t);
+      }
+    },
     id() {
-      return this.$attrs.id || this.$attrs.name || Math.random().toString(36).slice(2);
+      return this.$attrs.id || Math.random().toString(36).slice(2);
     },
     componentName() {
       return this.$options.name;
@@ -691,7 +699,7 @@ const os = E({
       });
     },
     controlClasses() {
-      return console.log(this.plaintext), Object.assign({
+      return Object.assign({
         [this.controlClass]: !!this.controlClass,
         [this.controlSizeClass]: !!this.controlSizeClass,
         [this.formControlClass]: !!this.formControlClass,
@@ -719,11 +727,13 @@ const os = E({
       return "form-control-plaintext";
     }
   },
-  watch: {
-    currentValue(t) {
-      this.hasChanged = !0, this.isEmpty = J(t), this.$emit("update:modelValue", t);
-    }
-  },
+  // watch: {
+  //     currentValue(value) {
+  //         this.hasChanged = true;
+  //         this.isEmpty = isEmpty(value);
+  //         this.$emit('update:modelValue', this.value);
+  //     }
+  // },
   methods: {
     bindEvents(t) {
       for (const e of this.$options.emits)
