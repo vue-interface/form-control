@@ -53,6 +53,13 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: () => any;
     };
     /**
+     * Add form-group wrapper to input.
+     */
+    group: {
+        type: BooleanConstructor;
+        default: () => any;
+    };
+    /**
      * Some instructions to appear under the field label.
      */
     helpText: {
@@ -125,6 +132,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
     formGroupClasses(): {
         [x: number]: boolean;
         animated: any;
+        'form-group': any;
         'has-activity': any;
         'has-changed': any;
         'has-focus': any;
@@ -143,6 +151,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
     validFeedback(): any;
     plaintextClass(): "form-control-plaintext";
 }, {
+    bindEvents(el: HTMLElement): void;
     blur(): void;
     focus(): void;
     getFieldErrors(): any;
@@ -166,7 +175,9 @@ declare const _sfc_main: import("vue").DefineComponent<{
 }, unknown, unknown, {
     shadowableClass(): {
         [x: string]: boolean;
-    };
+    }; /**
+     * Show type activity indicator.
+     */
 }, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     dropShadow: {
         type: (BooleanConstructor | StringConstructor)[];
@@ -178,19 +189,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
     };
     shadow: {
         type: (BooleanConstructor | StringConstructor)[];
-        default: undefined; /**
-         * Animate floating labels inside the input.
-         */
+        default: undefined;
     };
     shadowableClassPrefix: {
         type: StringConstructor;
         default: string;
     };
 }>>, {
-    shadow: string | boolean; /**
-     * Additional classes assigned to the control element. These do not
-     * override any of the classes assigned by the FormControl.
-     */
+    shadow: string | boolean;
     dropShadow: string | boolean;
     dropShadowableClassPrefix: string;
     shadowableClassPrefix: string;
@@ -246,6 +252,13 @@ declare const _sfc_main: import("vue").DefineComponent<{
      */
     formControlClass: {
         type: (ArrayConstructor | ObjectConstructor | StringConstructor)[];
+        default: () => any;
+    };
+    /**
+     * Add form-group wrapper to input.
+     */
+    group: {
+        type: BooleanConstructor;
         default: () => any;
     };
     /**
@@ -328,6 +341,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
     errors: boolean | unknown[] | Record<string, any>;
     feedback: string | unknown[];
     formControlClass: string | unknown[] | Record<string, any>;
+    group: boolean;
     helpText: string | number;
     indicator: string | boolean | Record<string, any>;
     indicatorSize: string;

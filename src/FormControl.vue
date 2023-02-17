@@ -15,23 +15,8 @@ function prefix(key: string, value: any, delimeter = '-') {
 export default defineComponent({
     directives: {
         bindEvents(el: HTMLElement, binding: DirectiveBinding) {
-            for(const event of binding.instance?.$options.emits) {
-                el.addEventListener(event, (e: Event) => {
-                    binding.instance?.$emit(event, e);
-                });
-            }
-
-            el.addEventListener('focus', () => {
-                // @ts-ignore
-                binding.instance.isDirty = true;
-                // @ts-ignore
-                binding.instance.hasFocus = true;
-            });
-
-            el.addEventListener('blur', () => {
-                // @ts-ignore
-                binding.instance.hasFocus = false;
-            });
+            // @ts-ignore
+            binding.instance?.bindEvents?.(el);
         }
     },
     mixins: [
@@ -99,6 +84,14 @@ export default defineComponent({
         formControlClass: {
             type: [Array, Object, String],
             default: () => config('controlClass', 'form-control')
+        },
+        
+        /**
+         * Add form-group wrapper to input.
+         */
+        group: {
+            type: Boolean,
+            default: () => config('group', true)
         },
         
         /**
@@ -205,6 +198,7 @@ export default defineComponent({
         formGroupClasses() {
             return Object.assign({
                 'animated': this.animated,
+                'form-group': this.group,
                 'has-activity': this.activity,
                 'has-changed': this.hasChanged,
                 'has-focus': this.hasFocus,
@@ -272,6 +266,22 @@ export default defineComponent({
         }
     },
     methods: {
+        bindEvents(el: HTMLElement) {
+            for(const event of this.$options.emits) {
+                el.addEventListener(event, (e: Event) => {
+                    this.$emit(event, e);
+                });
+            }
+
+            el.addEventListener('focus', () => {
+                this.isDirty = true;
+                this.hasFocus = true;
+            });
+
+            el.addEventListener('blur', () => {
+                this.hasFocus = false;
+            });
+        },
         blur() {
             this.$refs.field?.blur();
         },

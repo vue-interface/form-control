@@ -372,6 +372,7 @@ declare const _default: import("vue").DefineComponent<{
     error: string | boolean | unknown[];
     errors: boolean | unknown[] | Record<string, any>;
     feedback: string | unknown[];
+    group: boolean;
     helpText: string | number;
     indicator: string | boolean;
     indicatorSize: string;
@@ -384,7 +385,6 @@ declare const _default: import("vue").DefineComponent<{
     valid: boolean;
     nativeEvents: unknown[];
     defaultControlClass: string;
-    group: boolean;
     hideLabel: boolean;
     inline: boolean;
     pill: boolean;
