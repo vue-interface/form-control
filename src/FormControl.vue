@@ -223,13 +223,11 @@ export default defineComponent({
             });
         },
         controlAttributes() {
-            const attrs = Object.assign({}, this.$attrs, {
+            return Object.assign({}, this.$attrs, {
                 id: this.id,
                 class: this.controlClasses,
                 value: this.modelValue
             });
-            
-            return attrs;
         },
         controlClasses() {
             return Object.assign({
