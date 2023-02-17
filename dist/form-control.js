@@ -687,7 +687,8 @@ const oa = w({
     controlAttributes() {
       return Object.assign({}, this.$attrs, {
         id: this.id,
-        class: this.controlClasses
+        class: this.controlClasses,
+        value: this.modelValue
       });
     },
     controlClasses() {

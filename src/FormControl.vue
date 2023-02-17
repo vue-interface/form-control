@@ -222,7 +222,8 @@ export default defineComponent({
         controlAttributes() {
             const attrs = Object.assign({}, this.$attrs, {
                 id: this.id,
-                class: this.controlClasses
+                class: this.controlClasses,
+                value: this.modelValue
             });
             
             return attrs;
