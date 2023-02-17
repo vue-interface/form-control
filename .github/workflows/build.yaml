@@ -9,11 +9,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install Modules 🔌 
-      run: pnpm install
+      run: npm install
     - name: Transpile Typescript 🪛 
-      run: pnpm run build
+      run: npm run build
     - name: Run Jest 🃏
-      run: pnpm test
+      run: npm test
     - name: Send Coverage Report 📡
       uses: coverallsapp/github-action@master
       with:
