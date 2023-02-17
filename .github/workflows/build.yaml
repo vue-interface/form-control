@@ -14,11 +14,11 @@ jobs:
       run: npm run build
     # - name: Run Jest 🃏
     #   run: npm test
-    - name: Send Coverage Report 📡
-      uses: coverallsapp/github-action@master
-      with:
-        # This token is provided by Actions, you do not need to create your own token
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Send Coverage Report 📡
+    #   uses: coverallsapp/github-action@master
+    #   with:
+    #     # This token is provided by Actions, you do not need to create your own token
+    #     github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Release 🪧
       id: create_release
       uses: actions/create-release@v1
