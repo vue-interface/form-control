@@ -155,6 +155,11 @@ export default defineComponent({
         },
 
         /**
+         * Should the control look like plaintext.
+         */
+        plaintext: Boolean,
+
+        /**
          * The size of the form control.
          */
         size: {
@@ -227,6 +232,7 @@ export default defineComponent({
                 [this.controlClass]: !!this.controlClass,
                 [this.controlSizeClass]: !!this.controlSizeClass,
                 [this.formControlClass]: !!this.formControlClass,
+                [this.plaintextClass]: this.plaintext,
                 'form-control-icon': !!this.$slots.icon,
                 'is-valid': !!(this.valid || this.validFeedback),
                 'is-invalid': !!(this.invalid || this.invalidFeedback),
@@ -252,7 +258,10 @@ export default defineComponent({
         },
         validFeedback() {
             return Array.isArray(this.feedback) ? this.feedback.join('<br>') : this.feedback;
-        }
+        },
+        plaintextClass() {
+            return 'form-control-plaintext';
+        },
     },
     watch: {
         currentValue(value) {
