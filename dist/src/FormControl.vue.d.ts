@@ -121,6 +121,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
      */
     valid: BooleanConstructor;
 }, unknown, {
+    currentValue: null;
     hasChanged: boolean;
     hasFocus: boolean;
     isDirty: boolean;
@@ -178,21 +179,24 @@ declare const _sfc_main: import("vue").DefineComponent<{
 }, unknown, unknown, {
     shadowableClass(): {
         [x: string]: boolean;
-    }; /**
-     * Show type activity indicator.
-     */
+    };
 }, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     dropShadow: {
         type: (BooleanConstructor | StringConstructor)[];
         default: undefined;
-    };
+    }; /**
+     * Additional classes assigned to the control element. These do not
+     * override any of the classes assigned by the FormControl.
+     */
     dropShadowableClassPrefix: {
         type: StringConstructor;
         default: string;
     };
     shadow: {
         type: (BooleanConstructor | StringConstructor)[];
-        default: undefined;
+        default: undefined; /**
+         * An inline field validation error.
+         */
     };
     shadowableClassPrefix: {
         type: StringConstructor;

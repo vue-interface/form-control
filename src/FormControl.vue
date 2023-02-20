@@ -14,9 +14,11 @@ function prefix(key: string, value: any, delimeter = '-') {
 
 export default defineComponent({
     directives: {
-        bindEvents(el: HTMLElement, binding: DirectiveBinding) {
-            // @ts-ignore
-            binding.instance?.bindEvents?.(el);
+        bindEvents: {
+            created(el: HTMLElement, binding: DirectiveBinding) {
+                // @ts-ignore
+                binding.instance?.bindEvents?.(el);
+            }
         }
     },
     mixins: [
@@ -179,7 +181,7 @@ export default defineComponent({
     ],
     data() {
         return {
-            // currentValue: this.modelValue,
+            currentValue: null,
             hasChanged: false,
             hasFocus: false,
             isDirty: false,
@@ -189,9 +191,12 @@ export default defineComponent({
     computed: {
         model: {
             get() {
-                return this.modelValue;
+                return this.modelValue !== undefined
+                    ? this.modelValue
+                    : this.currentValue;
             },
             set(value: any) {
+                this.currentValue = value;                
                 this.hasChanged = true;
                 this.isEmpty = isEmpty(value);
                 this.$emit('update:modelValue', value);
@@ -226,7 +231,7 @@ export default defineComponent({
             return Object.assign({}, this.$attrs, {
                 id: this.id,
                 class: this.controlClasses,
-                value: this.modelValue
+                // value: this.model
             });
         },
         controlClasses() {
@@ -265,13 +270,6 @@ export default defineComponent({
             return 'form-control-plaintext';
         },
     },
-    // watch: {
-    //     currentValue(value) {
-    //         this.hasChanged = true;
-    //         this.isEmpty = isEmpty(value);
-    //         this.$emit('update:modelValue', this.value);
-    //     }
-    // },
     methods: {
         bindEvents(el: HTMLElement) {
             for(const event of this.$options.emits) {

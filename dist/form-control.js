@@ -503,9 +503,11 @@ function q(t, e, r = "-") {
 }
 const os = E({
   directives: {
-    bindEvents(t, e) {
-      var r, a;
-      (a = (r = e.instance) == null ? void 0 : r.bindEvents) == null || a.call(r, t);
+    bindEvents: {
+      created(t, e) {
+        var r, a;
+        (a = (r = e.instance) == null ? void 0 : r.bindEvents) == null || a.call(r, t);
+      }
     }
   },
   mixins: [
@@ -651,7 +653,7 @@ const os = E({
   ],
   data() {
     return {
-      // currentValue: this.modelValue,
+      currentValue: null,
       hasChanged: !1,
       hasFocus: !1,
       isDirty: !1,
@@ -661,10 +663,10 @@ const os = E({
   computed: {
     model: {
       get() {
-        return this.modelValue;
+        return this.modelValue !== void 0 ? this.modelValue : this.currentValue;
       },
       set(t) {
-        this.hasChanged = !0, this.isEmpty = J(t), this.$emit("update:modelValue", t);
+        this.currentValue = t, this.hasChanged = !0, this.isEmpty = J(t), this.$emit("update:modelValue", t);
       }
     },
     id() {
@@ -694,8 +696,8 @@ const os = E({
     controlAttributes() {
       return Object.assign({}, this.$attrs, {
         id: this.id,
-        class: this.controlClasses,
-        value: this.modelValue
+        class: this.controlClasses
+        // value: this.model
       });
     },
     controlClasses() {
@@ -727,13 +729,6 @@ const os = E({
       return "form-control-plaintext";
     }
   },
-  // watch: {
-  //     currentValue(value) {
-  //         this.hasChanged = true;
-  //         this.isEmpty = isEmpty(value);
-  //         this.$emit('update:modelValue', this.value);
-  //     }
-  // },
   methods: {
     bindEvents(t) {
       for (const e of this.$options.emits)
