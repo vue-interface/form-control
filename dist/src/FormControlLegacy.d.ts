@@ -34,7 +34,7 @@ declare const _default: import("vue").DefineComponent<{
      * An inline field validation error.
      */
     error: {
-        type: (BooleanConstructor | ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | BooleanConstructor)[];
         default: undefined;
     };
     /**
@@ -43,7 +43,7 @@ declare const _default: import("vue").DefineComponent<{
      * the key.
      */
     errors: {
-        type: (BooleanConstructor | ArrayConstructor | ObjectConstructor)[];
+        type: (ArrayConstructor | ObjectConstructor | BooleanConstructor)[];
         default(): {};
     };
     /**
@@ -51,7 +51,7 @@ declare const _default: import("vue").DefineComponent<{
      * valid.
      */
     feedback: {
-        type: (ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor)[];
         default: undefined;
     };
     /**
@@ -76,7 +76,7 @@ declare const _default: import("vue").DefineComponent<{
      * The activity indicator type.
      */
     indicator: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: () => any;
     };
     /**
@@ -105,7 +105,7 @@ declare const _default: import("vue").DefineComponent<{
      * The default label class assigned to the label element.
      */
     labelClass: {
-        type: (ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ObjectConstructor)[];
         default: () => any;
     };
     /**
@@ -178,7 +178,7 @@ declare const _default: import("vue").DefineComponent<{
     onInput(value: any): void;
 }, import("vue").DefineComponent<{
     dropShadow: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: undefined;
     };
     dropShadowableClassPrefix: {
@@ -186,7 +186,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     shadow: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: undefined;
     };
     shadowableClassPrefix: {
@@ -199,7 +199,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     dropShadow: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: undefined;
     };
     dropShadowableClassPrefix: {
@@ -207,7 +207,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
     shadow: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: undefined;
     };
     shadowableClassPrefix: {
@@ -257,7 +257,7 @@ declare const _default: import("vue").DefineComponent<{
      * An inline field validation error.
      */
     error: {
-        type: (BooleanConstructor | ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | BooleanConstructor)[];
         default: undefined;
     };
     /**
@@ -266,7 +266,7 @@ declare const _default: import("vue").DefineComponent<{
      * the key.
      */
     errors: {
-        type: (BooleanConstructor | ArrayConstructor | ObjectConstructor)[];
+        type: (ArrayConstructor | ObjectConstructor | BooleanConstructor)[];
         default(): {};
     };
     /**
@@ -274,7 +274,7 @@ declare const _default: import("vue").DefineComponent<{
      * valid.
      */
     feedback: {
-        type: (ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor)[];
         default: undefined;
     };
     /**
@@ -299,7 +299,7 @@ declare const _default: import("vue").DefineComponent<{
      * The activity indicator type.
      */
     indicator: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: () => any;
     };
     /**
@@ -328,7 +328,7 @@ declare const _default: import("vue").DefineComponent<{
      * The default label class assigned to the label element.
      */
     labelClass: {
-        type: (ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ObjectConstructor)[];
         default: () => any;
     };
     /**
@@ -367,11 +367,11 @@ declare const _default: import("vue").DefineComponent<{
     onKeydown?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
-    activity: boolean;
-    animated: boolean;
     error: string | boolean | unknown[];
     errors: boolean | unknown[] | Record<string, any>;
     feedback: string | unknown[];
+    activity: boolean;
+    animated: boolean;
     group: boolean;
     helpText: string | number;
     indicator: string | boolean;

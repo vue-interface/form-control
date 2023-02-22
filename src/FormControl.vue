@@ -3,6 +3,8 @@ import { Shadowable } from '@vue-interface/shadowable';
 import { isEmpty, isObject, kebabCase } from 'lodash-es';
 import { defineComponent, DirectiveBinding } from 'vue';
 import config from './config';
+import FormControlErrors from './FormControlErrors.vue';
+import FormControlFeedback from './FormControlFeedback.vue';
 
 function prefix(key: string, value: any, delimeter = '-') {
     const string = String(value).replace(new RegExp(`^${key}${delimeter}?`), '');
@@ -13,6 +15,10 @@ function prefix(key: string, value: any, delimeter = '-') {
 }
 
 export default defineComponent({
+    components: {
+        FormControlErrors,
+        FormControlFeedback
+    },
     directives: {
         bindEvents: {
             created(el: HTMLElement, binding: DirectiveBinding) {
@@ -145,7 +151,7 @@ export default defineComponent({
          * The model default value.
          */
         modelValue: {
-            type: [Number, String, Array, Object],
+            type: [Boolean, Number, String, Array, Object],
             default: undefined
         },
 
@@ -185,47 +191,36 @@ export default defineComponent({
             hasChanged: false,
             hasFocus: false,
             isDirty: false,
-            isEmpty: isEmpty(this.modelValue),
         };
     },
     computed: {
         model: {
             get() {
-                return this.modelValue !== undefined
-                    ? this.modelValue
-                    : this.currentValue;
+                return this.getModelValue();
             },
             set(value: any) {
-                this.currentValue = value;                
-                this.hasChanged = true;
-                this.isEmpty = isEmpty(value);
-                this.$emit('update:modelValue', value);
+                this.setModelValue(value);
             }
         },
         id(): string|undefined {
             return this.$attrs.id
                 || Math.random().toString(36).slice(2);
         },
+        isEmpty() {
+            return isEmpty(this.model);
+        },
+        isInvalid() {
+            return !!(this.invalid || this.error || (
+                Array.isArray(this.errors)
+                    ? this.errors.length
+                    : this.errors[this.$attrs.id || this.$attrs.name]
+            ));
+        },
+        isValid() {
+            return !!(this.valid || this.feedback);
+        },
         componentName() {
             return this.$options.name;
-        },
-        formGroupClasses() {
-            return Object.assign({
-                'animated': this.animated,
-                'form-group': this.group,
-                'has-activity': this.activity,
-                'has-changed': this.hasChanged,
-                'has-focus': this.hasFocus,
-                'has-icon': !!this.$slots.icon,
-                'is-dirty': this.isDirty,
-                'is-empty': this.isEmpty,
-                'is-invalid': !!(this.invalid || this.invalidFeedback),
-                'is-valid': !!(this.valid || this.validFeedback),
-                [this.$attrs.class]: !!this.$attrs.class,
-                [this.size && prefix(this.size, this.componentName)]: !!this.size,
-            }, !!this.componentName && {
-                [kebabCase(this.componentName)]: true
-            });
         },
         controlAttributes() {
             return Object.assign({}, this.$attrs, {
@@ -241,34 +236,34 @@ export default defineComponent({
                 [this.formControlClass]: !!this.formControlClass,
                 [this.plaintextClass]: this.plaintext,
                 'form-control-icon': !!this.$slots.icon,
-                'is-valid': !!(this.valid || this.validFeedback),
-                'is-invalid': !!(this.invalid || this.invalidFeedback),
+                'is-valid': this.isValid,
+                'is-invalid': this.isInvalid,
             }, this.shadowableClass);
         },
         controlSizeClass() {
             return prefix(this.size, this.formControlClass);
         },
-        invalidFeedback() {
-            if(this.error === '') {
-                return null;
-            }
-
-            if(this.error) {
-                return this.error;
-            }
-
-            const errors = this.getFieldErrors();
-
-            return Array.isArray(errors) ? errors.filter(error => {
-                return error && typeof error === 'string';
-            }).join('<br>') : errors;
-        },
-        validFeedback() {
-            return Array.isArray(this.feedback) ? this.feedback.join('<br>') : this.feedback;
+        formGroupClasses() {
+            return Object.assign({
+                'animated': this.animated,
+                'form-group': this.group,
+                'has-activity': this.activity,
+                'has-changed': this.hasChanged,
+                'has-focus': this.hasFocus,
+                'has-icon': !!this.$slots.icon,
+                'is-dirty': this.isDirty,
+                'is-empty': this.isEmpty,
+                'is-invalid': this.isInvalid,
+                'is-valid': this.isValid,
+                [this.$attrs.class]: !!this.$attrs.class,
+                [this.size && prefix(this.size, this.componentName)]: !!this.size,
+            }, !!this.componentName && {
+                [kebabCase(this.componentName)]: true
+            });
         },
         plaintextClass() {
             return 'form-control-plaintext';
-        },
+        }
     },
     methods: {
         bindEvents(el: HTMLElement) {
@@ -301,6 +296,16 @@ export default defineComponent({
             }
 
             return !errors || Array.isArray(errors) || isObject(errors) ? errors : [errors];
+        },
+        getModelValue(): any {
+            return this.modelValue !== undefined
+                ? this.modelValue
+                : this.currentValue;
+        },
+        setModelValue(value: any): void {
+            this.hasChanged = true;
+            this.currentValue = value;
+            this.$emit('update:modelValue', value);
         }
     }
 });

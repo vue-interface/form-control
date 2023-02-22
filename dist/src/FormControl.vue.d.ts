@@ -18,14 +18,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * override any of the classes assigned by the FormControl.
      */
     controlClass: {
-        type: (ArrayConstructor | ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | ObjectConstructor)[];
         default: undefined;
     };
     /**
      * An inline field validation error.
      */
     error: {
-        type: (BooleanConstructor | ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | BooleanConstructor)[];
         default: undefined;
     };
     /**
@@ -34,7 +34,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * the key.
      */
     errors: {
-        type: (BooleanConstructor | ArrayConstructor | ObjectConstructor)[];
+        type: (ArrayConstructor | ObjectConstructor | BooleanConstructor)[];
         default(): {};
     };
     /**
@@ -42,14 +42,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * valid.
      */
     feedback: {
-        type: (ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor)[];
         default: undefined;
     };
     /**
      * The primary class assigned to the form control.
      */
     formControlClass: {
-        type: (ArrayConstructor | ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | ObjectConstructor)[];
         default: () => any;
     };
     /**
@@ -70,7 +70,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * The activity indicator type.
      */
     indicator: {
-        type: (BooleanConstructor | ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ObjectConstructor | BooleanConstructor)[];
         default: () => any;
     };
     /**
@@ -95,14 +95,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * The default label class assigned to the label element.
      */
     labelClass: {
-        type: (ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ObjectConstructor)[];
         default: () => any;
     };
     /**
      * The model default value.
      */
     modelValue: {
-        type: (ArrayConstructor | ObjectConstructor | StringConstructor | NumberConstructor)[];
+        type: (StringConstructor | ArrayConstructor | ObjectConstructor | BooleanConstructor | NumberConstructor)[];
         default: undefined;
     };
     /**
@@ -125,14 +125,19 @@ declare const _sfc_main: import("vue").DefineComponent<{
     hasChanged: boolean;
     hasFocus: boolean;
     isDirty: boolean;
-    isEmpty: boolean;
 }, {
     model: {
         get(): any;
         set(value: any): void;
     };
     id(): string | undefined;
+    isEmpty(): boolean;
+    isInvalid(): boolean;
+    isValid(): boolean;
     componentName(): any;
+    controlAttributes(): any;
+    controlClasses(): any;
+    controlSizeClass(): string;
     formGroupClasses(): {
         [x: number]: boolean;
         animated: any;
@@ -143,25 +148,22 @@ declare const _sfc_main: import("vue").DefineComponent<{
         'has-icon': boolean;
         'is-dirty': any;
         'is-empty': any;
-        'is-invalid': boolean;
-        'is-valid': boolean;
+        'is-invalid': any;
+        'is-valid': any;
     } & (false | {
         [x: string]: boolean;
     });
-    controlAttributes(): any;
-    controlClasses(): any;
-    controlSizeClass(): string;
-    invalidFeedback(): any;
-    validFeedback(): any;
     plaintextClass(): "form-control-plaintext";
 }, {
     bindEvents(el: HTMLElement): void;
     blur(): void;
     focus(): void;
     getFieldErrors(): any;
+    getModelValue(): any;
+    setModelValue(value: any): void;
 }, import("vue").DefineComponent<{
     dropShadow: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: undefined;
     };
     dropShadowableClassPrefix: {
@@ -169,7 +171,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
         default: string;
     };
     shadow: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: undefined;
     };
     shadowableClassPrefix: {
@@ -182,21 +184,19 @@ declare const _sfc_main: import("vue").DefineComponent<{
     };
 }, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     dropShadow: {
-        type: (BooleanConstructor | StringConstructor)[];
+        type: (StringConstructor | BooleanConstructor)[];
         default: undefined;
-    }; /**
-     * Additional classes assigned to the control element. These do not
-     * override any of the classes assigned by the FormControl.
+    };
+    /**
+     * Animate floating labels inside the input.
      */
     dropShadowableClassPrefix: {
         type: StringConstructor;
         default: string;
     };
     shadow: {
-        type: (BooleanConstructor | StringConstructor)[];
-        default: undefined; /**
-         * An inline field validation error.
-         */
+        type: (StringConstructor | BooleanConstructor)[];
+        default: undefined;
     };
     shadowableClassPrefix: {
         type: StringConstructor;
@@ -227,14 +227,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * override any of the classes assigned by the FormControl.
      */
     controlClass: {
-        type: (ArrayConstructor | ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | ObjectConstructor)[];
         default: undefined;
     };
     /**
      * An inline field validation error.
      */
     error: {
-        type: (BooleanConstructor | ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | BooleanConstructor)[];
         default: undefined;
     };
     /**
@@ -243,7 +243,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * the key.
      */
     errors: {
-        type: (BooleanConstructor | ArrayConstructor | ObjectConstructor)[];
+        type: (ArrayConstructor | ObjectConstructor | BooleanConstructor)[];
         default(): {};
     };
     /**
@@ -251,14 +251,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * valid.
      */
     feedback: {
-        type: (ArrayConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor)[];
         default: undefined;
     };
     /**
      * The primary class assigned to the form control.
      */
     formControlClass: {
-        type: (ArrayConstructor | ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ArrayConstructor | ObjectConstructor)[];
         default: () => any;
     };
     /**
@@ -279,7 +279,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * The activity indicator type.
      */
     indicator: {
-        type: (BooleanConstructor | ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ObjectConstructor | BooleanConstructor)[];
         default: () => any;
     };
     /**
@@ -304,14 +304,14 @@ declare const _sfc_main: import("vue").DefineComponent<{
      * The default label class assigned to the label element.
      */
     labelClass: {
-        type: (ObjectConstructor | StringConstructor)[];
+        type: (StringConstructor | ObjectConstructor)[];
         default: () => any;
     };
     /**
      * The model default value.
      */
     modelValue: {
-        type: (ArrayConstructor | ObjectConstructor | StringConstructor | NumberConstructor)[];
+        type: (StringConstructor | ArrayConstructor | ObjectConstructor | BooleanConstructor | NumberConstructor)[];
         default: undefined;
     };
     /**
@@ -341,12 +341,12 @@ declare const _sfc_main: import("vue").DefineComponent<{
     onPaste?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
-    activity: boolean;
-    animated: boolean;
-    controlClass: string | unknown[] | Record<string, any>;
     error: string | boolean | unknown[];
     errors: boolean | unknown[] | Record<string, any>;
     feedback: string | unknown[];
+    activity: boolean;
+    animated: boolean;
+    controlClass: string | unknown[] | Record<string, any>;
     formControlClass: string | unknown[] | Record<string, any>;
     group: boolean;
     helpText: string | number;
@@ -355,7 +355,7 @@ declare const _sfc_main: import("vue").DefineComponent<{
     invalid: boolean;
     label: string | number;
     labelClass: string | Record<string, any>;
-    modelValue: string | number | unknown[] | Record<string, any>;
+    modelValue: string | number | boolean | unknown[] | Record<string, any>;
     plaintext: boolean;
     size: string;
     valid: boolean;
