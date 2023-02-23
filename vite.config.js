@@ -16,10 +16,12 @@ export default defineConfig({
             fileName,
         },
         rollupOptions: {
-            external: ['vue'],
+            external: ['@vue-interface/shadowable', 'lodash-es', 'vue'],
             output: {
                 globals: {
-                    vue: 'Vue'
+                    '@vue-interface/shadowable': 'Shadowable',
+                    'lodash-es': '_',
+                    'vue': 'Vue'
                 },
             }
         },

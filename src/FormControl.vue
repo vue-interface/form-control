@@ -72,9 +72,7 @@ export default defineComponent({
          */
         errors: {
             type: [Array, Object, Boolean],
-            default() {
-                return {};
-            }
+            default: undefined
         },
 
         /**
@@ -151,8 +149,8 @@ export default defineComponent({
          * The model default value.
          */
         modelValue: {
-            type: [Boolean, Number, String, Array, Object],
-            default: undefined
+            type: [String, Number, Boolean, Array, Object],
+            default: () => undefined
         },
 
         /**
@@ -196,10 +194,11 @@ export default defineComponent({
     computed: {
         model: {
             get() {
-                return this.getModelValue();
+                return this.modelValue;
             },
             set(value: any) {
-                this.setModelValue(value);
+                this.$emit('update:modelValue', value);
+                // this.setModelValue(value);
             }
         },
         id(): string|undefined {
@@ -210,7 +209,7 @@ export default defineComponent({
             return isEmpty(this.model);
         },
         isInvalid() {
-            return !!(this.invalid || this.error || (
+            return !!(this.invalid || this.error || this.errors && (
                 Array.isArray(this.errors)
                     ? this.errors.length
                     : this.errors[this.$attrs.id || this.$attrs.name]
@@ -225,8 +224,7 @@ export default defineComponent({
         controlAttributes() {
             return Object.assign({}, this.$attrs, {
                 id: this.id,
-                class: this.controlClasses,
-                // value: this.model
+                class: this.controlClasses
             });
         },
         controlClasses() {
@@ -298,14 +296,18 @@ export default defineComponent({
             return !errors || Array.isArray(errors) || isObject(errors) ? errors : [errors];
         },
         getModelValue(): any {
-            return this.modelValue !== undefined
-                ? this.modelValue
-                : this.currentValue;
+            console.log(this.modelValue);
+
+            if(this.modelValue === undefined) {
+                return this.currentValue;
+            }
+
+            return this.modelValue;
         },
         setModelValue(value: any): void {
-            this.hasChanged = true;
-            this.currentValue = value;
-            this.$emit('update:modelValue', value);
+            // this.hasChanged = true;
+            // this.currentValue = value;
+            this.$emit('update:modelValue', '');
         }
     }
 });
