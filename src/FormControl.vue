@@ -197,8 +197,7 @@ export default defineComponent({
                 return this.modelValue;
             },
             set(value: any) {
-                this.$emit('update:modelValue', value);
-                // this.setModelValue(value);
+                this.setModelValue(value);
             }
         },
         id(): string|undefined {
@@ -305,9 +304,9 @@ export default defineComponent({
             return this.modelValue;
         },
         setModelValue(value: any): void {
-            // this.hasChanged = true;
-            // this.currentValue = value;
-            this.$emit('update:modelValue', '');
+            this.hasChanged = true;
+            this.currentValue = value;
+            this.$emit('update:modelValue', value);
         }
     }
 });
