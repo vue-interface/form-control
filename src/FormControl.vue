@@ -48,14 +48,6 @@ export default defineComponent({
             default: () => config('animated', false)
         },
 
-        /**
-         * Additional classes assigned to the control element. These do not
-         * override any of the classes assigned by the FormControl.
-         */
-        controlClass: {
-            type: [Array, Object, String],
-            default: undefined
-        },
 
         /**
          * An inline field validation error.
@@ -220,6 +212,9 @@ export default defineComponent({
         componentName() {
             return this.$options.name;
         },
+        controlClass() {
+            return this.formControlClass;
+        },
         controlAttributes() {
             return Object.assign({}, this.$attrs, {
                 id: this.id,
@@ -227,10 +222,11 @@ export default defineComponent({
             });
         },
         controlClasses() {
+            console.log(this.formControlClass, this.controlClass);
             return Object.assign({
                 [this.controlClass]: !!this.controlClass,
                 [this.controlSizeClass]: !!this.controlSizeClass,
-                [this.formControlClass]: !!this.formControlClass,
+                // [this.formControlClass]: !!this.formControlClass,
                 [this.plaintextClass]: this.plaintext,
                 'form-control-icon': !!this.$slots.icon,
                 'is-valid': this.isValid,
@@ -238,7 +234,7 @@ export default defineComponent({
             }, this.shadowableClass);
         },
         controlSizeClass() {
-            return prefix(this.size, this.formControlClass);
+            return prefix(this.size, this.controlClass);
         },
         formGroupClasses() {
             return Object.assign({
