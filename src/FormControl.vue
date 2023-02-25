@@ -291,8 +291,6 @@ export default defineComponent({
             return !errors || Array.isArray(errors) || isObject(errors) ? errors : [errors];
         },
         getModelValue(): any {
-            console.log(this.modelValue);
-
             if(this.modelValue === undefined) {
                 return this.currentValue;
             }
