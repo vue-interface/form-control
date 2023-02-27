@@ -222,7 +222,6 @@ export default defineComponent({
             });
         },
         controlClasses() {
-            console.log(this.formControlClass, this.controlClass);
             return Object.assign({
                 [this.controlClass]: !!this.controlClass,
                 [this.controlSizeClass]: !!this.controlSizeClass,
@@ -272,7 +271,9 @@ export default defineComponent({
             });
 
             el.addEventListener('blur', () => {
-                this.hasFocus = false;
+                if(this.modelValue) {
+                    this.hasFocus = false;
+                }
             });
         },
         blur() {
@@ -298,7 +299,9 @@ export default defineComponent({
             return this.modelValue;
         },
         setModelValue(value: any): void {
-            this.hasChanged = true;
+            if(this.modelValue) {
+                this.hasChanged = true;
+            }
             this.currentValue = value;
             this.$emit('update:modelValue', value);
         }
