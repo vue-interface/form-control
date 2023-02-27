@@ -271,9 +271,7 @@ export default defineComponent({
             });
 
             el.addEventListener('blur', () => {
-                if(this.modelValue) {
-                    this.hasFocus = false;
-                }
+                this.hasFocus = false;
             });
         },
         blur() {
@@ -299,9 +297,7 @@ export default defineComponent({
             return this.modelValue;
         },
         setModelValue(value: any): void {
-            if(this.modelValue) {
-                this.hasChanged = true;
-            }
+            this.hasChanged = true;
             this.currentValue = value;
             this.$emit('update:modelValue', value);
         }
