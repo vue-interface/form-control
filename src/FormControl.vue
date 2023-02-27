@@ -197,8 +197,6 @@ export default defineComponent({
                 || Math.random().toString(36).slice(2);
         },
         isEmpty() {
-            console.log(isEmpty(this.model));
-            
             return isEmpty(this.model);
         },
         isInvalid() {
@@ -218,10 +216,17 @@ export default defineComponent({
             return this.formControlClass;
         },
         controlAttributes() {
-            return Object.assign({}, this.$attrs, {
+            const attrs = Object.assign({}, this.$attrs, {
                 id: this.id,
                 class: this.controlClasses
             });
+            
+            // Delete value from attrs because we dont want it to rebind
+            // the static attribute every time the computed re-renders.
+            // The currentValue is set from $attrs.value in created().
+            delete attrs.value;
+
+            return attrs;
         },
         controlClasses() {
             return Object.assign({
@@ -260,6 +265,7 @@ export default defineComponent({
     },
     created() {
         this.isDirty = !!this.model;
+        this.currentValue = this.$attrs.value;
     },
     methods: {
         bindEvents(el: HTMLElement) {
