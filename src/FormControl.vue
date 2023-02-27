@@ -177,16 +177,16 @@ export default defineComponent({
     ],
     data() {
         return {
-            currentValue: null,
+            currentValue: undefined,
             hasChanged: false,
             hasFocus: false,
-            isDirty: false,
+            isDirty: this,
         };
     },
     computed: {
         model: {
             get() {
-                return this.modelValue;
+                return this.getModelValue();
             },
             set(value: any) {
                 this.setModelValue(value);
@@ -197,6 +197,8 @@ export default defineComponent({
                 || Math.random().toString(36).slice(2);
         },
         isEmpty() {
+            console.log(isEmpty(this.model));
+            
             return isEmpty(this.model);
         },
         isInvalid() {
@@ -225,7 +227,6 @@ export default defineComponent({
             return Object.assign({
                 [this.controlClass]: !!this.controlClass,
                 [this.controlSizeClass]: !!this.controlSizeClass,
-                // [this.formControlClass]: !!this.formControlClass,
                 [this.plaintextClass]: this.plaintext,
                 'form-control-icon': !!this.$slots.icon,
                 'is-valid': this.isValid,
@@ -256,6 +257,9 @@ export default defineComponent({
         plaintextClass() {
             return 'form-control-plaintext';
         }
+    },
+    created() {
+        this.isDirty = !!this.model;
     },
     methods: {
         bindEvents(el: HTMLElement) {

@@ -38,12 +38,12 @@ module.exports = plugin(function({ addComponents, theme }) {
             },
 
             'input, textarea, select': {
-                '&:empty:focus::placeholder, &.has-changed:empty::placeholder': {
+                '&:empty:focus::placeholder, &.is-dirty:empty::placeholder': {
                     opacity: 100
                 },
             },
 
-            '&.is-empty:not(.has-changed)': {
+            '&:not(.is-dirty)': {
                 'input, textarea, select': {
                     '&::placeholder': {
                         opacity: 0,
@@ -67,7 +67,7 @@ module.exports = plugin(function({ addComponents, theme }) {
                     fontSize: theme('formControl.sm.fontSize'),
                 },
 
-                '&.has-changed': {
+                '&.is-dirty': {
                     '& > .form-label ~ .form-group-inner': {  
                         'input, textarea, select': {
                             '&:not(.is-empty), &:not([readonly])': {
@@ -89,7 +89,7 @@ module.exports = plugin(function({ addComponents, theme }) {
                     fontSize: theme('formControl.lg.fontSize'),
                 },
 
-                '&.has-changed': {
+                '&.is-dirty': {
                     '& > .form-label ~ .form-group-inner': {  
                         'input, textarea, select': {
                             '&:not(.is-empty), &:not([readonly])': {
@@ -101,7 +101,7 @@ module.exports = plugin(function({ addComponents, theme }) {
                 },
             },
 
-            '&.has-changed': {
+            '&.is-dirty:not(.is-empty)': {
                 '.form-label': {
                     paddingTop: 0,
                     paddingBottom: 0,
