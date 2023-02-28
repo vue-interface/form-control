@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Shadowable } from '@vue-interface/shadowable';
-import { isEmpty, isObject, kebabCase } from 'lodash-es';
+import { isNil, isObject, kebabCase } from 'lodash-es';
 import { defineComponent, DirectiveBinding } from 'vue';
 import config from './config';
 import FormControlErrors from './FormControlErrors.vue';
@@ -197,7 +197,7 @@ export default defineComponent({
                 || Math.random().toString(36).slice(2);
         },
         isEmpty() {
-            return isEmpty(this.model);
+            return isNil(this.model);
         },
         isInvalid() {
             return !!(this.invalid || this.error || this.errors && (
