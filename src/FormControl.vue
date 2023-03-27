@@ -254,6 +254,7 @@ export default defineComponent({
                 'is-invalid': this.isInvalid,
                 'is-valid': this.isValid,
                 [this.$attrs.class]: !!this.$attrs.class,
+                [this.size && prefix(this.size, 'form-group')]: !!this.size,
                 [this.size && prefix(this.size, this.componentName)]: !!this.size,
             }, !!this.componentName && {
                 [kebabCase(this.componentName)]: true
@@ -264,8 +265,9 @@ export default defineComponent({
         }
     },
     created() {
-        this.isDirty = !!this.model;
+        // Set the current value before checking the dirty status.
         this.currentValue = this.$attrs.value;
+        this.isDirty = !isNil(this.model);
     },
     methods: {
         bindEvents(el: HTMLElement) {
