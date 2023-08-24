@@ -1,108 +1,90 @@
+const Color = require('color');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors'); 
 const escapeSvg = require('./utils/escapeSvg.cjs');
 
-module.exports = plugin(function({ addComponents, theme }) {
-    const component = {
-        //
-        // Switch
-        //
-        '.form-switch, .form-switch.form-control': {
-            display: theme('formSwitch.display'),
-            alignItems: theme('formSwitch.alignItems'),
-            paddingLeft: theme('formSwitch.paddingLeft'),
+/** @type {import('tailwindcss/plugin')} */
+module.exports = plugin(function({ addComponents, matchComponents, theme }) {
+    // addComponents(theme('formSwitch.css'));
 
-            '.form-check-label': {
-                paddingLeft: `calc(${theme('formSwitch.paddingLeft')} / 6)`,
-                marginBottom: theme('formSwitch.label.marginBottom')
-            },
+    matchComponents({
+        'form-switch': value => ({
+            ...theme('formSwitch.css'),
 
-            '.form-check-input': {
-                width: theme('formSwitch.width'),
-                marginTop: theme('formSwitch.marginTop'),
-                marginLeft: theme('formSwitch.marginLeft'),
-                backgroundRepeat: theme('formSwitch.backgroundRepeat'),
-                backgroundImage: theme('formSwitch.backgroundImage'),
-                backgroundPosition: theme('formSwitch.backgroundPosition'),
-                borderRadius: theme('formSwitch.borderRadius'),
-            
-                '&:focus': {
-                    backgroundImage: theme('formSwitch.focus.backgroundImage'),
-                },
-            
-                '&:checked': {
-                    backgroundPosition: theme('formSwitch.checked.backgroundPosition'),
-                    backgroundImage: theme('formSwitch.checked.backgroundImage')
-                }
-            }
-        },
-
-        '.form-switch.form-control-sm': {
-            '.form-check-input': {
-                width: theme('formSwitch.sm.width'),
-                height: theme('formSwitch.sm.height')
-            }
-        },
-
-        '.form-switch.form-control': {
-            border: 0,
-            boxShadow: 'none',
-
-            '.form-check-input': {
-                width: `calc(${theme('formSwitch.width')} * 1.666)`,
-                height: theme('formSwitch.sm.height'),
-            }
-        },
-
-        '.form-switch.form-control-lg': {
-            '.form-check-input': {
-                width: theme('formSwitch.lg.width'),
-                height: theme('formSwitch.lg.height')
-            }
-        }
-    };
-
-    addComponents(component);
+            '& .form-check-input': value
+        })
+    }, {
+        values: theme('formSwitch.styles')
+    });
 }, {
     theme: {
-        formSwitch: theme => {
-            return {
+        formSwitch: theme => ({
+            css: {
                 display: 'flex',
                 alignItems: 'center',
-                height: '2.375em',
-                width: '2rem',
-                marginTop: 0,
-                paddingLeft: `calc(2rem + .5em)`,
-                marginLeft: `calc((2rem + .5em) * -1)`,
-                backgroundRepeat: 'no-repeat',
-                backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='${theme('variations.secondary', theme('colors.gray.500', colors.gray[500]))}'/></svg>")`),
-                backgroundPosition: 'left center',
-                borderRadius: '2rem',
+                paddingLeft: 'calc(2rem + .5em)',
 
-                label: {
-                    paddingLeft: '.5em',
-                    marginBottom: 0
+                '.form-check-label': {
+                    paddingLeft: 'calc((2rem + .5em) / 6)',
+                    marginBottom: '0'
                 },
 
-                focus: {
-                    backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='${theme('variations.primary', theme('colors.blue.500', colors.blue[500]))}'/></svg>")`),
+                '.form-check-input': {
+                    appearance: 'none',
+                    marginTop: '0',
+                    marginLeft: 'calc((2rem + .5em) * -1)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='${theme('variations.secondary', theme('colors.gray.500', colors.gray[500]))}'/></svg>")`),
+                    backgroundPosition: 'left center',
+                    border: `${theme('formControl.borderWidth', '1px')} ${theme('formControl.borderStyle', 'solid')} ${theme('formControl.borderColor', theme('colors.gray.400', colors.gray['400']))}`,
+            
+                    transition: 'background-color .15s ease-in-out, background-position .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
+        
+                    '&:disabled:not([readonly])': {
+                        pointerEvents: 'none',
+                        filter: 'none',
+                        opacity: '.5'
+                    },
+
+                    '&:focus': {
+                        borderColor: `${Color(theme('variations.primary', theme('colors.blue.500', colors.blue[500]))).lighten(.25)}`,
+                        outline: theme('form.focus.outline', '0'),
+                        boxShadow: theme('form.focus.boxShadow', `0 0 0 .2rem ${Color(theme('variations.primary', theme('colors.blue.400', colors.blue['400']))).fade(.5)}`),
+                        backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='${theme('variations.primary', theme('colors.blue.500', colors.blue[500]))}'/></svg>")`)
+                    },
+        
+                    '&:checked': {
+                        backgroundColor: theme('variations.primary', theme('colors.blue.500', colors.blue[500])),
+                        borderColor: theme('variations.primary', theme('colors.blue.500', colors.blue[500])),
+                        backgroundPosition: 'right center',
+                        backgroundImage: escapeSvg('url("data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'-4 -4 8 8\'><circle r=\'3\' fill=\'white\'/></svg>")')
+                    }
                 },
-                                            
-                checked: {
-                    backgroundPosition: 'right center',
-                    backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='white'/></svg>")`)
+
+                '&.form-control': {
+                    border: 0,
+                    boxShadow: 'none'
+                }
+            },
+            styles: {
+                DEFAULT: {
+                    height: '2.375rem',
+                    width: `${2.375 * 1.666}rem`,
+                    borderRadius: '2.375rem',
                 },
 
                 sm: {
-                    height: '2.215em',
-                    width: `calc(2.215em * 1.5)`,
+                    height: '2.1875rem',
+                    width: `${2.1875 * 1.5}rem`,
+                    borderRadius: '2.1875rem'
                 },
-
+        
                 lg: {
-                    height: '2.4em',
-                    width: `calc(2.4em * 1.75)`,
+                    height: '2.5rem',
+                    width: `${2.5 * 1.75}rem`,
+                    borderRadius: '2.5rem'
                 }
-            };
-        }
+            }
+        })
     }
 });
