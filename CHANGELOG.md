@@ -1,3 +1,10 @@
+# [1.0.0-beta.32](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2023-08-25)
+
+
+### Features
+
+* added select-field component ([4f07e50](https://github.com/vue-interface/form-control/commit/4f07e50268cc69f716ad1876426176e1e6bd49aa))
+
 # [1.0.0-beta.31](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2023-08-25)
 
 
