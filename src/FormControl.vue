@@ -1,10 +1,9 @@
 <script lang="ts">
-import { Shadowable } from '@vue-interface/shadowable';
 import { isNil, isObject, kebabCase } from 'lodash-es';
-import { defineComponent, DirectiveBinding } from 'vue';
-import config from './config';
+import { DirectiveBinding, defineComponent } from 'vue';
 import FormControlErrors from './FormControlErrors.vue';
 import FormControlFeedback from './FormControlFeedback.vue';
+import config from './config';
 
 function prefix(key: string, value: any, delimeter = '-') {
     const string = String(value).replace(new RegExp(`^${key}${delimeter}?`), '');
@@ -27,9 +26,6 @@ export default defineComponent({
             }
         }
     },
-    mixins: [
-        Shadowable
-    ],
     inheritAttrs: false,
     props: {
         /**
@@ -151,14 +147,6 @@ export default defineComponent({
         plaintext: Boolean,
 
         /**
-         * The size of the form control.
-         */
-        size: {
-            type: String,
-            default: undefined
-        },
-
-        /**
          * Force the input to be valid.
          */
         valid: Boolean
@@ -229,14 +217,14 @@ export default defineComponent({
             return attrs;
         },
         controlClasses() {
-            return Object.assign({
+            return {
                 [this.controlClass]: !!this.controlClass,
                 [this.controlSizeClass]: !!this.controlSizeClass,
                 [this.plaintextClass]: this.plaintext,
                 'form-control-icon': !!this.$slots.icon,
                 'is-valid': this.isValid,
                 'is-invalid': this.isInvalid,
-            }, this.shadowableClass);
+            };
         },
         controlSizeClass() {
             return prefix(this.size, this.controlClass);
@@ -244,7 +232,6 @@ export default defineComponent({
         formGroupClasses() {
             return Object.assign({
                 'animated': this.animated,
-                'form-group': this.group,
                 'has-activity': this.activity,
                 'has-changed': this.hasChanged,
                 'has-focus': this.hasFocus,

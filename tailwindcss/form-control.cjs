@@ -6,8 +6,14 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
     matchComponents({
         'form-control': value => ({
             ...theme('formControl.css'),
-            ...value,
-        })
+            ...value
+        }),
+        'input-field': value => ({
+            '.form-control': {
+                ...theme('formControl.css'),
+                ...value
+            }
+        }),
     }, {
         values: theme('formControl.styles')
     });
