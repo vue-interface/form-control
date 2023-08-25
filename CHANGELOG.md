@@ -1,3 +1,11 @@
+# [1.0.0-beta.29](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2023-08-25)
+
+
+### Bug Fixes
+
+* updates for input-field ([cdbc864](https://github.com/vue-interface/form-control/commit/cdbc864aa30b57911be2d14761e7a1cac1c51463))
+* updates to ts definition and build system ([5426d70](https://github.com/vue-interface/form-control/commit/5426d7035eb3fcddbbcf115a1f8ce22dbfa2ddf2))
+
 # [1.0.0-beta.28](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2023-08-25)
 
 
