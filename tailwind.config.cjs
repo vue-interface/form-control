@@ -11,7 +11,7 @@ module.exports = {
     ],
     darkMode: 'class',
     presets: [
-        require('./tailwindcss/preset.cjs')
+        require('./tailwindcss')
     ],
     theme: {
         extend: {
