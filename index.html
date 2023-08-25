@@ -16,8 +16,6 @@
             });
 
             vue.mount('#app');
-
-            console.log(vue)
         </script>
     </head>
     <body id="app">
@@ -186,13 +184,15 @@
 
                         <h2 class="text-2xl mt-2">Styles</h2>
 
-                        <div>
+                        <div class="select-field">
                             <label class="form-label">Small</label>
-                            <select class="form-select-sm">
-                                <option>Option A</option>
-                                <option selected>Option B</option>
-                                <option>Option C</option>
-                            </select>
+                            <div>
+                                <select class="form-select">
+                                    <option>Option A</option>
+                                    <option selected>Option B</option>
+                                    <option>Option C</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div>

@@ -8,7 +8,59 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
         'form-select': value => ({
             ...theme('formSelect.css'),
             ...value
-        })
+        }),
+        'select-field': value => {
+            const css = {
+                ...theme('formSelect.css'),
+                ...value
+            };
+
+            return {
+                fontSize: css.fontSize,
+
+                '.form-select': css,
+
+                '&.is-invalid, &[invalid]': {
+                    'label, .invalid-feedback': {
+                        color: theme('form.invalid.color'),
+                    }
+                },
+
+                '&.is-valid, &[valid]': {
+                    'label, .valid-feedback': {
+                        color: theme('form.valid.color'),
+                    }
+                },
+
+                '.form-group-inner': {
+                    position: 'relative',
+
+                    '&:has(> .form-group-inner-icon) .form-control': {
+                        paddingLeft: '2em'
+                    }
+                },
+                
+                '.form-group-inner-icon': {
+                    position: 'absolute',
+                    top: '50%',
+                    left: '.5em',
+                    width: '1.25em',
+                    fontSize: 'inherit',
+                    transform: 'translateY(-50%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                },
+
+                '.activity-indicator': {
+                    position: 'absolute',
+                    right: '0',
+                    top: '50%',
+                    transform: 'translate(-1rem, -50%)',
+                    transition: 'all .15s ease-in'
+                }
+            };
+        }
     }, {
         values: theme('formSelect.styles')
     });
