@@ -3,7 +3,7 @@ import { isNil, isObject, kebabCase } from 'lodash-es';
 import { DirectiveBinding, defineComponent } from 'vue';
 import FormControlErrors from './FormControlErrors.vue';
 import FormControlFeedback from './FormControlFeedback.vue';
-import config from './config';
+import config from './config.js';
 
 function prefix(key: string, value: any, delimeter = '-') {
     const string = String(value).replace(new RegExp(`^${key}${delimeter}?`), '');

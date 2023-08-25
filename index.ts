@@ -1,7 +1,6 @@
-import config from './src/config';
+import config from './src/config.js';
 import FormControl from './src/FormControl.vue';
 import FormControlErrors from './src/FormControlErrors.vue';
-import FormControlLegacy from './src/FormControlLegacy';
 
 export type FormControlProps = {
     name: string,
@@ -11,6 +10,5 @@ export type FormControlProps = {
 export {
 config,
 FormControl,
-FormControlErrors,
-FormControlLegacy
+FormControlErrors
 };
