@@ -1,3 +1,10 @@
+# [1.0.0-beta.33](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2023-08-25)
+
+
+### Features
+
+* added support for radio-field ([105e99c](https://github.com/vue-interface/form-control/commit/105e99c34770b0ab1a3193450032912c72a67d33))
+
 # [1.0.0-beta.32](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2023-08-25)
 
 
