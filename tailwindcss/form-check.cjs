@@ -124,6 +124,13 @@ module.exports = plugin(function({ matchComponents, theme }) {
                         }                    
                     },
 
+                    [`
+                        *:has(&.is-invalid) ~ .invalid-feedback,
+                        *:has(&[invalid]) ~ .invalid-feedback,
+                    `]: {
+                        color: theme('form.invalid.color'),
+                    },
+
                     '&.is-valid, &[valid]': {
                         borderColor: theme('form.valid.borderColor'),
                         backgroundColor: theme('form.valid.backgroundColor'),
@@ -140,6 +147,13 @@ module.exports = plugin(function({ matchComponents, theme }) {
                         '&:focus, &.focus': {
                             boxShadow: `0 0 0 .2rem ${Color(theme('form.valid.borderColor')).fade(.5)}`
                         }                    
+                    },
+
+                    [`
+                        *:has(&.is-valid) ~ .valid-feedback,
+                        *:has(&[valid]) ~ .valid-feedback,
+                    `]: {
+                        color: theme('form.valid.color'),
                     },
                 },
                 styles: {

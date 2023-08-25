@@ -24,7 +24,7 @@ module.exports = {
                 appearance: 'none',
                 boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, .075)',
                 borderRadius: '.25rem',
-                transition: 'border-color .15s ease-in-out, box-shadow .15s ease-in-out',
+                transition: 'background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
                 enableShadows: true,
                 dark: {
                     backgroundColor: theme('colors.neutral.700', colors.neutral[700]),
@@ -128,8 +128,6 @@ module.exports = {
         require('./form-switch.cjs'),
         require('./form-select.cjs'),
         require('./form-file.cjs'),
-        require('./input-group.cjs'),
-        require('./validation.cjs'),
         require('./animated-fields.cjs'),
     ]
 };

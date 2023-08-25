@@ -122,6 +122,15 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         [dark('border', 'form.invalid.dark.borderColor')]: {}
                     },
 
+                    [`
+                        &.is-invalid ~ .invalid-feedback,
+                        &[invalid] ~ .invalid-feedback,
+                        *:has(&.is-invalid) ~ .invalid-feedback,
+                        *:has(&[invalid]) ~ .invalid-feedback,
+                    `]: {
+                        color: theme('form.invalid.color'),
+                    },
+
                     '&.is-valid, &[valid]': {
                         borderColor: theme('form.valid.borderColor'),
                         backgroundColor: theme('form.valid.backgroundColor'),
@@ -143,6 +152,15 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         [dark('text', 'form.valid.dark.color')]: {},
                         [dark('bg', 'form.valid.dark.backgroundColor')]: {},
                         [dark('border', 'form.valid.dark.borderColor')]: {}
+                    },
+
+                    [`
+                        &.is-valid ~ .valid-feedback,
+                        &[valid] ~ .valid-feedback,
+                        *:has(&.is-valid) ~ .valid-feedback,
+                        *:has(&[valid]) ~ .valid-feedback,
+                    `]: {
+                        color: theme('form.valid.color'),
                     },
                 },
 
