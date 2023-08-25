@@ -24,6 +24,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 alignItems: 'center',
                 paddingLeft: 'calc(2rem + .5em)',
 
+                // @todo - remove the label and extra markup like we talked
                 '.form-check-label': {
                     paddingLeft: 'calc((2rem + .5em) / 6)',
                     marginBottom: '0'
@@ -67,6 +68,9 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 }
             },
             styles: {
+                // @todo - implement this
+                // ...require('./sizes.cjs'),
+
                 DEFAULT: {
                     height: '2.375rem',
                     width: `${2.375 * 1.666}rem`,

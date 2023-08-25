@@ -1,29 +1,37 @@
 module.exports = {
 
+    DEFAULT: {
+        paddingTop: '.375rem',
+        paddingBottom: '.375rem',
+        paddingLeft: '.75rem',
+        paddingRight: '.75rem',
+        fontSize: '1rem',
+        borderRadius: '.25rem',
+    },
+
     'xs': {
-        paddingY: '.15rem',
-        paddingX: '.35rem',
+        paddingTop: '.15rem',
+        paddingBottom: '.15rem',
+        paddingLeft: '.35rem',
+        paddingRight: '.35rem',
         fontSize: '.75rem',
         borderRadius: '.2rem',
     },
 
     'sm': {
-        paddingY: '.25rem',
-        paddingX: '.5rem',
+        paddingTop: '.25rem',
+        paddingBottom: '.25rem',
+        paddingLeft: '.5rem',
+        paddingRight: '.5rem',
         fontSize: '.875rem',
-        borderRadius: '.25rem',
-    },
-
-    'base': {
-        paddingY: '.375rem',
-        paddingX: '.75rem',
-        fontSize: '1rem',
         borderRadius: '.25rem',
     },
     
     'lg': {
-        paddingY: '.5rem',
-        paddingX: '1rem',
+        paddingTop: '.5rem',
+        paddingBottom: '.5rem',
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
         fontSize: '1.25rem',
         borderRadius: '.25rem',
     },

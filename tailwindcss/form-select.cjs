@@ -123,10 +123,12 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     },
 
                     [`
+                        &.is-invalid .invalid-feedback,
+                        &[invalid] .invalid-feedback,
                         &.is-invalid ~ .invalid-feedback,
                         &[invalid] ~ .invalid-feedback,
-                        *:has(&.is-invalid) ~ .invalid-feedback,
-                        *:has(&[invalid]) ~ .invalid-feedback,
+                        *:has(&.is-invalid) .invalid-feedback,
+                        *:has(&[invalid]) .invalid-feedback,
                     `]: {
                         color: theme('form.invalid.color'),
                     },
@@ -155,34 +157,19 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     },
 
                     [`
+                        &.is-valid .valid-feedback,
+                        &[valid] .valid-feedback,
                         &.is-valid ~ .valid-feedback,
                         &[valid] ~ .valid-feedback,
-                        *:has(&.is-valid) ~ .valid-feedback,
-                        *:has(&[valid]) ~ .valid-feedback,
+                        *:has(&.is-valid) .valid-feedback,
+                        *:has(&[valid]) .valid-feedback,
                     `]: {
                         color: theme('form.valid.color'),
                     },
                 },
 
                 styles: {
-                    DEFAULT: {
-                        // height: `calc(1.5 * 1em + ${theme('form.paddingY', '.375rem')} * 2 + 1px * 2)`,
-                        padding: `${theme('form.paddingY', '.375rem')} ${theme('form.paddingX', '.75rem')}`,
-                        fontSize: theme('form.fontSize', '1rem'),
-                        borderRadius: theme('form.borderRadius', '.25rem'),
-                    },
-                    sm: {
-                        // height: `calc(1.5 * 1em + ${theme('form.sm.paddingY', '.25rem')} * 2 + 1px * 2)`,
-                        padding: `${theme('form.sm.paddingY', '.25rem')} ${theme('form.sm.paddingX', '.5rem')}`,
-                        fontSize: theme('form.sm.fontSize', '.875rem'),
-                        borderRadius: theme('form.sm.borderRadius', '.2rem')
-                    },
-                    lg: {
-                        // height: `calc(1.5 * 1em + ${theme('form.lg.paddingY', '.25rem')} * 2 + 1px * 2)`,
-                        padding: `${theme('form.lg.paddingY', '.25rem')} ${theme('form.lg.paddingX', '.5rem')}`,
-                        fontSize: theme('form.lg.fontSize', '1.25rem'),
-                        borderRadius: theme('form.lg.borderRadius', '.3rem')
-                    },
+                    ...require('./sizes.cjs'),
                     plaintext: {
                         display: theme('form.plaintext.display'),
                         width: theme('form.plaintext.width'),

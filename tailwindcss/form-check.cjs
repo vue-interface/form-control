@@ -7,8 +7,9 @@ module.exports = plugin(function({ matchComponents, theme }) {
     matchComponents({
         'form-check': value => ({
             ...theme('formCheck.css'),
-            
-            '&': value
+            ...value
+
+            // '&': value
         })
     }, {
         values: theme('formCheck.styles')
@@ -125,8 +126,12 @@ module.exports = plugin(function({ matchComponents, theme }) {
                     },
 
                     [`
-                        *:has(&.is-invalid) ~ .invalid-feedback,
-                        *:has(&[invalid]) ~ .invalid-feedback,
+                        &.is-invalid .invalid-feedback,
+                        &[invalid] .invalid-feedback,
+                        &.is-invalid ~ .invalid-feedback,
+                        &[invalid] ~ .invalid-feedback,
+                        *:has(&.is-invalid) .invalid-feedback,
+                        *:has(&[invalid]) .invalid-feedback,
                     `]: {
                         color: theme('form.invalid.color'),
                     },
@@ -150,15 +155,20 @@ module.exports = plugin(function({ matchComponents, theme }) {
                     },
 
                     [`
-                        *:has(&.is-valid) ~ .valid-feedback,
-                        *:has(&[valid]) ~ .valid-feedback,
+                        &.is-valid .valid-feedback,
+                        &[valid] .valid-feedback,
+                        &.is-valid ~ .valid-feedback,
+                        &[valid] ~ .valid-feedback,
+                        *:has(&.is-valid) .valid-feedback,
+                        *:has(&[valid]) .valid-feedback,
                     `]: {
                         color: theme('form.valid.color'),
                     },
                 },
                 styles: {
+                    // @todo - implement sizes
                     DEFAULT: {
-
+                        
                     }
                 }
             };

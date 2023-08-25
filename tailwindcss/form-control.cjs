@@ -12,7 +12,112 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
             '.form-control': {
                 ...theme('formControl.css'),
                 ...value
-            }
+            },
+
+            '&.is-invalid, &[invalid]': {
+                'label, .invalid-feedback': {
+                    color: theme('form.invalid.color'),
+                }
+            },
+
+            '&.is-valid, &[valid]': {
+                'label, .valid-feedback': {
+                    color: theme('form.valid.color'),
+                }
+            },
+
+            // .input-field,
+            // .input-field .form-group-inner {
+            //     position: relative;
+            //     transition: all .25s ease-in-out;
+            // }
+
+            // .input-field .activity-indicator {
+            //     position: absolute;
+            //     right: 0;
+            //     top: 50%;
+            //     transform: translate(-1rem, -50%);
+            //     transition: all .15s ease-in;
+            // }
+
+            // .input-field .activity-indicator-xs {
+            //     font-size: .5em;
+            // }
+
+            // .input-field.has-activity .form-control-xs {
+            //     padding-right: 3.75em;
+            // }
+
+            // .input-field .activity-indicator-sm {
+            //     font-size: .5em;
+            // }
+
+            // .input-field.has-activity .form-control-sm {
+            //     padding-right: 3em;
+            // }
+
+            // .input-field .activity-indicator-md {
+            //     font-size: .666em;
+            // }
+
+            // .input-field.has-activity .form-control-md {
+            //     padding-right: 3em;
+            // }
+
+            // .input-field .activity-indicator-lg {
+            //     font-size: .75em;
+            // }
+
+            // .input-field.has-activity .form-control-lg {
+            //     padding-right: 3em;
+            // }
+
+            // .input-field .activity-indicator-xl {
+            //     font-size: 1em;
+            // }
+
+            // .input-field.has-activity .activity-indicator-xl ~ .form-control-xl {
+            //     padding-right: 3.75em;
+            // }
+
+            // .input-field .activity-indicator {
+            //     opacity: 1;
+            // }
+
+            // .input-field .input-field-fade-enter,
+            // .input-field .input-field-fade-leave-to {
+            //     opacity: 0;
+            // }
+
+            // .input-field.is-valid .valid-feedback,
+            // .input-field.is-invalid .invalid-feedback {
+            //     display: flex;
+            // }
+
+            // .input-field .form-control-icon {
+            //     padding-left: 2em;
+            // }
+
+            // .input-field .form-group-inner-icon {
+            //     position: absolute;
+            //     top: 50%;
+            //     left: .5em;
+            //     width: 1em;
+            //     font-size: 1.25em;
+            //     transform: translateY(-50%);
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            // }
+
+            // .input-field-sm .form-group-inner-icon {
+            //     font-size: 1em;
+            // }
+
+            // .input-field-lg .form-group-inner-icon {
+            //     left: .4em;
+            //     font-size: 1.75em;
+            // }
         }),
     }, {
         values: theme('formControl.styles')
@@ -34,13 +139,13 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 css: {
                     display: 'flex',
                     width: '100%',
-                    minHeight: `calc(1.5 * 1em + ${theme('form.paddingY', '.375rem')} * 2 + 1px * 2)`,
+                    // minHeight: `calc(1.5 * 1em + ${theme('form.paddingY', '.375rem')} * 2 + 1px * 2)`,
                     fontFamily: theme('form.fontFamily'),
                     fontWeight: theme('form.fontWeight', '400'),
                     lineHeight: theme('form.lineHeight', '1.5'),
                     backgroundColor: theme('form.backgroundColor', colors.white),
-                    borderWidth: theme('form.borderWidth'),
-                    borderStyle: theme('form.borderStyle'),
+                    borderWidth: theme('form.borderWidth', '1px'),
+                    borderStyle: theme('form.borderStyle', 'solid'),
                     border: `${theme('form.borderWidth')} ${theme('form.borderStyle')} ${theme('form.borderColor')}`,
                     boxShadow: theme('form.enableShadows') && theme('form.boxShadow'),
                     transition: theme('form.transition'),
@@ -52,9 +157,9 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     
                     // Customize the `:focus` state to imitate native WebKit styles.
                     '&:focus': {
-                        // color: theme('form.focus.color'),
-                        // backgroundColor: theme('form.focus.backgroundColor'),
-                        // borderColor: theme('form.focus.borderColor'),
+                        color: theme('form.focus.color'),
+                        backgroundColor: theme('form.focus.backgroundColor'),
+                        borderColor: theme('form.focus.borderColor'),
                         outline: theme('form.focus.outline'),
                         boxShadow: `${theme('form.focus.boxShadow')}${theme('form.enableShadows') ? `, ${theme('form.boxShadow')}` : ''}`,
                         
@@ -96,7 +201,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         backgroundColor: theme('form.invalid.backgroundColor'),
                         color: theme('form.invalid.color'),
 
-                        'label:has(&), label:has(+ &), label:has(~ * > &), & + label': {
+                        'label:has(&), label:has(+ &), label:has(~ * &), & + label': {
                             color: theme('form.invalid.color'),
                         },
 
@@ -115,10 +220,12 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     },
 
                     [`
+                        &.is-invalid .invalid-feedback,
+                        &[invalid] .invalid-feedback,
                         &.is-invalid ~ .invalid-feedback,
                         &[invalid] ~ .invalid-feedback,
-                        *:has(&.is-invalid) ~ .invalid-feedback,
-                        *:has(&[invalid]) ~ .invalid-feedback,
+                        *:has(&.is-invalid) .invalid-feedback,
+                        *:has(&[invalid]) .invalid-feedback,
                     `]: {
                         color: theme('form.invalid.color'),
                     },
@@ -147,37 +254,22 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     },
 
                     [`
+                        &.is-valid .valid-feedback,
+                        &[valid] .valid-feedback,
                         &.is-valid ~ .valid-feedback,
                         &[valid] ~ .valid-feedback,
-                        *:has(&.is-valid) ~ .valid-feedback,
-                        *:has(&[valid]) ~ .valid-feedback,
+                        *:has(&.is-valid) .valid-feedback,
+                        *:has(&[valid]) .valid-feedback,
                     `]: {
                         color: theme('form.valid.color'),
                     },
                 },
                 styles: {
-                    DEFAULT: {
-                        padding: `${theme('form.paddingY', '.375rem')} ${theme('form.paddingX', '.75rem')}`,
-                        fontSize: theme('form.fontSize', '1rem'),
-                        borderRadius: theme('form.borderRadius', '.275rem'),
-                    },
-                    sm: {
-                        padding: '.25rem .5rem',
-                        fontSize: '.875rem',
-                        borderRadius: '.2rem'
-                    },
-                    md: {
-                        padding: `${theme('form.paddingY', '.375rem')} ${theme('form.paddingX', '.75rem')}`,
-                        fontSize: theme('form.fontSize', '1rem'),
-                        borderRadius: theme('form.borderRadius', '.275rem'),
-                    },
-                    lg: {
-                        padding: '.5rem 1rem',
-                        fontSize: '1.25rem',
-                        borderRadius: '.3rem'
-                    },
+                    ...require('./sizes.cjs'),
+                    
                     color: {
                         width: '2.75rem',
+                        height: '2.375rem',
                         padding: '.375rem',
                         borderRadius: theme('form.borderRadius', '.275rem'),
 

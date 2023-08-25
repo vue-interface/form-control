@@ -100,8 +100,8 @@ export default defineComponent({
          * The activity indicator type.
          */
         indicator: {
-            type: [Object, String, Boolean],
-            default: () => config('indicator', 'spinner')
+            type: [Object, String],
+            default: undefined
         },
 
         /**
