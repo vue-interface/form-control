@@ -8,117 +8,58 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
             ...theme('formControl.css'),
             ...value
         }),
-        'input-field': value => ({
-            '.form-control': {
+        'input-field': value => {
+            const css = {
                 ...theme('formControl.css'),
                 ...value
-            },
+            };
 
-            '&.is-invalid, &[invalid]': {
-                'label, .invalid-feedback': {
-                    color: theme('form.invalid.color'),
+            return {
+                fontSize: css.fontSize,
+
+                '.form-control': css,
+
+                '&.is-invalid, &[invalid]': {
+                    'label, .invalid-feedback': {
+                        color: theme('form.invalid.color'),
+                    }
+                },
+
+                '&.is-valid, &[valid]': {
+                    'label, .valid-feedback': {
+                        color: theme('form.valid.color'),
+                    }
+                },
+
+                '.form-group-inner': {
+                    position: 'relative',
+
+                    '&:has(> .form-group-inner-icon) .form-control': {
+                        paddingLeft: '2em'
+                    }
+                },
+                
+                '.form-group-inner-icon': {
+                    position: 'absolute',
+                    top: '50%',
+                    left: '.5em',
+                    width: '1.25em',
+                    fontSize: 'inherit',
+                    transform: 'translateY(-50%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                },
+
+                '.activity-indicator': {
+                    position: 'absolute',
+                    right: '0',
+                    top: '50%',
+                    transform: 'translate(-1rem, -50%)',
+                    transition: 'all .15s ease-in'
                 }
-            },
-
-            '&.is-valid, &[valid]': {
-                'label, .valid-feedback': {
-                    color: theme('form.valid.color'),
-                }
-            },
-
-            // .input-field,
-            // .input-field .form-group-inner {
-            //     position: relative;
-            //     transition: all .25s ease-in-out;
-            // }
-
-            // .input-field .activity-indicator {
-            //     position: absolute;
-            //     right: 0;
-            //     top: 50%;
-            //     transform: translate(-1rem, -50%);
-            //     transition: all .15s ease-in;
-            // }
-
-            // .input-field .activity-indicator-xs {
-            //     font-size: .5em;
-            // }
-
-            // .input-field.has-activity .form-control-xs {
-            //     padding-right: 3.75em;
-            // }
-
-            // .input-field .activity-indicator-sm {
-            //     font-size: .5em;
-            // }
-
-            // .input-field.has-activity .form-control-sm {
-            //     padding-right: 3em;
-            // }
-
-            // .input-field .activity-indicator-md {
-            //     font-size: .666em;
-            // }
-
-            // .input-field.has-activity .form-control-md {
-            //     padding-right: 3em;
-            // }
-
-            // .input-field .activity-indicator-lg {
-            //     font-size: .75em;
-            // }
-
-            // .input-field.has-activity .form-control-lg {
-            //     padding-right: 3em;
-            // }
-
-            // .input-field .activity-indicator-xl {
-            //     font-size: 1em;
-            // }
-
-            // .input-field.has-activity .activity-indicator-xl ~ .form-control-xl {
-            //     padding-right: 3.75em;
-            // }
-
-            // .input-field .activity-indicator {
-            //     opacity: 1;
-            // }
-
-            // .input-field .input-field-fade-enter,
-            // .input-field .input-field-fade-leave-to {
-            //     opacity: 0;
-            // }
-
-            // .input-field.is-valid .valid-feedback,
-            // .input-field.is-invalid .invalid-feedback {
-            //     display: flex;
-            // }
-
-            // .input-field .form-control-icon {
-            //     padding-left: 2em;
-            // }
-
-            // .input-field .form-group-inner-icon {
-            //     position: absolute;
-            //     top: 50%;
-            //     left: .5em;
-            //     width: 1em;
-            //     font-size: 1.25em;
-            //     transform: translateY(-50%);
-            //     display: flex;
-            //     align-items: center;
-            //     justify-content: center;
-            // }
-
-            // .input-field-sm .form-group-inner-icon {
-            //     font-size: 1em;
-            // }
-
-            // .input-field-lg .form-group-inner-icon {
-            //     left: .4em;
-            //     font-size: 1.75em;
-            // }
-        }),
+            };
+        }
     }, {
         values: theme('formControl.styles')
     });

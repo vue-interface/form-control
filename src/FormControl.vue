@@ -109,7 +109,7 @@ export default defineComponent({
          */
         indicatorSize: {
             type: String,
-            default: undefined
+            default: 'sm'
         },
 
         /**
