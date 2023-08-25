@@ -8,8 +8,24 @@ module.exports = plugin(function({ matchComponents, theme }) {
         'form-check': value => ({
             ...theme('formCheck.css'),
             ...value
-
-            // '&': value
+        }),
+        'checkbox-field': value => ({
+            '.form-check': {
+                ...theme('formCheck.css'),
+                ...value
+            },
+            '.form-check-label': {
+                marginLeft: '.5em'
+            }
+        }),
+        'radio-field': value => ({
+            '.form-check': {
+                ...theme('formCheck.css'),
+                ...value
+            },
+            '.form-check-label': {
+                marginLeft: '.5em'
+            }
         })
     }, {
         values: theme('formCheck.styles')
