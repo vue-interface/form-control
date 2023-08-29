@@ -1,3 +1,10 @@
+# [1.0.0-beta.35](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2023-08-29)
+
+
+### Bug Fixes
+
+* improved styles for form-switch ([1548eb3](https://github.com/vue-interface/form-control/commit/1548eb3f6b3ea6114ade9f46d35ae5ce6077eb4b))
+
 # [1.0.0-beta.34](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2023-08-29)
 
 
