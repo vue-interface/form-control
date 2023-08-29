@@ -22,12 +22,12 @@
         <div :class="{dark}">
             <div class="dark:bg-neutral-800 dark:text-neutral-300">
                 <div class="container mx-auto py-4 flex flex-col gap-12">
-                    <div class="form-switch">
-                        <input v-model="dark" type="checkbox" class="form-check-input" id="defaultSwitch">
-                        <label class="form-check-label" for="defaultSwitch">
-                            Dark Mode
-                        </label>
-                    </div>
+                    <div>
+                    <label class="flex items-center gap-2">
+                        <input v-model="dark" type="checkbox" class="form-switch-md">
+                        Dark Mode
+                    </label>
+                </div>
 
                     <div class="flex flex-col gap-4">
                         <h1 class="text-4xl">Form Control</h1>
@@ -352,62 +352,73 @@
                         <h1 class="text-4xl">Switches</h1>
 
                         <div class="flex flex-col gap-2">
-                            <div class="form-switch">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch1" checked>
-                                <label class="form-check-label" for="defaultSwitch1">
-                                    On
-                                </label>
-                            </div>
                             
-                            <div class="form-switch">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch2">
-                                <label class="form-check-label" for="defaultSwitch2">
-                                    Off
-                                </label>
-                            </div>
+                            <label class="flex gap-2 items-center">
+                                <input type="checkbox" class="form-switch">
+                                Default
+                            </label>
 
-                            <div class="form-switch">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch3" disabled>
-                                <label class="form-check-label" for="defaultSwitch3">
-                                    Disabled
-                                </label>
-                            </div>
+                            <label class="flex gap-2 items-center">
+                                <input type="checkbox" class="form-switch" disabled>
+                                Disabled
+                            </label>
 
-                            <div class="form-switch">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch3" readonly disabled>
-                                <label class="form-check-label" for="defaultSwitch3">
-                                    Readonly
-                                </label>
-                            </div>
+                            <label class="flex gap-2 items-center">
+                                <input type="checkbox" class="form-switch" disabled checked>
+                                Disabled (Checked)
+                            </label>
 
-                            <div class="form-switch">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch3" checked readonly disabled>
-                                <label class="form-check-label" for="defaultSwitch3">
-                                    Readonly (Checked)
-                                </label>
-                            </div>
+                            <label class="flex gap-2 items-center">
+                                <input type="checkbox" class="form-switch" readonly onclick="return false;">
+                                Readonly
+                            </label>
+
+                            <label class="flex gap-2 items-center">
+                                <input type="checkbox" class="form-switch" checked readonly onclick="return false;">
+                                Readonly (Checked)
+                            </label>
                         </div>
 
                         <h2 class="text-2xl mt-2">Styles</h2>
             
                         <div class="flex flex-col gap-2">
-                            <div class="form-switch-sm">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch4">
-                                <label class="form-check-label" for="defaultSwitch4">
-                                    Small
-                                </label>
+                            <input type="checkbox" class="form-switch-xs">
+                            <input type="checkbox" class="form-switch-sm">
+                            <input type="checkbox" class="form-switch-md">
+                            <input type="checkbox" class="form-switch-lg">
+                            <input type="checkbox" class="form-switch-xl">
+                            <input type="checkbox" class="form-switch-2xl">
+                            <input type="checkbox" class="form-switch-3xl">
+                            <input type="checkbox" class="form-switch-4xl">
+                        </div>
+
+                        <h2 class="text-2xl mt-2">Validation</h2>
+
+                        <div>
+                            <div>
+                                <label class="flex gap-2"><input type="checkbox" class="form-switch" invalid> Invalid</label>
+                                <label class="flex gap-2"><input type="checkbox" class="form-switch" checked invalid> Invalid</label>
+                                <label class="flex gap-2"><input type="radio" name="radio7" class="form-switch" invalid> Invalid</label>
+                                <label class="flex gap-2"><input type="radio" name="radio7" class="form-switch" checked invalid> Invalid</label>
+                                <div class="invalid-feedback">This is an inline error.</div>
                             </div>
-                            <div class="form-switch">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch5">
-                                <label class="form-check-label" for="defaultSwitch5">
-                                    Medium
-                                </label>
+                            <div class="invalid-feedback">This is an inline error.</div>
+                            <div>
+                                <div class="invalid-feedback">This is an inline error.</div>
                             </div>
-                            <div class="form-switch-lg">
-                                <input type="checkbox" class="form-check-input" id="defaultSwitch6">
-                                <label class="form-check-label" for="defaultSwitch6">
-                                    Large
-                                </label>
+                        </div>
+
+                        <div>
+                            <div>
+                                <label class="flex gap-2"><input type="checkbox" class="form-switch" valid> Valid</label>
+                                <label class="flex gap-2"><input type="checkbox" class="form-switch" checked valid> Valid</label>
+                                <label class="flex gap-2"><input type="radio" name="radio8" class="form-switch" valid> Valid</label>
+                                <label class="flex gap-2"><input type="radio" name="radio8" class="form-switch" checked valid> Valid</label>
+                                <div class="valid-feedback">This is an inline sucess message.</div>
+                            </div>
+                            <div class="valid-feedback">This is an inline sucess message.</div>
+                            <div>
+                                <div class="valid-feedback">This is an inline success message.</div>
                             </div>
                         </div>
                     </div>

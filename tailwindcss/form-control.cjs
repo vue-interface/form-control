@@ -3,63 +3,80 @@ const colors = require('tailwindcss/colors');
 const Color = require('color');
 
 module.exports = plugin(function({ addComponents, matchComponents, theme }) {
+    function fieldComponent(value, shallowMerge) {
+        const css = {
+            ...theme('formControl.css'),
+            ...value
+        };
+
+        const component = {
+            fontSize: css.fontSize,
+
+            '.form-control': css,
+
+            '&.is-invalid, &[invalid]': {
+                'label, .invalid-feedback': {
+                    color: theme('form.invalid.color'),
+                }
+            },
+
+            '&.is-valid, &[valid]': {
+                'label, .valid-feedback': {
+                    color: theme('form.valid.color'),
+                }
+            },
+
+            '.form-group-inner': {
+                position: 'relative',
+
+                '&:has(> .form-group-inner-icon) .form-control': {
+                    paddingLeft: '2em'
+                }
+            },
+            
+            '.form-group-inner-icon': {
+                position: 'absolute',
+                top: '50%',
+                left: '.5em',
+                width: '1.25em',
+                fontSize: 'inherit',
+                transform: 'translateY(-50%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            },
+
+            '.activity-indicator': {
+                position: 'absolute',
+                right: '0',
+                top: '50%',
+                transform: 'translate(-1rem, -50%)',
+                transition: 'all .15s ease-in'
+            }
+        };
+
+        if(shallowMerge) {
+            for(const key of Object.keys(shallowMerge)) {
+                component[key] = Object.assign({}, component[key], shallowMerge[key]);
+                
+            }
+        }
+
+        return component;
+    };
+
     matchComponents({
         'form-control': value => ({
             ...theme('formControl.css'),
             ...value
         }),
-        'input-field': value => {
-            const css = {
-                ...theme('formControl.css'),
-                ...value
-            };
-
-            return {
-                fontSize: css.fontSize,
-
-                '.form-control': css,
-
-                '&.is-invalid, &[invalid]': {
-                    'label, .invalid-feedback': {
-                        color: theme('form.invalid.color'),
-                    }
-                },
-
-                '&.is-valid, &[valid]': {
-                    'label, .valid-feedback': {
-                        color: theme('form.valid.color'),
-                    }
-                },
-
-                '.form-group-inner': {
-                    position: 'relative',
-
-                    '&:has(> .form-group-inner-icon) .form-control': {
-                        paddingLeft: '2em'
-                    }
-                },
-                
-                '.form-group-inner-icon': {
-                    position: 'absolute',
-                    top: '50%',
-                    left: '.5em',
-                    width: '1.25em',
-                    fontSize: 'inherit',
-                    transform: 'translateY(-50%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                },
-
-                '.activity-indicator': {
-                    position: 'absolute',
-                    right: '0',
-                    top: '50%',
-                    transform: 'translate(-1rem, -50%)',
-                    transition: 'all .15s ease-in'
-                }
-            };
-        }
+        'input-field': value => fieldComponent(value),
+        'textarea-field': value => fieldComponent(value, {
+            ['.form-group-inner-icon']: {
+                'top': '.5em',
+                'transform': null
+            }
+        })
     }, {
         values: theme('formControl.styles')
     });
@@ -121,7 +138,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     },
                 
                     // Disabled and read-only inputs
-                    '&:disabled, &:disabled[readonly]': {
+                    '&:disabled:not([readonly])': {
                         color: theme('form.disabled.color'),
                         backgroundColor: theme('form.disabled.backgroundColor'),
                         borderColor: theme('form.disabled.borderColor'),
@@ -147,7 +164,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         },
 
                         '&:focus, &.focus': {
-                            boxShadow: `0 0 0 .2rem ${Color(theme('form.invalid.borderColor')).fade(.5)}`
+                            boxShadow: theme('form.invalid.focus.boxShadow')
                         },
                         
                         backgroundImage: theme('form.invalid.backgroundImage'),
@@ -181,7 +198,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         },
 
                         '&:focus, &.focus': {
-                            boxShadow: `0 0 0 .2rem ${Color(theme('form.valid.borderColor')).fade(.5)}`
+                            boxShadow: theme('form.valid.focus.boxShadow')
                         },
 
                         backgroundImage: theme('form.valid.backgroundImage'),
@@ -246,7 +263,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         },
 
                         // Disabled and read-only inputs
-                        '&:disabled, &:disabled[readonly]': {
+                        '&:disabled:not([readonly])': {
                             color: theme('form.disabled.borderColor'),
                             opacity: '1'
                         },

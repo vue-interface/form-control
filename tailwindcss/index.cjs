@@ -61,6 +61,11 @@ module.exports = {
                     color: theme('colors.gray.400', colors.gray[400]),
                     borderColor: theme('colors.gray.400', colors.gray[400]),
                     backgroundColor: theme('colors.gray.200', colors.gray[200]),
+                    focus: {
+                        color: theme('variations.success', colors.red[600]),
+                        borderColor: theme('variations.success', colors.red[600]),
+                        boxShadow: `0 0 0 .2rem ${Color(theme('variations.success', colors.red[600])).fade(.5)}`,
+                    },
                     dark: {
                         backgroundColor: theme('colors.neutral.900', colors.neutral[900]),
                         borderColor: theme('colors.neutral.700', colors.neutral['700']),
@@ -72,6 +77,11 @@ module.exports = {
                     borderColor: theme('variations.danger', colors.red[600]),
                     backgroundColor: Color(theme('variations.danger', colors.red[600])).fade(.9).string(),
                     backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='${theme('variations.danger', colors.red[600])}' viewBox='0 0 12 12'><circle cx='6' cy='6' r='4.5'/><path stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/><circle cx='6' cy='8.2' r='.6' fill='${theme('variations.danger', colors.red[600])}' stroke='none'/></svg>")`),
+                    focus: {
+                        color: theme('variations.danger', colors.red[600]),
+                        borderColor: theme('variations.danger', colors.red[600]),
+                        boxShadow: `0 0 0 .2rem ${Color(theme('variations.danger', colors.red[600])).fade(.5)}`,
+                    },
                     dark: {
                         color: theme('variations.danger', colors.red[600]),
                         borderColor: theme('variations.danger', colors.red[600]),
@@ -83,6 +93,11 @@ module.exports = {
                     borderColor: theme('variations.success', colors.green[600]),
                     backgroundColor: Color(theme('variations.success', colors.green[600])).fade(.9).string(),
                     backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='${theme('variations.success', colors.green[600])}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/></svg>")`),
+                    focus: {
+                        color: theme('variations.success', colors.green[600]),
+                        borderColor: theme('variations.success', colors.green[600]),
+                        boxShadow: `0 0 0 .2rem ${Color(theme('variations.success', colors.green[600])).fade(.5)}`,
+                    },
                     dark: {
                         color: theme('variations.success', colors.green[600]),
                         borderColor: theme('variations.success', colors.green[600]),

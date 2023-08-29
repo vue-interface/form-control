@@ -9,6 +9,15 @@ module.exports = {
         borderRadius: '.25rem',
     },
 
+    'tiny': {
+        paddingTop: '.375rem',
+        paddingBottom: '.375rem',
+        paddingLeft: '.75rem',
+        paddingRight: '.75rem',
+        fontSize: '1rem',
+        borderRadius: '.25rem',
+    },
+
     'xs': {
         paddingTop: '.15rem',
         paddingBottom: '.15rem',
@@ -27,6 +36,15 @@ module.exports = {
         borderRadius: '.25rem',
     },
     
+    'md': {
+        paddingTop: '.375rem',
+        paddingBottom: '.375rem',
+        paddingLeft: '.75rem',
+        paddingRight: '.75rem',
+        fontSize: '1rem',
+        borderRadius: '.25rem',
+    },
+
     'lg': {
         paddingTop: '.5rem',
         paddingBottom: '.5rem',
@@ -37,29 +55,37 @@ module.exports = {
     },
     
     'xl': {
-        paddingY: '.66rem',
-        paddingX: '1.25rem',
+        paddingTop: '.66rem',
+        paddingBottom: '.66rem',
+        paddingLeft: '1.25rem',
+        paddingRight: '1.25rem',
         fontSize: '1.33rem',
         borderRadius: '.33rem',
     },
     
     '2xl': {
-        paddingY: '.75rem',
-        paddingX: '1.5rem',
+        paddingTop: '.75rem',
+        paddingBottom: '.75rem',
+        paddingLeft: '1.5rem',
+        paddingRight: '1.5rem',
         fontSize: '1.5rem',
         borderRadius: '.5rem',
     },
     
     '3xl': {
-        paddingY: '.85rem',
-        paddingX: '1.75rem',
+        paddingTop: '.85rem',
+        paddingBottom: '.85rem',
+        paddingLeft: '1.75rem',
+        paddingRight: '1.75rem',
         fontSize: '1.75rem',
         borderRadius: '.5rem',
     },
     
     '4xl': {
-        paddingY: '1rem',
-        paddingX: '2rem',
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        paddingLeft: '2rem',
+        paddingRight: '2rem',
         fontSize: '2rem',
         borderRadius: '.66rem',
     }
