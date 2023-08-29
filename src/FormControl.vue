@@ -219,15 +219,11 @@ export default defineComponent({
         controlClasses() {
             return {
                 [this.controlClass]: !!this.controlClass,
-                [this.controlSizeClass]: !!this.controlSizeClass,
                 [this.plaintextClass]: this.plaintext,
                 'form-control-icon': !!this.$slots.icon,
                 'is-valid': this.isValid,
                 'is-invalid': this.isInvalid,
             };
-        },
-        controlSizeClass() {
-            return prefix(this.size, this.controlClass);
         },
         formGroupClasses() {
             return Object.assign({
@@ -240,9 +236,7 @@ export default defineComponent({
                 'is-empty': this.isEmpty,
                 'is-invalid': this.isInvalid,
                 'is-valid': this.isValid,
-                [this.$attrs.class]: !!this.$attrs.class,
-                [this.size && prefix(this.size, 'form-group')]: !!this.size,
-                [this.size && prefix(this.size, this.componentName)]: !!this.size,
+                [this.$attrs.class]: !!this.$attrs.class
             }, !!this.componentName && {
                 [kebabCase(this.componentName)]: true
             });
