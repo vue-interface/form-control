@@ -1,3 +1,11 @@
+# [1.0.0-beta.34](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2023-08-29)
+
+
+### Bug Fixes
+
+* removed size props ([ae2aa6f](https://github.com/vue-interface/form-control/commit/ae2aa6f6193b60d92ee19593816806edce854825))
+* updated styles form form-switch ([cdb1c26](https://github.com/vue-interface/form-control/commit/cdb1c26b10c10c37f3cfd8d937fbc25ffcfb6d65))
+
 # [1.0.0-beta.33](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2023-08-25)
 
 
