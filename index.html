@@ -22,12 +22,11 @@
         <div :class="{dark}">
             <div class="dark:bg-neutral-800 dark:text-neutral-300">
                 <div class="container mx-auto py-4 flex flex-col gap-12">
-                    <div>
-                    <label class="flex items-center gap-2">
-                        <input v-model="dark" type="checkbox" class="form-switch-md">
-                        Dark Mode
-                    </label>
-                </div>
+                    <div class="flex items-center gap-2">
+                        <label class="form-label">Light</label>
+                        <input v-model="dark" type="checkbox" class="form-switch-light-dark" />
+                        <label class="form-label">Dark</label>
+                    </div>
 
                     <div class="flex flex-col gap-4">
                         <h1 class="text-4xl">Form Control</h1>

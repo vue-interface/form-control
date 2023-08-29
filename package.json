@@ -59,6 +59,7 @@
   "dependencies": {
     "@types/lodash-es": "^4.17.8",
     "color": "^4.2.3",
+    "deepmerge": "^4.2.2",
     "lodash-es": "^4.17.21"
   },
   "peerDependencies": {

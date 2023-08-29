@@ -1,16 +1,28 @@
 const Color = require('color');
+const deepMerge = require('deepmerge');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors'); 
 const escapeSvg = require('./utils/escapeSvg.cjs');
 
 /** @type {import('tailwindcss/plugin')} */
 module.exports = plugin(function({ addComponents, matchComponents, theme }) {
-    console.log(theme('formSwitch.styles'));
+    function formSwitch(value) {
+        const css = deepMerge(theme('formSwitch.css'), value);
+        
+        console.log(css);
+        
+        return {
+            ...css,
+
+            borderRadius: `calc(1em * ${theme('form.lineHeight', '1.5')})`,
+            width: value.width ?? 'calc(1.5 * 2.666em)',
+            height: `calc(1em * ${theme('form.lineHeight', '1.5')} + ${value.paddingTop ?? 0} + ${value.paddingBottom ?? 0} + ${theme('form.borderWidth', '1px')} * 2)`,
+        };
+    }
+
+
     matchComponents({
-        'form-switch': value => ({
-            ...theme('formSwitch.css'),
-            ...value
-        }),
+        'form-switch': formSwitch,
         'light-switch-field': value => ({
             '.form-switch': {
                 ...theme('formSwitch.css'),
@@ -56,8 +68,12 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     'content': '""',
                     position: 'absolute',
                     top: '50%',
-                    backgroundColor: 'red',
+                    left: '0',
+                    width: '100%',
+                    height: '100%',
                     display: 'block',
+                    borderRadius: '100%',
+                    backgroundPosition: 'left center',
                     backgroundRepeat: 'no-repeat',
                     backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='${theme('variations.secondary', theme('colors.gray.500', colors.gray[500]))}'/></svg>")`),
                     transform: 'translateY(-50%)',
@@ -71,9 +87,9 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     filter: 'none',
                     opacity: '.5',
 
-                    // '*:has(> &)': {
-                    //     opacity: '.5',
-                    // },
+                    'label:has(> &)': {
+                        opacity: '.5',
+                    },
                 },
 
                 '&:focus': {
@@ -109,9 +125,9 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         boxShadow: theme('form.invalid.focus.boxShadow'),
                     },
 
-                    // '*:has(> &)': {
-                    //     color: theme('form.invalid.color'),
-                    // }
+                    'label:has(> &)': {
+                        color: theme('form.invalid.color'),
+                    }
                 },
 
                 [`
@@ -138,9 +154,9 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         boxShadow: theme('form.valid.focus.boxShadow'),
                     },
 
-                    // '*:has(> &)': {
-                    //     color: theme('form.valid.color'),
-                    // }
+                    'label:has(> &)': {
+                        color: theme('form.valid.color'),
+                    }
                 },
 
                 [`
@@ -155,74 +171,16 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 },
             },
             styles: {
-                ...Object.fromEntries(
-                    Object.entries(Object.assign({}, require('./sizes.cjs'), {
-                        DEFAULT: {
-                            paddingTop: '.15rem',
-                            paddingBottom: '.15rem',
-                            paddingLeft: '.35rem',
-                            paddingRight: '.35rem',
-                            fontSize: '.5rem',
-                            width: '4.25em'
-                        }
-                    })).map(([key, value]) => {
-                        return [key, {
-                            ...value,
-
-                            borderRadius: `calc(1em * ${theme('form.lineHeight', '1.5')})`,
-                            width: value.width ?? 'calc(1.5 * 2.666em)',
-                            height: `calc(1em * ${theme('form.lineHeight', '1.5')} + ${value.paddingTop} + ${value.paddingBottom} + ${theme('form.borderWidth', '1px')} * 2)`,
-                            
-                            '&:before': {
-                                'content': '""',
-                                position: 'absolute',
-                                top: '0',
-                                left: '0',
-                                width: '100%',
-                                height: '100%',
-                                display: 'block',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundImage: escapeSvg(`url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='${theme('variations.secondary', theme('colors.gray.500', colors.gray[500]))}'/></svg>")`),
-                                transition: 'background-color .15s ease-in-out, background-position .15s ease-in-out',
-                            },
-
-                            // '&:checked:before': {
-                            //     right: '0'
-                            // }
-                        }];
-                    })
-                )
-                
-                // DEFAULT: {
-                //     paddingTop: '.375rem',
-                //     paddingBottom: '.375rem',
-                //     paddingLeft: '.75rem',
-                //     paddingRight: '.75rem',
-                //     width: 'calc(1.5rem * 2.5)',
-                //     height: 'calc(1.5rem + .375rem * 2 + 2px)',
-                //     borderRadius: '1.5rem',
-                // },
-
-                // @todo - implement this
-                // ...require('./sizes.cjs'),
-
-                // DEFAULT: {
-                //     height: '2.375rem',
-                //     width: `${2.375 * 1.666}rem`,
-                //     borderRadius: '2.375rem',
-                // },
-
-                // sm: {
-                //     height: '2.1875rem',
-                //     width: `${2.1875 * 1.5}rem`,
-                //     borderRadius: '2.1875rem'
-                // },
-        
-                // lg: {
-                //     height: '2.5rem',
-                //     width: `${2.5 * 1.75}rem`,
-                //     borderRadius: '2.5rem'
-                // }
+                ...Object.assign({}, require('./sizes.cjs'), {
+                    DEFAULT: {
+                        paddingTop: '.15rem',
+                        paddingBottom: '.15rem',
+                        paddingLeft: '.35rem',
+                        paddingRight: '.35rem',
+                        fontSize: '.5rem',
+                        width: '4.25em'
+                    }
+                })
             }
         })
     }
