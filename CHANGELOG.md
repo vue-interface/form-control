@@ -1,3 +1,10 @@
+# [1.0.0-beta.36](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2023-08-30)
+
+
+### Bug Fixes
+
+* removed console.log ([aa8ba57](https://github.com/vue-interface/form-control/commit/aa8ba57b139336e2f3a6be15b9b577487cc0133a))
+
 # [1.0.0-beta.35](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2023-08-29)
 
 
