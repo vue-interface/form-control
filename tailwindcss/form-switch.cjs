@@ -9,8 +9,6 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
     function formSwitch(value) {
         const css = deepMerge(theme('formSwitch.css'), value);
         
-        console.log(css);
-        
         return {
             ...css,
 
