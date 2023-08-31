@@ -1,3 +1,10 @@
+# [1.0.0-beta.37](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2023-08-31)
+
+
+### Bug Fixes
+
+* issues with TW config inconsistencies ([c89dd06](https://github.com/vue-interface/form-control/commit/c89dd06347ecf24025a8d4a3284ff781d57e3df9))
+
 # [1.0.0-beta.36](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2023-08-30)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@vue-interface/form-control",
-  "version": "1.0.0-beta.36",
+  "version": "1.0.0-beta.37",
   "description": "An abstract form control Vue mixin.",
   "files": [
     "dist",
