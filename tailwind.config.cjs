@@ -82,8 +82,5 @@ module.exports = {
             //     }
             // }
         },
-    },
-    safelist: [
-        // ...require('./tailwindcss/safelist.cjs')()
-    ]
+    }
 };

@@ -1,19 +1,18 @@
+const deepMerge = require('deepmerge');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 const escapeSvg = require('./utils/escapeSvg.cjs');
 const Color = require('color');
 
 module.exports = plugin(function({ addComponents, matchComponents, theme }) {
+    function formSelect(value) {
+        return deepMerge(theme('formSelect.css'), value);
+    }
+
     matchComponents({
-        'form-select': value => ({
-            ...theme('formSelect.css'),
-            ...value
-        }),
+        'form-select': formSelect,        
         'select-field': value => {
-            const css = {
-                ...theme('formSelect.css'),
-                ...value
-            };
+            const css = formSelect(value);
 
             return {
                 fontSize: css.fontSize,
@@ -62,8 +61,16 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
             };
         }
     }, {
-        values: theme('formSelect.styles')
+        values: theme('formSelect.sizes')
     });
+
+    for(const [key, style] of Object.entries(theme('formSelect.styles'))) {
+        matchComponents({
+            [`form-select-${key}`]: value => deepMerge(style, value)
+        }, {
+            values: theme('formSelect.sizes')
+        });
+    }
 }, {
     theme: {
         formSelect: theme => {
@@ -81,7 +88,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 css: {
                     display: theme('form.display', 'flex'),
                     width: theme('form.width', '100%'),
-                    paddingRight: `calc(${theme('form.paddingX', '.75rem')} * 2)`,
+                    paddingRight: `calc(${theme('form.paddingRight', '.75rem')} * 2)`,
                     fontFamily: theme('form.fontFamily'),
                     fontWeight: theme('form.fontWeight', '400'),
                     lineHeight: theme('form.lineHeight', '1.5'),
@@ -90,11 +97,12 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     backgroundColor: theme('form.backgroundColor', colors.white),
                     backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZT0iY3VycmVudENvbG9yIj4KICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOS41IDguMjVsLTcuNSA3LjUtNy41LTcuNSIgLz4KPC9zdmc+")',
                     backgroundRepeat: 'no-repeat',
-                    backgroundPosition: `right ${theme('form.paddingY', '.375rem')} center`,
+                    backgroundPosition: `right ${theme('form.paddingLeft', '.375rem')} center`,
                     backgroundSize: '16px 16px',
                     border: `${theme('form.borderWidth')} ${theme('form.borderStyle')} ${theme('form.borderColor')}`,
                     transition: theme('form.transition', 'border-color .15s ease-in-out, box-shadow .15s ease-in-out'),
                     appearance: theme('form.appearance', 'none'),
+                    opacity: theme('form.opacity'),
 
                     [dark('text', 'form.dark.color')]: {},
                     [dark('bg', 'form.dark.backgroundColor')]: {},
@@ -129,11 +137,12 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 
                     '&[multiple], &[size]:not([size="1"])': {
                         height: 'auto',
-                        paddingRight: theme('form.paddingX', '.75rem'),
+                        paddingRight: theme('form.paddingRight', '.75rem'),
                         backgroundImage: 'none'
                     },
                 
-                    '&:disabled, &:disabled[readonly]': {
+                    '&:disabled:not([readonly])': {
+                        borderColor: theme('form.disabled.borderColor'),
                         color: theme('form.disabled.color'),
 
                         [dark('text', 'form.disabled.dark.color')]: {},
@@ -141,10 +150,10 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         [dark('border', 'form.disabled.dark.borderColor')]: {}
                     },
 
-                    '&:not(:disabled)[readonly]': {
-                        opacity: '1'
+                    '&[readonly]:disabled': {
+                        // opacity: theme('form.opacity')
                     },
-                            
+  
                     // Remove outline from select box in FF
                     '&:-moz-focusring': {
                         color: 'transparent',
@@ -166,7 +175,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         
                         backgroundImage: theme('form.invalid.backgroundImage'),
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingY')} * 2) / 4) center`,
+                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingLeft')} * 2) / 4) center`,
                         backgroundSize: '1.25em',
 
                         [dark('text', 'form.invalid.dark.color')]: {},
@@ -200,7 +209,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
 
                         backgroundImage: theme('form.valid.backgroundImage'),
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingY')} * 2) / 4) center`,
+                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingLeft')} * 2) / 4) center`,
                         backgroundSize: '1.25em',
 
                         [dark('text', 'form.valid.dark.color')]: {},
@@ -220,44 +229,10 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     },
                 },
 
+                sizes: theme('form.sizes'),
+
                 styles: {
-                    ...require('./sizes.cjs'),
-                    plaintext: {
-                        display: theme('form.plaintext.display'),
-                        width: theme('form.plaintext.width'),
-                        padding: `${theme('form.plaintext.paddingY')} ${theme('form.plaintext.paddingX')}`,
-                        marginBottom: theme('form.plaintext.marginBottom'), // match inputs if this class comes on inputs with default margins
-                        lineHeight: theme('form.plaintext.lineHeight'),
-                        color: theme('form.plaintext.color'),
-                        backgroundColor: theme('form.plaintext.backgroundColor'),
-                        backgroundImage: 'none',
-                        borderStyle: theme('form.plaintext.borderStyle'),
-                        borderColor: theme('form.plaintext.borderColor'),
-                        borderWidth: theme('form.plaintext.borderWidth'),
-                        boxShadow: 'none',
-                        outline: 'none',
-                        cursor: 'default',
-
-                        // Customize the `:focus` state to imitate native WebKit styles.
-                        '&:focus': {
-                            color: theme('form.plaintext.color'),
-                            backgroundColor: theme('form.plaintext.backgroundColor'),
-                            borderColor: theme('form.plaintext.borderColor'),
-                            boxShadow: 'none',
-                        },
-
-                        // Disabled and read-only inputs
-                        '&:disabled, &:disabled[readonly]': {
-                            color: theme('form.disabled.borderColor'),
-                            opacity: '1'
-                        },
-
-                        [dark('text', 'form.plaintext.dark.color')]: {},
-                        [dark('bg', 'form.plaintext.dark.backgroundColor')]: {},
-                        [dark('border', 'form.plaintext.dark.borderColor')]: {},
-
-                        '@apply dark:bg-none': {}
-                    }
+                    plaintext: theme('form.plaintext')
                 }
             };
         }

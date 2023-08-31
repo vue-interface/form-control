@@ -11,7 +11,13 @@ module.exports = {
                 width: '100%',
                 lineHeight: '1.5',
                 color: theme('colors.gray.700', colors.gray['700']),
+                paddingTop: '.375rem',
+                paddingBottom: '.375rem',
+                paddingLeft: '.75rem',
+                paddingRight: '.75rem',
+                // @deprecated
                 paddingY: '.375rem',
+                // @deprecated
                 paddingX: '.75rem',
                 borderWidth: '1px',
                 borderColor: theme('colors.gray.400', colors.gray['400']),
@@ -19,6 +25,7 @@ module.exports = {
                 fontSize: '1rem',
                 fontFamily: 'inherit',
                 fontWeight: 400,
+                opacity: '1',
                 backgroundColor: theme('colors.white', colors.white),
                 backgroundClip: 'padding-box',
                 appearance: 'none',
@@ -107,33 +114,21 @@ module.exports = {
                 plaintext: {
                     display: 'block',
                     width: '100%',
-                    paddingX: 0,
-                    paddingY: '.375rem',
+                    margin: '0',
+                    paddingLeft: '0 !important',
+                    paddingRight: '0 !important',
                     color: 'inherit',
-                    backgroundColor: 'transparent',
-                    borderWidth: '1px',
-                    borderStyle: 'solid',
-                    borderColor: 'transparent',
+                    border: 'none',
                     lineHeight: '1.5',
-                    marginBottom: 0,
-                    dark: {
-                        color: 'inherit',
-                        borderColor: 'transparent',
-                        backgroundColor: 'transparent',
-                    },
+                    background: 'transparent',
+                    backgroundImage: 'none',
+                    border: 'none',
+                    boxShadow: 'none',
+                    outline: 'none',
+                    cursor: 'default',
+                    appearance: 'none',
                 },
-                sizes: {
-                    sm: {
-                        padding: '.25rem .5rem',
-                        fontSize: '.875rem',
-                        borderRadius: '.2rem'
-                    },
-                    lg: {
-                        padding: '.5rem 1rem',
-                        fontSize: '1.25rem',
-                        borderRadius: '.3rem'
-                    }
-                }
+                sizes: require('./sizes.cjs')
             })
         }
     },

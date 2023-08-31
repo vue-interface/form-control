@@ -9,7 +9,7 @@ module.exports = plugin(function({ matchComponents, theme }) {
             ...value,
         })
     }, {
-        values: theme('formFile.styles')
+        values: theme('formFile.sizes')
     });
 }, {
     theme: {
@@ -32,7 +32,7 @@ module.exports = plugin(function({ matchComponents, theme }) {
                         position: 'relative',
                         zIndex: 2,
                         width: '100%',
-                        height: `calc(${theme('form.lineHeight', 1.5)} * 1em + ${theme('form.paddingY', '.375rem')} * 2 + ${theme('form.borderWidth', '1px')} * 2)`,
+                        height: `calc(${theme('form.lineHeight', 1.5)} * 1em + ${theme('form.paddingTop', '.375rem')} + ${theme('form.paddingBottom', '.375rem')} + ${theme('form.borderWidth', '1px')} * 2)`,
                         margin: 0,
                         opacity: 0,
                     },
@@ -71,7 +71,7 @@ module.exports = plugin(function({ matchComponents, theme }) {
                         left: 0,
                         zIndex: 1,
                         display: 'flex',
-                        height: `calc(${theme('form.lineHeight', 1.5)} * 1em + ${theme('form.paddingY', '.375rem')} * 2 + ${theme('form.borderWidth', '1px')} * 2)`,
+                        height: `calc(${theme('form.lineHeight', 1.5)} * 1em + ${theme('form.paddingTop', '.375rem')} + ${theme('form.paddingBottom', '.375rem')} + ${theme('form.borderWidth', '1px')} * 2)`,
                         borderColor: theme('form.borderColor', colors.gray[600]),
                         borderRadius: theme('form.borderRadius', '.25rem'),
                         boxShadow: theme('form.boxShadow', 'inset 0 1px 2px rgba(0, 0, 0, .075)'),
@@ -84,7 +84,10 @@ module.exports = plugin(function({ matchComponents, theme }) {
                     '.form-file-text': {
                         display: 'block',
                         flexGrow: 1,
-                        padding: `${theme('form.paddingY', '.375rem')} ${theme('form.paddingX', '.75rem')}`,
+                        paddingTop: theme('form.paddingTop', '.375rem'),
+                        paddingBottom: theme('form.paddingBottom', '.375rem'),
+                        paddingRight: theme('form.paddingRight', '.75rem'),
+                        paddingLeft: theme('form.paddingLeft', '.75rem'),
                         overflow: 'hidden',
                         fontFamily: theme('form.fontFamily', 'inherit'),
                         fontWeight: theme('form.fontWeight', 400),
@@ -107,7 +110,10 @@ module.exports = plugin(function({ matchComponents, theme }) {
                     '.form-file-button': {
                         display: 'block',
                         flexShrink: 0,
-                        padding: `${theme('form.paddingY', '.375rem')} ${theme('form.paddingX', '.75rem')}`,
+                        paddingTop: theme('form.paddingTop', '.375rem'),
+                        paddingBottom: theme('form.paddingBottom', '.375rem'),
+                        paddingRight: theme('form.paddingRight', '.75rem'),
+                        paddingLeft: theme('form.paddingLeft', '.75rem'),
                         marginLeft: `-${theme('form.borderWidth', '1px')}`,
                         lineHeight: theme('form.lineHeight', 1.5),
                         color: theme('form.color', colors.gray[600]),
@@ -124,21 +130,7 @@ module.exports = plugin(function({ matchComponents, theme }) {
                     },
                 },
 
-                styles: {
-                    DEFAULT: {},
-                    
-                    sm: {
-                        padding: `${theme('form.sm.paddingY', '.25rem')} ${theme('form.sm.paddingX', '.5rem')}`,
-                        fontSize: theme('form.sm.fontSize', '.875rem'),
-                        height: `calc(${theme('form.lineHeight', 1.5)} * 1em + ${theme('form.sm.paddingY', '.25rem')} * 2 + ${theme('form.borderWidth', '1px')} * 2)`,
-                    },
-
-                    lg: {
-                        padding: `${theme('form.sm.paddingY', '.5rem')} ${theme('form.sm.paddingX', '.1rem')}`,
-                        fontSize: theme('form.lg.fontSize', '1.25rem'),
-                        height: `calc(${theme('form.lineHeight', 1.5)} * 1em + ${theme('form.lg.paddingY', '.5rem')} * 2 + ${theme('form.borderWidth', '1px')} * 2)`,
-                    },
-                }
+                sizes: require('./sizes.cjs')
             };
         }
     }

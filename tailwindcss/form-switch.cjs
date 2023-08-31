@@ -13,19 +13,15 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
             ...css,
 
             borderRadius: `calc(1em * ${theme('form.lineHeight', '1.5')})`,
-            width: value.width ?? 'calc(1.5 * 2.666em)',
-            height: `calc(1em * ${theme('form.lineHeight', '1.5')} + ${value.paddingTop ?? 0} + ${value.paddingBottom ?? 0} + ${theme('form.borderWidth', '1px')} * 2)`,
+            width: `calc((1em * ${theme('form.lineHeight', '1.5')} + ${value.paddingTop ?? '0px'} + ${value.paddingBottom ?? '0px'} + ${theme('form.borderWidth', '1px')} * 2) * 2)`,
+            height: `calc(1em * ${theme('form.lineHeight', '1.5')} + ${value.paddingTop ?? '0px'} + ${value.paddingBottom ?? '0px'} + ${theme('form.borderWidth', '1px')} * 2)`,
         };
     }
-
 
     matchComponents({
         'form-switch': formSwitch,
         'light-switch-field': value => ({
-            '.form-switch': {
-                ...theme('formSwitch.css'),
-                ...value
-            },
+            '.form-switch': formSwitch(value),
             
             '.form-switch-label': {
                 display: 'flex',

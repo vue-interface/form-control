@@ -1,3 +1,4 @@
+const deepMerge = require('deepmerge');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 const Color = require('color');
@@ -78,8 +79,16 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
             }
         })
     }, {
-        values: theme('formControl.styles')
+        values: theme('formControl.sizes')
     });
+
+    for(const [key, style] of Object.entries(theme('formControl.styles'))) {
+        matchComponents({
+            [`form-control-${key}`]: value => deepMerge(style, value)
+        }, {
+            values: theme('formControl.sizes')
+        });
+    }
 }, {
     theme: {
         formControl: theme => {
@@ -97,7 +106,6 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 css: {
                     display: 'flex',
                     width: '100%',
-                    // minHeight: `calc(1.5 * 1em + ${theme('form.paddingY', '.375rem')} * 2 + 1px * 2)`,
                     fontFamily: theme('form.fontFamily'),
                     fontWeight: theme('form.fontWeight', '400'),
                     lineHeight: theme('form.lineHeight', '1.5'),
@@ -169,7 +177,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         
                         backgroundImage: theme('form.invalid.backgroundImage'),
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingY')} * 2) / 4) center`,
+                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingTop')} + ${theme('form.paddingBottom')}) / 4) center`,
                         backgroundSize: '1.25em',
 
                         [dark('text', 'form.invalid.dark.color')]: {},
@@ -203,7 +211,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
 
                         backgroundImage: theme('form.valid.backgroundImage'),
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingY')} * 2) / 4) center`,
+                        backgroundPosition: `right calc((${theme('form.lineHeight')} * 1em + ${theme('form.paddingTop')} + ${theme('form.paddingBottom')}) / 4) center`,
                         backgroundSize: '1.25em',
 
                         [dark('text', 'form.valid.dark.color')]: {},
@@ -222,9 +230,9 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         color: theme('form.valid.color'),
                     },
                 },
-                styles: {
+                sizes: {
                     ...require('./sizes.cjs'),
-                    
+
                     color: {
                         width: '2.75rem',
                         height: '2.375rem',
@@ -238,40 +246,10 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         '&::-webkit-color-swatch': {
                             borderRadius: theme('form.borderRadius', '.25rem')
                         }
-                    },
-                    plaintext: {
-                        display: theme('form.plaintext.display'),
-                        width: theme('form.plaintext.width'),
-                        padding: `${theme('form.plaintext.paddingY')} ${theme('form.plaintext.paddingX')}`,
-                        marginBottom: theme('form.plaintext.marginBottom'), // match inputs if this class comes on inputs with default margins
-                        lineHeight: theme('form.plaintext.lineHeight'),
-                        color: theme('form.plaintext.color'),
-                        backgroundColor: theme('form.plaintext.backgroundColor'),
-                        borderStyle: theme('form.plaintext.borderStyle'),
-                        borderColor: theme('form.plaintext.borderColor'),
-                        borderWidth: theme('form.plaintext.borderWidth'),
-                        boxShadow: 'none',
-                        outline: 'none',
-                        cursor: 'default',
-        
-                        // Customize the `:focus` state to imitate native WebKit styles.
-                        '&:focus': {
-                            color: theme('form.plaintext.color'),
-                            backgroundColor: theme('form.plaintext.backgroundColor'),
-                            borderColor: theme('form.plaintext.borderColor'),
-                            boxShadow: 'none',
-                        },
-
-                        // Disabled and read-only inputs
-                        '&:disabled:not([readonly])': {
-                            color: theme('form.disabled.borderColor'),
-                            opacity: '1'
-                        },
-
-                        [dark('text', 'form.plaintext.dark.color')]: {},
-                        [dark('bg', 'form.plaintext.dark.backgroundColor')]: {},
-                        [dark('border', 'form.plaintext.dark.borderColor')]: {}
                     }
+                },
+                styles: {
+                    plaintext: theme('form.plaintext')
                 }
             };
         }

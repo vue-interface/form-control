@@ -1,14 +1,15 @@
+const Color = require('color');
+const deepMerge = require('deepmerge');
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors'); 
 const escapeSvg = require('./utils/escapeSvg.cjs');
-const Color = require('color');
 
 module.exports = plugin(function({ matchComponents, theme }) {
     matchComponents({
-        'form-check': value => ({
-            ...theme('formCheck.css'),
-            ...value
-        }),
+        'form-check': value => deepMerge(
+            theme('formCheck.css'),
+            value
+        ),
         'checkbox-field': value => ({
             '.form-check': {
                 ...theme('formCheck.css'),
@@ -28,7 +29,7 @@ module.exports = plugin(function({ matchComponents, theme }) {
             }
         })
     }, {
-        values: theme('formCheck.styles')
+        values: theme('formCheck.sizes')
     });
 }, {
     theme: {
@@ -57,6 +58,10 @@ module.exports = plugin(function({ matchComponents, theme }) {
                     colorAdjust: 'exact', // Keep themed appearance for print
                     transition: `background-color .15s ease-in-out, background-position .15s ease-in-out, ${theme('form.transition', 'border-color .15s ease-in-out, box-shadow .15s ease-in-out')}`,
                     appearance: 'none',
+
+                    '&': {
+                        padding: '0 !important',
+                    },
                 
                     [dark('text', 'form.dark.color')]: {},
                     [dark('bg', 'form.dark.backgroundColor')]: {},
@@ -181,12 +186,7 @@ module.exports = plugin(function({ matchComponents, theme }) {
                         color: theme('form.valid.color'),
                     },
                 },
-                styles: {
-                    // @todo - implement sizes
-                    DEFAULT: {
-                        
-                    }
-                }
+                sizes: theme('form.sizes')
             };
         }
     }

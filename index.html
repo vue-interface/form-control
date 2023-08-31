@@ -61,7 +61,7 @@
                             <input type="text" id="control" class="form-control" placeholder="Readonly" readonly />
                         </div>
 
-                        <h2 class="text-2xl mt-2">Styles</h2>
+                        <h2 class="text-2xl mt-2">Sizes</h2>
 
                         <div>
                             <label class="form-label">Small</label>
@@ -181,12 +181,12 @@
                             </select>
                         </div>
 
-                        <h2 class="text-2xl mt-2">Styles</h2>
+                        <h2 class="text-2xl mt-2">Sizes</h2>
 
                         <div class="select-field">
                             <label class="form-label">Small</label>
                             <div>
-                                <select class="form-select">
+                                <select class="form-select-sm">
                                     <option>Option A</option>
                                     <option selected>Option B</option>
                                     <option>Option C</option>
@@ -264,6 +264,80 @@
                             <label class="flex gap-2"><input type="radio" name="radio" class="form-check" checked> Checked</label>
                             <label class="flex gap-2"><input type="radio" name="radio2" class="form-check" disabled> Unchecked (Disabled)</label>
                             <label class="flex gap-2"><input type="radio" name="radio2" class="form-check" checked disabled> Checked (Disabled)</label>
+                        </div>
+
+                        <h2 class="text-2xl mt-2">Sizes</h2>
+
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check-xs">
+                            <input type="checkbox" class="form-check-xs" checked>
+                            <input type="checkbox" class="form-check-xs" invalid>
+                            <input type="checkbox" class="form-check-xs" invalid checked>
+                            <input type="checkbox" class="form-check-xs" valid>
+                            <input type="checkbox" class="form-check-xs" valid checked>
+                        </div>
+                        
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check-sm">
+                            <input type="checkbox" class="form-check-sm" checked>
+                            <input type="checkbox" class="form-check-sm" invalid>
+                            <input type="checkbox" class="form-check-sm" invalid checked>
+                            <input type="checkbox" class="form-check-sm" valid>
+                            <input type="checkbox" class="form-check-sm" valid checked>
+                        </div>
+                        
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check">
+                            <input type="checkbox" class="form-check" checked>
+                            <input type="checkbox" class="form-check" invalid>
+                            <input type="checkbox" class="form-check" invalid checked>
+                            <input type="checkbox" class="form-check" valid>
+                            <input type="checkbox" class="form-check" valid checked>
+                        </div>
+                        
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check-lg">
+                            <input type="checkbox" class="form-check-lg" checked>
+                            <input type="checkbox" class="form-check-lg" invalid>
+                            <input type="checkbox" class="form-check-lg" invalid checked>
+                            <input type="checkbox" class="form-check-lg" valid>
+                            <input type="checkbox" class="form-check-lg" valid checked>
+                        </div>
+                        
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check-xl">
+                            <input type="checkbox" class="form-check-xl" checked>
+                            <input type="checkbox" class="form-check-xl" invalid>
+                            <input type="checkbox" class="form-check-xl" invalid checked>
+                            <input type="checkbox" class="form-check-xl" valid>
+                            <input type="checkbox" class="form-check-xl" valid checked>
+                        </div>
+                        
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check-2xl">
+                            <input type="checkbox" class="form-check-2xl" checked>
+                            <input type="checkbox" class="form-check-2xl" invalid>
+                            <input type="checkbox" class="form-check-2xl" invalid checked>
+                            <input type="checkbox" class="form-check-2xl" valid>
+                            <input type="checkbox" class="form-check-2xl" valid checked>
+                        </div>
+                        
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check-3xl">
+                            <input type="checkbox" class="form-check-3xl" checked>
+                            <input type="checkbox" class="form-check-3xl" invalid>
+                            <input type="checkbox" class="form-check-3xl" invalid checked>
+                            <input type="checkbox" class="form-check-3xl" valid>
+                            <input type="checkbox" class="form-check-3xl" valid checked>
+                        </div>
+                        
+                        <div class="flex gap-1">
+                            <input type="checkbox" class="form-check-4xl">
+                            <input type="checkbox" class="form-check-4xl" checked>
+                            <input type="checkbox" class="form-check-4xl" invalid>
+                            <input type="checkbox" class="form-check-4xl" invalid checked>
+                            <input type="checkbox" class="form-check-4xl" valid>
+                            <input type="checkbox" class="form-check-4xl" valid checked>
                         </div>
 
                         <h2 class="text-2xl mt-2">Validation</h2>
@@ -378,7 +452,7 @@
                             </label>
                         </div>
 
-                        <h2 class="text-2xl mt-2">Styles</h2>
+                        <h2 class="text-2xl mt-2">Sizes</h2>
             
                         <div class="flex flex-col gap-2">
                             <input type="checkbox" class="form-switch-xs">
@@ -397,8 +471,6 @@
                             <div>
                                 <label class="flex gap-2"><input type="checkbox" class="form-switch" invalid> Invalid</label>
                                 <label class="flex gap-2"><input type="checkbox" class="form-switch" checked invalid> Invalid</label>
-                                <label class="flex gap-2"><input type="radio" name="radio7" class="form-switch" invalid> Invalid</label>
-                                <label class="flex gap-2"><input type="radio" name="radio7" class="form-switch" checked invalid> Invalid</label>
                                 <div class="invalid-feedback">This is an inline error.</div>
                             </div>
                             <div class="invalid-feedback">This is an inline error.</div>
@@ -411,8 +483,6 @@
                             <div>
                                 <label class="flex gap-2"><input type="checkbox" class="form-switch" valid> Valid</label>
                                 <label class="flex gap-2"><input type="checkbox" class="form-switch" checked valid> Valid</label>
-                                <label class="flex gap-2"><input type="radio" name="radio8" class="form-switch" valid> Valid</label>
-                                <label class="flex gap-2"><input type="radio" name="radio8" class="form-switch" checked valid> Valid</label>
                                 <div class="valid-feedback">This is an inline sucess message.</div>
                             </div>
                             <div class="valid-feedback">This is an inline sucess message.</div>
