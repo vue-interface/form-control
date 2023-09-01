@@ -95,11 +95,16 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     color: colors.gray['800'],
                     verticalAlign: 'middle',
                     backgroundColor: theme('form.backgroundColor', colors.white),
-                    backgroundImage: 'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZT0iY3VycmVudENvbG9yIj4KICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Ik0xOS41IDguMjVsLTcuNSA3LjUtNy41LTcuNSIgLz4KPC9zdmc+")',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: `right ${theme('form.paddingLeft', '.375rem')} center`,
-                    backgroundSize: '16px 16px',
-                    border: `${theme('form.borderWidth')} ${theme('form.borderStyle')} ${theme('form.borderColor')}`,
+                    backgroundImage: theme('form.select.backgroundImage'),
+                    backgroundRepeat: theme('form.select.backgroundRepeat'),
+                    backgroundPosition: theme('form.select.backgroundPosition'),
+                    backgroundSize: theme('form.select.backgroundSize'),
+                    borderWidth: !theme('form.border') && theme('form.borderWidth'),
+                    borderStyle: !theme('form.border') && theme('form.borderStyle'),
+                    borderColor: !theme('form.border') && theme('form.borderColor'),
+                    border: theme('form.border'),
+                    borderRadius: theme('form.borderRadius'),
+                    boxShadow: theme('form.boxShadow'),
                     transition: theme('form.transition', 'border-color .15s ease-in-out, box-shadow .15s ease-in-out'),
                     appearance: theme('form.appearance', 'none'),
                     opacity: theme('form.opacity'),
@@ -107,8 +112,12 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     [dark('text', 'form.dark.color')]: {},
                     [dark('bg', 'form.dark.backgroundColor')]: {},
                     [dark('border', 'form.dark.borderColor')]: {},
+                    [dark('border-t', 'form.dark.borderTopColor')]: {},
+                    [dark('border-b', 'form.dark.borderBottomColor')]: {},
+                    [dark('border-l', 'form.dark.borderLeftColor')]: {},
+                    [dark('border-r', 'form.dark.borderRightColor')]: {},
                     
-                    ['@apply dark:bg-[url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZT0id2hpdGUiPgogIDxwYXRoIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZD0iTTE5LjUgOC4yNWwtNy41IDcuNS03LjUtNy41IiAvPgo8L3N2Zz4=")]']: {},
+                    [`@apply dark:bg-[${theme('form.select.dark.backgroundImage')}]`]: {},
 
                     '&:focus': {
                         color: theme('form.color', theme('colors.gray.700', colors.gray['700'])),
@@ -120,6 +129,10 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                         [dark('text', 'form.focus.dark.color')]: {},
                         [dark('bg', 'form.focus.dark.backgroundColor')]: {},
                         [dark('border', 'form.focus.dark.borderColor')]: {},
+                        [dark('border-t', 'form.focus.dark.borderTopColor')]: {},
+                        [dark('border-b', 'form.focus.dark.borderBottomColor')]: {},
+                        [dark('border-l', 'form.focus.dark.borderLeftColor')]: {},
+                        [dark('border-r', 'form.focus.dark.borderRightColor')]: {},
                     },
             
                     '&::-ms-value': {
@@ -147,7 +160,11 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
 
                         [dark('text', 'form.disabled.dark.color')]: {},
                         [dark('bg', 'form.disabled.dark.backgroundColor')]: {},
-                        [dark('border', 'form.disabled.dark.borderColor')]: {}
+                        [dark('border', 'form.disabled.dark.borderColor')]: {},
+                        [dark('border-t', 'form.disabled.dark.borderTopColor')]: {},
+                        [dark('border-b', 'form.disabled.dark.borderBottomColor')]: {},
+                        [dark('border-l', 'form.disabled.dark.borderLeftColor')]: {},
+                        [dark('border-r', 'form.disabled.dark.borderRightColor')]: {},
                     },
 
                     '&[readonly]:disabled': {
@@ -180,7 +197,11 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
 
                         [dark('text', 'form.invalid.dark.color')]: {},
                         [dark('bg', 'form.invalid.dark.backgroundColor')]: {},
-                        [dark('border', 'form.invalid.dark.borderColor')]: {}
+                        [dark('border', 'form.invalid.dark.borderColor')]: {},
+                        [dark('border-t', 'form.invalid.dark.borderTopColor')]: {},
+                        [dark('border-b', 'form.invalid.dark.borderBottomColor')]: {},
+                        [dark('border-l', 'form.invalid.dark.borderLeftColor')]: {},
+                        [dark('border-r', 'form.invalid.dark.borderRightColor')]: {},
                     },
 
                     [`
@@ -214,7 +235,11 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
 
                         [dark('text', 'form.valid.dark.color')]: {},
                         [dark('bg', 'form.valid.dark.backgroundColor')]: {},
-                        [dark('border', 'form.valid.dark.borderColor')]: {}
+                        [dark('border', 'form.valid.dark.borderColor')]: {},
+                        [dark('border-t', 'form.valid.dark.borderTopColor')]: {},
+                        [dark('border-b', 'form.valid.dark.borderBottomColor')]: {},
+                        [dark('border-l', 'form.valid.dark.borderLeftColor')]: {},
+                        [dark('border-r', 'form.valid.dark.borderRightColor')]: {},
                     },
 
                     [`

@@ -165,7 +165,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 },
             },
             styles: {
-                ...Object.assign({}, require('./sizes.cjs'), {
+                ...Object.assign({}, theme('form.sizes'), {
                     DEFAULT: {
                         paddingTop: '.15rem',
                         paddingBottom: '.15rem',

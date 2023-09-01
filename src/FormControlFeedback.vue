@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 
-const props = defineProps<{
+defineProps<{
     feedback?: string|string[]
 }>();
-
 </script>
 
 <template>
     <slot
-        v-for="item of [].concat(feedback)"
-        v-bind="{ feedback: item }" />
+        v-for="item of (Array.isArray(feedback) ? feedback : [feedback])"
+        :feedback="item" />
 </template>

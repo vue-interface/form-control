@@ -111,21 +111,16 @@ module.exports = plugin(function({ matchComponents, theme }) {
                         }
                     },
                 
-                    '&:disabled': {
+                    '&[disabled]:not([readonly]), &:disabled:not([readonly])': {
                         pointerEvents: 'none',
                         filter: 'none',
                         opacity: '.5',
 
                         [dark('bg', 'form.disabled.dark.backgroundColor')]: {},
-                        
-                    },
-                
-                    // Use disabled attribute in addition of :disabled pseudo-class
-                    // See: https://github.com/twbs/bootstrap/issues/28247
-                    '&[disabled], &:disabled': {
+
                         '~ .form-check-label': {
                             opacity: '.5',
-                        }
+                        },
                     },
 
                     '&.is-invalid, &[invalid]': {

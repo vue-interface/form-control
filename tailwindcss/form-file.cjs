@@ -130,7 +130,7 @@ module.exports = plugin(function({ matchComponents, theme }) {
                     },
                 },
 
-                sizes: require('./sizes.cjs')
+                sizes: theme('form.sizes'),
             };
         }
     }

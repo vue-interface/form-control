@@ -29,7 +29,6 @@ module.exports = {
                 backgroundColor: theme('colors.white', colors.white),
                 backgroundClip: 'padding-box',
                 appearance: 'none',
-                boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, .075)',
                 borderRadius: '.25rem',
                 transition: 'background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out',
                 enableShadows: true,
@@ -37,6 +36,15 @@ module.exports = {
                     backgroundColor: theme('colors.neutral.700', colors.neutral[700]),
                     borderColor: theme('colors.neutral.500', colors.neutral['500']),
                     color: theme('colors.white', colors.white),
+                },
+                select: {
+                    backgroundSize: '16px 16px',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right .375rem center',
+                    backgroundImage: escapeSvg(`url("data:image/svg+xml;base64,${btoa(`<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='${colors.gray['700']}'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>`)}")`),
+                    dark: {
+                        backgroundImage: escapeSvg(`url("data:image/svg+xml;base64,${btoa(`<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='${colors.gray['300']}'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>`)}")`),
+                    }
                 },
                 colorControl: {
                     maxWidth: '3rem',
