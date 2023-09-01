@@ -1,3 +1,15 @@
+# [1.0.0-beta.38](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2023-09-01)
+
+
+### Bug Fixes
+
+* more implementation issues ([081594d](https://github.com/vue-interface/form-control/commit/081594da0746784983ec0bbc4cfe42bbd1c86266))
+
+
+### Features
+
+* added new composable with better TS support ([cd5975d](https://github.com/vue-interface/form-control/commit/cd5975df3a0dd91d62de7c64ec508f94d616c643))
+
 # [1.0.0-beta.37](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2023-08-31)
 
 
