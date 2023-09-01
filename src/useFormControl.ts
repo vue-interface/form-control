@@ -1,4 +1,4 @@
-import { isNil, omit } from 'lodash-es';
+import { isNil } from 'lodash-es';
 import { Component, WritableComputedRef, computed, onBeforeMount, ref, useAttrs, useSlots, watch } from 'vue';
 
 export type FormControlEvents<T> = {
@@ -99,11 +99,16 @@ export type CheckedFormControlProps<T, V> = FormControlProps<T, V> & {
     checked?: boolean,
 }
 
-export function useFormControl(props: FormControlProps<any,any> | CheckedFormControlProps<any,any>, emit: FormControlEvents<any>, model?: WritableComputedRef<any>) {
+export function useFormControl<T,V>(props: FormControlProps<T,V> | CheckedFormControlProps<T,V>, emit: FormControlEvents<T>, model?: WritableComputedRef<T>) {
     if(!model) {
-        model = computed({
+        const currentValue = ref<T>();
+        
+        model = computed(props.modelValue ? {
             get: () => props.modelValue,
             set: (value) => emit('update:modelValue', value)
+        } : {
+            get: () => currentValue.value,
+            set: value => currentValue.value = value
         });
     }
     
@@ -160,7 +165,7 @@ export function useFormControl(props: FormControlProps<any,any> | CheckedFormCon
     }));
 
     const controlAttributes = computed<FormControlAttributes<any>>(() => ({
-        ...omit(attrs, ['value']),
+        ...attrs,
         id: id.value,
         name: props.name,
         class: controlClasses.value,
