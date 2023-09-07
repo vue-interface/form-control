@@ -1,5 +1,5 @@
 import { isNil } from 'lodash-es';
-import { Component, WritableComputedRef, computed, onBeforeMount, ref, useAttrs, useSlots, watch } from 'vue';
+import { Component, Ref, WritableComputedRef, computed, onBeforeMount, ref, useAttrs, useSlots, watch } from 'vue';
 
 export type FormControlEvents<T> = {
     (e: 'update:modelValue', value: T): void
@@ -99,16 +99,23 @@ export type CheckedFormControlProps<T, V> = FormControlProps<T, V> & {
     checked?: boolean,
 }
 
-export function useFormControl<T,V>(props: FormControlProps<T,V> | CheckedFormControlProps<T,V>, emit: FormControlEvents<T>, model?: WritableComputedRef<T>) {
+type UseFormControlOptions<T,V> = {
+    props: FormControlProps<T,V> | CheckedFormControlProps<T,V>,
+    emit: FormControlEvents<T>,
+    model?: WritableComputedRef<T>
+}
+
+export function useFormControl<T,V>({ props, emit, model }: UseFormControlOptions<T,V>) {
     if(!model) {
-        const currentValue = ref<T>();
+        const currentValue = ref(props.modelValue)as Ref<T>;
         
-        model = computed(props.modelValue ? {
-            get: () => props.modelValue,
-            set: (value) => emit('update:modelValue', value)
-        } : {
-            get: () => currentValue.value,
-            set: value => currentValue.value = value
+        model = computed({
+            get: () => currentValue.value as T,
+            set: value => {
+                currentValue.value = value;
+                
+                emit('update:modelValue', value);
+            }
         });
     }
     
