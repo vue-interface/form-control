@@ -31,14 +31,22 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     }
                 },
 
-                '.form-group-inner': {
-                    position: 'relative',
+                // '.form-group-inner': {
+                //     position: 'relative',
 
-                    '&:has(> .form-group-inner-icon) .form-control': {
+                //     '&:has(> .form-group-inner-icon) .form-control': {
+                //         paddingLeft: '4em'
+                //     }
+                // },
+                
+                '&:has(.form-group-inner-icon) .form-group-inner': {
+                    position: 'relative',
+    
+                    '.form-select': {
                         paddingLeft: '2em'
                     }
                 },
-                
+
                 '.form-group-inner-icon': {
                     position: 'absolute',
                     top: '50%',
