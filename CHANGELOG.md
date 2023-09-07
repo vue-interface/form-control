@@ -1,3 +1,11 @@
+# [1.0.0-beta.39](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2023-09-07)
+
+
+### Bug Fixes
+
+* computed model that was breaking for the select field ([a4b761e](https://github.com/vue-interface/form-control/commit/a4b761e12e01b859c72de9608d223d2396e08077))
+* icon padding for form-select ([7a23a8c](https://github.com/vue-interface/form-control/commit/7a23a8c9af3de71f17870efa16b3abf20fefa783))
+
 # [1.0.0-beta.38](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2023-09-01)
 
 
