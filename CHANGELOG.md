@@ -1,3 +1,10 @@
+# [1.0.0-beta.40](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2023-09-07)
+
+
+### Bug Fixes
+
+* activity indicator positioning for form-select ([64dcb57](https://github.com/vue-interface/form-control/commit/64dcb571c5d9aa75ef4e80957a303c150465d3a4))
+
 # [1.0.0-beta.39](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2023-09-07)
 
 
