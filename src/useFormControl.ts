@@ -69,7 +69,7 @@ export type FormControlProps<T, V> = {
     value?: V
 }
 
-type FormGroupClasses = {
+export type FormGroupClasses = {
     'has-activity': boolean,
     'has-changed': boolean,
     'has-focus': boolean,
@@ -80,7 +80,7 @@ type FormGroupClasses = {
     'is-valid': boolean
 } & Record<string,boolean>
 
-type FormControlAttributes<V> = {
+export type FormControlAttributes<V> = {
     id: string,
     class: FormControlClasses,
     disabled?: boolean,
@@ -88,7 +88,7 @@ type FormControlAttributes<V> = {
     value?: V,
 } & Record<string, unknown>;
 
-type FormControlClasses = {
+export type FormControlClasses = {
     'form-control-plaintext': boolean,
     'form-control-icon': boolean,
     'is-valid': boolean,
@@ -99,7 +99,7 @@ export type CheckedFormControlProps<T, V> = FormControlProps<T, V> & {
     checked?: boolean,
 }
 
-type UseFormControlOptions<T,V> = {
+export type UseFormControlOptions<T,V> = {
     props: FormControlProps<T,V> | CheckedFormControlProps<T,V>,
     emit: FormControlEvents<T>,
     model?: WritableComputedRef<T>
