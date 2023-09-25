@@ -1,5 +1,5 @@
 import { isNil } from 'lodash-es';
-import { Component, Ref, WritableComputedRef, computed, onBeforeMount, ref, useAttrs, useSlots, watch } from 'vue';
+import { Component, WritableComputedRef, computed, onBeforeMount, ref, useAttrs, useSlots, watch, watchEffect } from 'vue';
 
 export type FormControlEvents<T> = {
     (e: 'update:modelValue', value: T): void
@@ -107,7 +107,15 @@ type UseFormControlOptions<T,V> = {
 
 export function useFormControl<T,V>({ props, emit, model }: UseFormControlOptions<T,V>) {
     if(!model) {
-        const currentValue = ref(props.modelValue)as Ref<T>;
+        const currentValue = ref<T>();
+        
+        watchEffect(() => {
+            currentValue.value = props.modelValue;
+        });
+
+        // todo... add watcher to modelValue, so if the model value is updated
+        // outside the component scope, the current value reactively updates to
+        // match the model value.
         
         model = computed({
             get: () => currentValue.value as T,
