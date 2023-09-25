@@ -1,3 +1,10 @@
+# [1.0.0-beta.42](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.41...v1.0.0-beta.42) (2023-09-25)
+
+
+### Bug Fixes
+
+* ts exports ([f398aaa](https://github.com/vue-interface/form-control/commit/f398aaa04b87feb3c7ce17a53ae9d1aad1a011f3))
+
 # [1.0.0-beta.41](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2023-09-25)
 
 
