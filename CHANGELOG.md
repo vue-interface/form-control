@@ -1,3 +1,10 @@
+# [1.0.0-beta.41](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2023-09-25)
+
+
+### Bug Fixes
+
+* issue with modelValue as a prop not being reactive ([94e4236](https://github.com/vue-interface/form-control/commit/94e42364a528081b539c2ebc8694ed469d30fa3d))
+
 # [1.0.0-beta.40](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2023-09-07)
 
 
