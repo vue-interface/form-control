@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { isPlainObject } from 'lodash-es';
 import { computed } from 'vue';
-import { type FormControlError, type FormControlErrorArray, type FormControlErrorRecord } from './useFormControl.js';
+import { type FormControlErrorProp, type FormControlErrorPropArray, type FormControlErrorPropRecord } from './useFormControl.js';
 
 const props = defineProps<{
-    error?: FormControlError,
-    errors?: FormControlErrorArray | FormControlErrorRecord,
+    error?: FormControlErrorProp,
+    errors?: FormControlErrorPropArray | FormControlErrorPropRecord,
     name?: string,
     id?: string
 }>();

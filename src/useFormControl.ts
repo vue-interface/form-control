@@ -1,5 +1,5 @@
 import { isNil } from 'lodash-es';
-import { Component, WritableComputedRef, computed, onBeforeMount, ref, useAttrs, useSlots, watch, watchEffect } from 'vue';
+import { computed, onBeforeMount, ref, useAttrs, useSlots, watch, watchEffect, type Component, type WritableComputedRef } from 'vue';
 
 export type FormControlEvents<T> = {
     (e: 'update:modelValue', value: T): void
@@ -14,9 +14,9 @@ export type FormControlSlot<T> = (
     }
 ) => any;
 
-export type FormControlFeedbackSlot = (
+export type FormControlFeedbackPropSlot = (
     props: {
-        feedback: FormControlFeedback
+        feedback: FormControlFeedbackProp
     }
 ) => any;
 
@@ -29,7 +29,7 @@ export type FormControlSlots<T> = {
     control?: FormControlSlot<T>
     activity?: FormControlActivitySlot
     errors?: FormControlErrorSlot,
-    feedback?: FormControlFeedbackSlot,
+    feedback?: FormControlFeedbackPropSlot,
     icon?: FormControlIconSlot,
     label?: FormControlLabelSlot,
     help?: FormControlHelpSlot
@@ -38,21 +38,21 @@ export type FormControlSlots<T> = {
 export type FormControlErrorSlot = (props: {
     name?: unknown,
     id?: unknown,
-    error?: FormControlError,
-    errors?: FormControlErrorArray | FormControlErrorRecord
+    error?: FormControlErrorProp,
+    errors?: FormControlErrorPropArray | FormControlErrorPropRecord
 }) => any;
 
-export type FormControlError = string | Error;
-export type FormControlErrorArray = FormControlError[];
-export type FormControlErrorRecord = Record<string,FormControlError[]>
-export type FormControlFeedback = string | string[];
+export type FormControlErrorProp = string | Error;
+export type FormControlErrorPropArray = FormControlErrorProp[];
+export type FormControlErrorPropRecord = Record<string,FormControlErrorProp[]>
+export type FormControlFeedbackProp = string | string[];
 
 export type FormControlProps<T, V> = {
     activity?: boolean,
     disabled?: boolean,
-    error?: FormControlError,
-    errors?: FormControlErrorArray | FormControlErrorRecord,
-    feedback?: FormControlFeedback,
+    error?: FormControlErrorProp,
+    errors?: FormControlErrorPropArray | FormControlErrorPropRecord,
+    feedback?: FormControlFeedbackProp,
     formControlClass?: string,
     helpText?: string,
     id?: string,

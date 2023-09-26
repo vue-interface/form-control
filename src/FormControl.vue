@@ -5,14 +5,6 @@ import FormControlErrors from './FormControlErrors.vue';
 import FormControlFeedback from './FormControlFeedback.vue';
 import config from './config.js';
 
-function prefix(key: string, value: any, delimeter = '-') {
-    const string = String(value).replace(new RegExp(`^${key}${delimeter}?`), '');
-
-    return [
-        kebabCase(string), key
-    ].filter(value => !!value).join(delimeter);
-}
-
 export default defineComponent({
     components: {
         FormControlErrors,
