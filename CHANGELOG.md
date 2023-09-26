@@ -1,3 +1,10 @@
+# [1.0.0-beta.43](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.42...v1.0.0-beta.43) (2023-09-26)
+
+
+### Bug Fixes
+
+* issues with export name overlapping causing TS errors ([e4b7e54](https://github.com/vue-interface/form-control/commit/e4b7e5495bd11f7c4f40e59e81cdfefc388765f7))
+
 # [1.0.0-beta.42](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.41...v1.0.0-beta.42) (2023-09-25)
 
 
