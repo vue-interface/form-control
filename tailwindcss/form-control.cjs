@@ -96,7 +96,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                 const value = theme(color);
 
                 if(!value) {
-                    return '';
+                    return;
                 }
 
                 return `@apply dark:${type}-[${value.replace(/\s+/g, '')}]`;
