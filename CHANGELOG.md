@@ -1,3 +1,10 @@
+# [1.0.0-beta.44](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.43...v1.0.0-beta.44) (2023-09-26)
+
+
+### Bug Fixes
+
+* issues with building css files in prod ([6ce3e5c](https://github.com/vue-interface/form-control/commit/6ce3e5c64f769c405f501ba3453101dcb6309301))
+
 # [1.0.0-beta.43](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.42...v1.0.0-beta.43) (2023-09-26)
 
 
