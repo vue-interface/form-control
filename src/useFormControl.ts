@@ -2,6 +2,10 @@ import { isNil } from 'lodash-es';
 import { computed, onBeforeMount, ref, useAttrs, useSlots, watch, watchEffect, type Component, type WritableComputedRef } from 'vue';
 
 export type FormControlEvents<T> = {
+    (e: 'blur', event: InputEvent): void
+    (e: 'change', value: T): void
+    (e: 'click', value: T): void
+    (e: 'focus', event: InputEvent): void
     (e: 'update:modelValue', value: T): void
 };
 
@@ -194,13 +198,17 @@ export function useFormControl<T,V>({ props, emit, model }: UseFormControlOption
         }
     }
 
-    function onBlur() {
+    function onBlur(e: InputEvent) {
         hasFocus.value = false;
+
+        emit('blur', e);
     }
 
-    function onFocus() {
+    function onFocus(e: InputEvent) {
         isDirty.value = true;
         hasFocus.value = true;
+
+        emit('focus', e);
     }
 
     onBeforeMount(() => {
