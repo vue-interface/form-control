@@ -1,3 +1,10 @@
+# [1.0.0-beta.45](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2023-11-16)
+
+
+### Bug Fixes
+
+* added new events ([8aa14d4](https://github.com/vue-interface/form-control/commit/8aa14d46a6701c7c8035143e93b51cb5eac29200))
+
 # [1.0.0-beta.44](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.43...v1.0.0-beta.44) (2023-09-26)
 
 
