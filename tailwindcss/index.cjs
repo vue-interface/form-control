@@ -10,7 +10,7 @@ module.exports = {
                 display: 'block',
                 width: '100%',
                 lineHeight: '1.5',
-                color: theme('colors.gray.700', colors.gray['700']),
+                color: theme('colors.neutral.700', colors.neutral['700']),
                 paddingTop: '.375rem',
                 paddingBottom: '.375rem',
                 paddingLeft: '.75rem',
@@ -20,7 +20,7 @@ module.exports = {
                 // @deprecated
                 paddingX: '.75rem',
                 borderWidth: '1px',
-                borderColor: theme('colors.gray.400', colors.gray['400']),
+                borderColor: theme('colors.neutral.300', colors.neutral['300']),
                 borderStyle: 'solid',
                 fontSize: '1rem',
                 fontFamily: 'inherit',
@@ -41,9 +41,9 @@ module.exports = {
                     backgroundSize: '16px 16px',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'right .375rem center',
-                    backgroundImage: escapeSvg(`url("data:image/svg+xml;base64,${btoa(`<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='${colors.gray['700']}'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>`)}")`),
+                    backgroundImage: escapeSvg(`url("data:image/svg+xml;base64,${btoa(`<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='${colors.neutral['700']}'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>`)}")`),
                     dark: {
-                        backgroundImage: escapeSvg(`url("data:image/svg+xml;base64,${btoa(`<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='${colors.gray['300']}'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>`)}")`),
+                        backgroundImage: escapeSvg(`url("data:image/svg+xml;base64,${btoa(`<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='${colors.neutral['300']}'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' /></svg>`)}")`),
                     }
                 },
                 colorControl: {
@@ -51,7 +51,7 @@ module.exports = {
                     padding: '.375rem'
                 },
                 focus: {
-                    color: theme('colors.gray.700', colors.gray['700']),
+                    color: theme('colors.neutral.700', colors.neutral['700']),
                     backgroundColor: theme('colors.white', colors.white),
                     borderColor: Color(theme('variations.primary', theme('colors.blue.400', colors.blue['400']))).string(),
                     outline: 0,
@@ -66,16 +66,16 @@ module.exports = {
                 },
                 placeholder: {
                     opacity: 1,
-                    color: theme('colors.gray.400', colors.gray[400]),
+                    color: theme('colors.neutral.400', colors.neutral[400]),
                     dark: {
                         color: theme('colors.neutral.400', colors.neutral['400']),
                     },
                 },
                 disabled: {
                     opacity: 1,
-                    color: theme('colors.gray.400', colors.gray[400]),
-                    borderColor: theme('colors.gray.400', colors.gray[400]),
-                    backgroundColor: theme('colors.gray.200', colors.gray[200]),
+                    color: theme('colors.neutral.400', colors.neutral[400]),
+                    borderColor: theme('colors.neutral.400', colors.neutral[400]),
+                    backgroundColor: theme('colors.neutral.200', colors.neutral[200]),
                     focus: {
                         color: theme('variations.success', colors.red[600]),
                         borderColor: theme('variations.success', colors.red[600]),
