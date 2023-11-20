@@ -1,3 +1,10 @@
+# [1.0.0-beta.46](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.45...v1.0.0-beta.46) (2023-11-20)
+
+
+### Bug Fixes
+
+* typescript issues ([90311c4](https://github.com/vue-interface/form-control/commit/90311c4e7f6eaa94e42295a799c2b41148c9e33d))
+
 # [1.0.0-beta.45](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2023-11-16)
 
 
