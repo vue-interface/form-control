@@ -109,6 +109,14 @@ export type UseFormControlOptions<T,V> = {
     model?: WritableComputedRef<T>
 }
 
+// @todo - JK
+// Update for Vue 3.4: We need to remove this clever code of one-size-fits
+// all approach, and required defineModel macro to be used, and we pass down
+// a model. We should not have a if(!model), since the defineModel is required.
+// This will fix the various implementation differences and keep it consistent
+// across drastically varying types of implementation. Look at CheckboxField vs
+// InputField for differences.
+
 export function useFormControl<T,V>({ props, emit, model }: UseFormControlOptions<T,V>) {
     if(!model) {
         const currentValue = ref<T>();
@@ -117,17 +125,15 @@ export function useFormControl<T,V>({ props, emit, model }: UseFormControlOption
             currentValue.value = props.modelValue;
         });
 
-        // todo... add watcher to modelValue, so if the model value is updated
-        // outside the component scope, the current value reactively updates to
-        // match the model value.
-        
         model = computed({
             get: () => currentValue.value as T,
             set: value => {
                 currentValue.value = value;
-                
-                emit('update:modelValue', value);
             }
+        });
+
+        watch(model, (value) => {
+            emit('update:modelValue', value);
         });
     }
     
