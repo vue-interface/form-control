@@ -161,7 +161,7 @@ export function useFormControl<T,V>({ props, emit, model }: UseFormControlOption
         return !!(props.invalid || props.error || props.errors && (
             Array.isArray(props.errors)
                 ? props.errors.length
-                : props.errors[(attrs.name || id.value) as string]
+                : props.errors[(props.name || id.value) as string]
         ));
     });
 
