@@ -1,3 +1,10 @@
+# [1.0.0-beta.49](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2024-02-29)
+
+
+### Bug Fixes
+
+* fixed issue event emitters ([da79200](https://github.com/vue-interface/form-control/commit/da7920072bb1e3120b5c20898b5286d43efd5eb7))
+
 # [1.0.0-beta.48](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2024-02-29)
 
 
