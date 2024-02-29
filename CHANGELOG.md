@@ -1,3 +1,10 @@
+# [1.0.0-beta.47](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.46...v1.0.0-beta.47) (2024-02-29)
+
+
+### Bug Fixes
+
+* issue with validating laravel style form errors ([335e21f](https://github.com/vue-interface/form-control/commit/335e21f5ff20edb450abb78665f991fc7d0c6a0d))
+
 # [1.0.0-beta.46](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.45...v1.0.0-beta.46) (2023-11-20)
 
 
