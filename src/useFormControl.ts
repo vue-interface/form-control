@@ -1,11 +1,11 @@
 import { isNil } from 'lodash-es';
-import { computed, onBeforeMount, ref, useAttrs, useSlots, watch, watchEffect, type Component, type WritableComputedRef } from 'vue';
+import { computed, nextTick, onBeforeMount, ref, useAttrs, useSlots, watch, watchEffect, type Component, type WritableComputedRef } from 'vue';
 
 export type FormControlEvents<T> = {
-    (e: 'blur', event: FocusEvent, value: T): void
+    (e: 'blur', event: FocusEvent): void
     (e: 'change', value: T): void
-    (e: 'click', event: PointerEvent, value: T): void
-    (e: 'focus', event: FocusEvent, value: T): void
+    (e: 'click', event: PointerEvent): void
+    (e: 'focus', event: FocusEvent): void
     (e: 'update:modelValue', value: T): void
 };
 
@@ -203,20 +203,22 @@ export function useFormControl<T,V>({ props, emit, model }: UseFormControlOption
             e.preventDefault();
         }
 
-        emit('click', e, model.value);
+        nextTick(() => {
+            emit('click', e);
+        });
     }
 
     function onBlur(e: FocusEvent) {
         hasFocus.value = false;
 
-        emit('blur', e, model.value);
+        emit('blur', e);
     }
 
     function onFocus(e: FocusEvent) {
         isDirty.value = true;
         hasFocus.value = true;
 
-        emit('focus', e, model.value);
+        emit('focus', e);
     }
 
     onBeforeMount(() => {
