@@ -4,7 +4,7 @@ import { computed, onBeforeMount, ref, useAttrs, useSlots, watch, watchEffect, t
 export type FormControlEvents<T> = {
     (e: 'blur', event: FocusEvent): void
     (e: 'change', value: T): void
-    (e: 'click', value: T): void
+    (e: 'click', event: PointerEvent, value: T): void
     (e: 'focus', event: FocusEvent): void
     (e: 'update:modelValue', value: T): void
 };
@@ -198,10 +198,12 @@ export function useFormControl<T,V>({ props, emit, model }: UseFormControlOption
         readonly: props.readonly
     }));
 
-    function onClick(e: Event) {
+    function onClick(e: PointerEvent) {
         if(props.readonly) {
             e.preventDefault();
         }
+
+        emit('click', e, model.value);
     }
 
     function onBlur(e: FocusEvent) {
