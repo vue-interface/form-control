@@ -1,3 +1,11 @@
+# [1.0.0-beta.48](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2024-02-29)
+
+
+### Bug Fixes
+
+* added click emitter to the onClick helper ([9d532ac](https://github.com/vue-interface/form-control/commit/9d532aca23f9c515e96c665b458b4e56b17cedf4))
+* changed event emitters ([184c065](https://github.com/vue-interface/form-control/commit/184c06566fd50cf26976a19f43aa641167267e37))
+
 # [1.0.0-beta.47](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.46...v1.0.0-beta.47) (2024-02-29)
 
 
