@@ -1,3 +1,10 @@
+# [1.0.0-beta.50](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2024-03-03)
+
+
+### Bug Fixes
+
+* sizes issues for select fields ([27146da](https://github.com/vue-interface/form-control/commit/27146da5725bbc80f37636d70822b60e009e9901))
+
 # [1.0.0-beta.49](https://github.com/vue-interface/form-control/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2024-02-29)
 
 
