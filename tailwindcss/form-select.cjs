@@ -53,7 +53,7 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
 
                 '.activity-indicator': {
                     position: 'absolute',
-                    right: '0',
+                    right: '.75rem',
                     top: '50%',
                     transform: 'translate(-1rem, -50%)',
                     transition: 'all .15s ease-in'
@@ -254,7 +254,61 @@ module.exports = plugin(function({ addComponents, matchComponents, theme }) {
                     },
                 },
 
-                sizes: theme('form.sizes'),
+                sizes: {
+                    DEFAULT: {
+                        ...theme('form.sizes.DEFAULT'),
+                        padding: '.375rem 1.75rem .375rem .75rem',
+                        backgroundSize: '1rem'
+                    },
+
+                    'xs': {
+                        ...theme('form.sizes.xs'),
+                        padding: '.15rem 1.35rem .15rem .35rem',
+                        backgroundSize: '.66rem'
+                    },
+
+                    'sm': {
+                        ...theme('form.sizes.sm'),
+                        padding: '.25rem 1.5rem .25rem .5rem',
+                        backgroundSize: '.75rem'
+                    },
+    
+                    'md': {
+                        ...theme('form.sizes.md'),
+                        padding: '.375rem 1.75rem .375rem .75rem',
+                        backgroundSize: '1rem'
+                    },
+
+                    'lg': {
+                        ...theme('form.sizes.lg'),
+                        padding: '.5rem 2rem .5rem 1rem',
+                        backgroundSize: '1.25rem'
+                    },
+    
+                    'xl': {
+                        ...theme('form.sizes.xl'),
+                        padding: '.66rem 2.25rem .66rem 1.25rem',
+                        backgroundSize: '1.5rem'
+                    },
+    
+                    '2xl': {
+                        ...theme('form.sizes.2xl'),
+                        padding: '.75rem 2.5rem .75rem 1.5rem',
+                        backgroundSize: '1.75rem'
+                    },
+    
+                    '3xl': {
+                        ...theme('form.sizes.3xl'),
+                        padding: '.85rem 2.75rem .85rem 1.75rem',
+                        backgroundSize: '2rem'
+                    },
+    
+                    '4xl': {
+                        ...theme('form.sizes.4xl'),
+                        padding: '1rem 3rem 1rem 2rem',
+                        backgroundSize: '2.25rem'
+                    }
+                },
 
                 styles: {
                     plaintext: theme('form.plaintext')
